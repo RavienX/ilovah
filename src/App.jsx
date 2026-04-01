@@ -971,6 +971,7 @@ export default function ILovah() {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => { const h = () => setScrolled(window.scrollY > 30); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
+  useEffect(() => { const link = document.querySelector("link[rel~='icon']") || document.createElement("link"); link.rel = "icon"; link.href = ilovahLogoSrc; document.head.appendChild(link); }, []);
   const go = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
 
   const services = [
