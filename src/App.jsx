@@ -11,7 +11,12 @@ import imgAfterKitchen from "./assets/after kitchen.png";
 import imgPest from "./assets/pest control.jpg";
 import imgPressure from "./assets/pressure washing.jpg";
 import imgGeneral from "./assets/general house clean.jpg";
-
+import ilovahLogoSrc from "./assets/logo.jpg";
+import imgBox from "./assets/box.png";
+import imgCherub from "./assets/cherub.png";
+import imgClinic from "./assets/clinic.png";
+import imgHousing from "./assets/housing.png";
+import imgLiving from "./assets/living.png";
 const RED = "#e8291c";
 const RED_DK = "#c01f13";
 const RED_LT = "#fdecea";
@@ -215,19 +220,17 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 
 /* ── CLIENTS ── */
 .il-clients-section{padding:72px 0;background:${CREAM}}
-.il-clients-grid{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:48px}
-.il-client-card{background:#fff;border-radius:14px;border:1.5px solid ${BORDER};padding:22px 32px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;min-width:150px;min-height:88px;font-weight:700;font-size:.9rem;color:${CHARCOAL};transition:box-shadow .25s,transform .25s;cursor:default}
-.il-client-card:hover{box-shadow:0 10px 32px rgba(0,0,0,0.09);transform:translateY(-4px)}
-.il-client-card.galaxy{background:linear-gradient(135deg,#1a3c6e,#0d2444);color:#fff;flex-direction:column;gap:4px;font-size:.8rem}
-.il-client-card.galaxy span{font-size:.65rem;font-weight:500;opacity:.75}
-.il-client-card.cherubs{color:${RED};flex-direction:column;gap:3px}
-.il-client-card.cherubs small{font-size:.65rem;color:${MID};font-weight:400}
-.il-client-card.boxvalley{background:linear-gradient(135deg,#2d3748,#1a202c);color:#fff;flex-direction:column;gap:3px}
-.il-client-card.boxvalley small{font-size:.63rem;opacity:.65;font-weight:400}
-.il-client-card.skin{flex-direction:column;gap:2px}
-.il-client-card.skin small{font-size:.63rem;color:${MID};font-weight:400}
-.il-client-card.cianna{flex-direction:column;gap:2px;font-style:italic;color:${MID}}
-.il-client-card.cianna small{font-size:.63rem;font-style:normal;font-weight:400}
+.il-clients-grid{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin-top:48px}
+.il-client-card{background:#fff;border-radius:20px;border:1.5px solid ${BORDER};padding:32px 44px;display:flex;align-items:center;justify-content:center;min-width:220px;min-height:140px;transition:box-shadow .3s,transform .3s,border-color .3s;cursor:default;box-shadow:0 4px 18px rgba(0,0,0,0.06)}
+.il-client-card:hover{box-shadow:0 18px 52px rgba(0,0,0,0.13);transform:translateY(-6px);border-color:rgba(232,41,28,0.25)}
+.il-client-logo-wrap{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.il-client-logo-img{max-width:180px;max-height:100px;width:auto;height:auto;object-fit:contain;display:block;transition:transform .3s}
+.il-client-card:hover .il-client-logo-img{transform:scale(1.05)}
+.il-client-card.galaxy{background:#fff}
+.il-client-card.cherubs{background:#fff}
+.il-client-card.boxvalley{background:#fff}
+.il-client-card.skin{background:#fff}
+.il-client-card.cianna{background:#fff}
 .il-client-avatar{margin-bottom:8px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center}
 
 /* ── REVIEWS CAROUSEL ── */
@@ -386,6 +389,9 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-time-slot{padding:7px 5px;border-radius:7px;border:1.5px solid ${BORDER};background:#f8f8f8;font-size:.75rem;font-weight:500;text-align:center;cursor:pointer;transition:all .2s;color:${MID}}
 .il-time-slot:hover{border-color:${RED};color:${RED};background:${RED_LT}}
 .il-time-slot.active{border-color:${RED};background:${RED};color:#fff}
+.il-time-slot.taken{opacity:.45;cursor:not-allowed;background:#f0f0f0;border-color:#ddd;color:#aaa;position:relative}
+.il-time-slot.taken:hover{border-color:#ddd;background:#f0f0f0;color:#aaa}
+.il-slot-taken-label{display:block;font-size:.55rem;color:#999;margin-top:1px;letter-spacing:.02em}
 .il-info-box{background:${RED_LT};border:1px solid rgba(232,41,28,0.18);border-radius:8px;padding:11px 13px;display:flex;gap:8px;align-items:flex-start}
 .il-info-box .il-info-ico{color:${RED};font-size:.9rem;flex-shrink:0;margin-top:1px}
 .il-info-box p{font-size:.79rem;color:${CHARCOAL};line-height:1.52}
@@ -463,14 +469,19 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
   .il-rev-card{padding:32px 24px 28px}
 }
 `;
-
 const ILovahLogo = ({ size = 40 }) => (
-  <svg width={size} height={size} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="80" height="80" rx="14" fill={RED_LT} />
-    <path d="M40 61 C40 61 15 44 15 28 C15 20 21 13 29 13 C33.5 13 37.5 15.5 40 20 C42.5 15.5 46.5 13 51 13 C59 13 65 20 65 28 C65 44 40 61 40 61Z" fill={RED} />
-    <path d="M40 25L27 34V53H53V34L40 25Z" fill="white" fillOpacity="0.92" />
-    <path d="M36 53V43H44V53H36Z" fill={RED} fillOpacity="0.55" />
-  </svg>
+  <img
+    src={ilovahLogoSrc}
+    alt="iLovah Logo"
+    width={size}
+    height={size}
+    style={{
+      borderRadius: 8,
+      objectFit: "contain",
+      display: "block",
+      background: "#fff"
+    }}
+  />
 );
 
 const HeroSVG = () => (
@@ -543,6 +554,22 @@ const SERVICES_DATA = [
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const TIME_SLOTS = ["8:00 AM", "9:30 AM", "11:00 AM", "1:00 PM", "2:30 PM", "4:00 PM", "5:30 PM", "7:00 PM"];
+
+// Simulate some taken slots — key format: "YYYY-M-D"
+const now = new Date();
+const TAKEN_SLOTS = (() => {
+  const result = {};
+  // Generate taken slots for the next 14 days (random-ish but deterministic)
+  for (let offset = 1; offset <= 14; offset++) {
+    const d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + offset);
+    if (d.getDay() === 0) continue; // skip Sunday
+    const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
+    // Use offset to seed which slots are taken (2–3 per day)
+    const taken = TIME_SLOTS.filter((_, i) => (i + offset) % 3 === 0 || (i + offset) % 5 === 0);
+    if (taken.length) result[key] = taken;
+  }
+  return result;
+})();
 
 const REVIEWS_DATA = [
   { text: '"The team did a deep clean before my house inspection — thorough, professional, and on time. The place looked better than when I first moved in!"', name: "Jessica M.", loc: "Surry Hills, NSW", initials: "JM", color: RED, service: "Deep Clean", date: "14 Jan 2025", source: "Google" },
@@ -708,22 +735,33 @@ function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setProp
     if (!navigator.geolocation) { setLocStatus("Geolocation not supported"); return; }
     setLocStatus("Locating...");
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
+      async (pos) => {
         const { latitude: lat, longitude: lng } = pos.coords;
         setMapSrc(`https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`);
-        fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
-          .then(r => r.json())
-          .then(d => {
-            const a = d.address || {};
-            setStreet([a.house_number, a.road].filter(Boolean).join(" "));
-            setSuburb(a.suburb || a.city_district || a.city || a.town || "");
-            setState(a.state_code || a.state || "");
-            setPostcode(a.postcode || "");
-            setLocStatus("✓ Location found!");
-          })
-          .catch(() => setLocStatus("✓ Map updated"));
+        try {
+          const r = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
+            { headers: { "Accept-Language": "en", "User-Agent": "iLovahCleaningApp/1.0" } }
+          );
+          if (!r.ok) throw new Error("Geocode failed");
+          const d = await r.json();
+          const a = d.address || {};
+          setStreet([a.house_number, a.road].filter(Boolean).join(" "));
+          setSuburb(a.suburb || a.city_district || a.town || a.city || "");
+          setState(a.state_code ? a.state_code.replace("AU-", "") : (a.state || "QLD"));
+          setPostcode(a.postcode || "");
+          setLocStatus("✓ Location found!");
+        } catch {
+          // Fallback: just update the map, show coords
+          setLocStatus("✓ Map updated — please enter address manually");
+        }
       },
-      () => setLocStatus("⚠ Location access denied")
+      (err) => {
+        if (err.code === 1) setLocStatus("⚠ Location access denied — please allow location");
+        else if (err.code === 2) setLocStatus("⚠ Location unavailable");
+        else setLocStatus("⚠ Location request timed out");
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   };
 
@@ -799,8 +837,8 @@ function BookingModal({ isOpen, onClose }) {
   const [step, setStep] = useState(1);
   const [service, setService] = useState("");
   const [pref, setPref] = useState("Phone");
-  const [calDate, setCalDate] = useState(new Date(2026, 2));
-  const [selDay, setSelDay] = useState(31);
+  const [calDate, setCalDate] = useState(() => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth()); });
+  const [selDay, setSelDay] = useState(null);
   const [selTime, setSelTime] = useState("9:30 AM");
   const [urgency, setUrgency] = useState("Flexible — within 2 weeks");
   const [submitted, setSubmitted] = useState(false);
@@ -837,7 +875,12 @@ function BookingModal({ isOpen, onClose }) {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const calCells = [...Array(firstDay).fill(null), ...Array.from({ length: daysInMonth }, (_, i) => i + 1)];
   const isPast = (d) => { const dt = new Date(year, month, d); const t = new Date(); t.setHours(0, 0, 0, 0); return dt < t; };
-  const hasSlots = (d) => d === 31 && month === 2 && year === 2026;
+  // Show slots for future weekdays (Mon–Sat), hide Sundays
+  const hasSlots = (d) => {
+    if (isPast(d)) return false;
+    const dow = new Date(year, month, d).getDay();
+    return dow !== 0; // no slots on Sunday
+  };
   const progressWidth = `${(step / steps.length) * 100}%`;
 
   const handleSubmit = async () => {
@@ -912,7 +955,7 @@ function BookingModal({ isOpen, onClose }) {
             {step === 1 && <ServicePicker service={service} setService={setService} />}
             {step === 2 && (<><h3>Your Contact Details</h3><p className="il-modal-sub">We'll send your quote within 2 hours</p><div className="il-form-row"><div className="il-form-group"><label>First Name <span>*</span></label><input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Jane" /></div><div className="il-form-group"><label>Last Name <span>*</span></label><input type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Smith" /></div></div><div className="il-form-row"><div className="il-form-group"><label>Email <span>*</span></label><input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="jane@example.com" /></div><div className="il-form-group"><label>Phone <span>*</span></label><input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="0400 000 000" /></div></div><div className="il-form-group"><label>Preferred contact method</label><div className="il-contact-pref">{[{ label: "Phone", ico: "📞" }, { label: "Email", ico: "✉️" }, { label: "SMS", ico: "💬" }].map(p => (<button key={p.label} className={`il-pref-btn ${pref === p.label ? "active" : ""}`} onClick={() => setPref(p.label)}><span className="il-pref-ico">{p.ico}</span>{p.label}</button>))}</div></div></>)}
             {step === 3 && <PropertyStep street={street} setStreet={setStreet} suburb={suburb} setSuburb={setSuburb} propState={propState} setPropState={setPropState} postcode={postcode} setPostcode={setPostcode} notes={notes} setNotes={setNotes} />}
-            {step === 4 && (<><h3>Choose Date & Time</h3><p className="il-modal-sub">Pick a date — highlighted dates have slots</p><div className="il-cal-header"><button className="il-cal-nav" onClick={() => setCalDate(new Date(year, month - 1))}>‹</button><span className="il-cal-month">{MONTHS[month]} {year}</span><button className="il-cal-nav" onClick={() => setCalDate(new Date(year, month + 1))}>›</button></div><div className="il-cal-grid">{DAYS.map(d => <div key={d} className="il-cal-dow">{d}</div>)}{calCells.map((d, i) => d === null ? <div key={`e${i}`} /> : (<div key={d} className={`il-cal-day ${isPast(d) ? "past" : ""} ${selDay === d && month === 2 && year === 2026 ? "selected" : ""} ${d === today.getDate() && month === today.getMonth() && year === today.getFullYear() ? "today" : ""} ${hasSlots(d) ? "has-slots" : ""}`} onClick={() => !isPast(d) && setSelDay(d)}>{d}{hasSlots(d) && <span className="il-slot-count">6 slots</span>}</div>))}</div><div style={{ marginBottom: 14 }}><label style={{ fontSize: ".75rem", fontWeight: 600, display: "block", marginBottom: 8 }}>Preferred time slot</label><div className="il-time-slots">{TIME_SLOTS.map(t => <div key={t} className={`il-time-slot ${selTime === t ? "active" : ""}`} onClick={() => setSelTime(t)}>{t}</div>)}</div></div><div className="il-urgency"><label>Urgency</label><select value={urgency} onChange={e => setUrgency(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: `1.5px solid ${BORDER}`, fontFamily: "'DM Sans',sans-serif", fontSize: ".87rem", outline: "none", color: CHARCOAL, background: "#fff" }}><option>Flexible — within 2 weeks</option><option>Soon — within 3 days</option><option>Urgent — ASAP</option></select></div><div className="il-info-box"><span className="il-info-ico">ℹ️</span><p>We'll confirm your arrival window within <strong>2 hours</strong> of booking.</p></div></>)}
+            {step === 4 && (<><h3>Choose Date & Time</h3><p className="il-modal-sub">Pick a date — highlighted dates have slots</p><div className="il-cal-header"><button className="il-cal-nav" onClick={() => { const prev = new Date(year, month - 1); const now = new Date(); if (prev.getFullYear() > now.getFullYear() || (prev.getFullYear() === now.getFullYear() && prev.getMonth() >= now.getMonth())) setCalDate(prev); }}>‹</button><span className="il-cal-month">{MONTHS[month]} {year}</span><button className="il-cal-nav" onClick={() => setCalDate(new Date(year, month + 1))}>›</button></div><div className="il-cal-grid">{DAYS.map(d => <div key={d} className="il-cal-dow">{d}</div>)}{calCells.map((d, i) => d === null ? <div key={`e${i}`} /> : (<div key={d} className={`il-cal-day ${isPast(d) ? "past" : ""} ${selDay === d ? "selected" : ""} ${d === today.getDate() && month === today.getMonth() && year === today.getFullYear() ? "today" : ""} ${hasSlots(d) ? "has-slots" : ""}`} onClick={() => !isPast(d) && setSelDay(d)}>{d}{hasSlots(d) && (() => { const key = `${year}-${month}-${d}`; const taken = (TAKEN_SLOTS[key] || []).length; const rem = TIME_SLOTS.length - taken; return <span className="il-slot-count">{rem} slots</span>; })()}</div>))}</div><div style={{ marginBottom: 14 }}><label style={{ fontSize: ".75rem", fontWeight: 600, display: "block", marginBottom: 8 }}>Preferred time slot</label><div className="il-time-slots">{TIME_SLOTS.map(t => { const isTaken = TAKEN_SLOTS[`${year}-${month}-${selDay}`]?.includes(t); return <div key={t} className={`il-time-slot ${selTime === t && !isTaken ? "active" : ""} ${isTaken ? "taken" : ""}`} onClick={() => !isTaken && setSelTime(t)} title={isTaken ? "This slot is already booked" : ""}>{t}{isTaken && <span className="il-slot-taken-label">Taken</span>}</div>; })}</div></div><div className="il-urgency"><label>Urgency</label><select value={urgency} onChange={e => setUrgency(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: `1.5px solid ${BORDER}`, fontFamily: "'DM Sans',sans-serif", fontSize: ".87rem", outline: "none", color: CHARCOAL, background: "#fff" }}><option>Flexible — within 2 weeks</option><option>Soon — within 3 days</option><option>Urgent — ASAP</option></select></div><div className="il-info-box"><span className="il-info-ico">ℹ️</span><p>We'll confirm your arrival window within <strong>2 hours</strong> of booking.</p></div></>)}
             {step === 5 && (<><h3>Review & Confirm</h3><p className="il-modal-sub">Double-check before submitting</p><div className="il-review-card"><h4>🧹 Service Details</h4><div className="il-review-row"><span>Service</span><span>{service || "General House Clean"}</span></div><div className="il-review-row"><span>Date</span><span>{MONTHS[month]} {selDay}, {year}</span></div><div className="il-review-row"><span>Time</span><span>{selTime}</span></div><div className="il-review-row"><span>Urgency</span><span>{urgency}</span></div><div className="il-review-row"><span>Location</span><span>{suburb}, {propState}</span></div></div><div className="il-review-card"><h4>👤 Contact Details</h4><div className="il-review-row"><span>Name</span><span>{firstName} {lastName}</span></div><div className="il-review-row"><span>Email</span><span>{email}</span></div><div className="il-review-row"><span>Phone</span><span>{phone}</span></div><div className="il-review-row"><span>Contact via</span><span>{pref}</span></div></div>{sendError && <p style={{ color: RED, fontSize: ".82rem", fontWeight: 600, marginBottom: 10, textAlign: "center" }}>{sendError}</p>}<button className={`il-submit-btn ${submitted ? "sent" : ""}`} onClick={handleSubmit} disabled={sending || submitted}>{submitted ? "✓ Booking Sent! We'll be in touch shortly." : sending ? "Sending…" : "Confirm & Send Booking Request"}</button><p className="il-terms">By submitting, you agree to our Terms & Privacy Policy.<br />We'll respond within 2 hours.</p></>)}
           </div>
         </div>
@@ -949,11 +992,11 @@ export default function ILovah() {
   ];
 
   const clients = [
-    { label: "GALAXY HOUSING", sub: "Trusted Partner", cls: "galaxy" },
-    { label: "East Toowoomba", sub: "Skin Cancer Clinic", cls: "skin" },
-    { label: "Cherubs", sub: "Early Learning & Kindergarten", cls: "cherubs" },
-    { label: "CORPORATE BOX VALLEY", sub: null, cls: "boxvalley" },
-    { label: "Cianna", sub: "Group", cls: "cianna" },
+    { label: "GALAXY HOUSING", sub: "Trusted Partner", cls: "galaxy", logo: imgHousing },
+    { label: "East Toowoomba", sub: "Skin Cancer Clinic", cls: "skin", logo: imgClinic },
+    { label: "Cherubs", sub: "Early Learning & Kindergarten", cls: "cherubs", logo: imgCherub },
+    { label: "CORPORATE BOX VALLEY", sub: null, cls: "boxvalley", logo: imgBox },
+    { label: "Cienna Living", sub: null, cls: "cianna", logo: imgLiving },
   ];
 
   return (
@@ -1135,15 +1178,9 @@ export default function ILovah() {
           <div className="il-clients-grid">
             {clients.map((c, i) => (
               <R key={i} className={`il-client-card ${c.cls}`} style={{ transitionDelay: `${i * 0.07}s` }}>
-                <div className="il-client-avatar">
-                  <svg viewBox="0 0 64 64" width="52" height="52" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="64" height="64" rx="12" fill="rgba(232,41,28,0.08)" />
-                    <circle cx="32" cy="24" r="11" fill="rgba(232,41,28,0.18)" />
-                    <ellipse cx="32" cy="54" rx="18" ry="12" fill="rgba(232,41,28,0.12)" />
-                  </svg>
+                <div className="il-client-logo-wrap">
+                  <img src={c.logo} alt={c.label} className="il-client-logo-img" />
                 </div>
-                <strong>{c.label}</strong>
-                {c.sub && <small>{c.sub}</small>}
               </R>
             ))}
           </div>
