@@ -27,11 +27,11 @@ const BORDER = "#e8e8e8";
 const CREAM = "#fdfaf9";
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};overflow-x:hidden}
+body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};overflow-x:hidden}
 :root{--red:${RED};--red-dk:${RED_DK};--red-lt:${RED_LT};--charcoal:${CHARCOAL};--mid:${MID};--border:${BORDER};--cream:${CREAM}}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:#f5f5f5}
@@ -120,11 +120,11 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,0.5)}50%{box-shadow:0 0 0 5px rgba(22,163,74,0)}}
 
 /* ── BUTTONS ── */
-.il-btn{background:${RED};color:#fff;padding:13px 26px;border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;border:none;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(232,41,28,0.3);letter-spacing:-.01em}
+.il-btn{background:${RED};color:#fff;padding:13px 26px;border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;border:none;transition:all .25s;font-family:'Poppins',sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(232,41,28,0.3);letter-spacing:-.01em}
 .il-btn:hover{background:${RED_DK};transform:translateY(-2px);box-shadow:0 8px 22px rgba(232,41,28,0.4)}
 .il-btn svg{transition:transform .2s}
 .il-btn:hover svg{transform:translateX(3px)}
-.il-btn-ghost{background:#fff;color:${CHARCOAL};border:1.5px solid ${BORDER};padding:12px 24px;border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none}
+.il-btn-ghost{background:#fff;color:${CHARCOAL};border:1.5px solid ${BORDER};padding:12px 24px;border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .25s;font-family:'Poppins',sans-serif;text-decoration:none}
 .il-btn-ghost:hover{border-color:${CHARCOAL};background:#fafafa;transform:translateY(-1px)}
 
 /* ── TRUST BAR ── */
@@ -170,7 +170,7 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-svc-price-badge{font-size:.67rem;font-weight:700;color:${RED};background:${RED_LT};padding:2px 8px;border-radius:20px}
 .il-svc-title{font-family:'Fraunces',serif;font-size:1.03rem;font-weight:700;margin-bottom:7px;letter-spacing:-.02em;line-height:1.2}
 .il-svc-desc{font-size:.83rem;line-height:1.7;color:${MID};margin-bottom:14px;flex:1}
-.il-svc-link{font-size:.81rem;font-weight:600;color:${RED};background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:gap .2s;font-family:'DM Sans',sans-serif;padding:0;letter-spacing:-.01em;margin-top:auto}
+.il-svc-link{font-size:.81rem;font-weight:600;color:${RED};background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:gap .2s;font-family:'Poppins',sans-serif;padding:0;letter-spacing:-.01em;margin-top:auto}
 .il-svc-link:hover{gap:9px}
 .il-svc-link svg{transition:transform .2s}
 .il-svc-link:hover svg{transform:translateX(3px)}
@@ -267,7 +267,7 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-faq-item.open .il-faq-icon{transform:rotate(45deg);background:${RED};color:#fff}
 .il-faq-a{max-height:0;overflow:hidden;transition:max-height .38s ease,padding .3s;padding:0 22px;font-size:.87rem;color:${MID};line-height:1.76}
 .il-faq-item.open .il-faq-a{max-height:220px;padding:0 22px 20px}
-.il-faq-toggle{display:block;margin:22px auto 0;background:none;border:1.5px solid ${BORDER};color:${RED};font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:600;cursor:pointer;padding:9px 24px;border-radius:9px;transition:all .2s;display:flex;align-items:center;gap:6px}
+.il-faq-toggle{display:block;margin:22px auto 0;background:none;border:1.5px solid ${BORDER};color:${RED};font-family:'Poppins',sans-serif;font-size:.84rem;font-weight:600;cursor:pointer;padding:9px 24px;border-radius:9px;transition:all .2s;display:flex;align-items:center;gap:6px}
 .il-faq-toggle:hover{background:${RED_LT};border-color:rgba(232,41,28,0.3)}
 
 /* ── CONTACT / CTA ── */
@@ -282,9 +282,9 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-cta-contact-info{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;position:relative;z-index:1}
 .il-cta-info-item{display:flex;align-items:center;gap:8px;font-size:.83rem;color:rgba(255,255,255,0.5)}
 .il-cta-info-item strong{color:rgba(255,255,255,0.85);font-weight:500}
-.il-btn-white{background:#fff;color:${CHARCOAL};padding:12px 24px;border-radius:9px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .25s;font-family:'DM Sans',sans-serif;display:inline-block;text-decoration:none;letter-spacing:-.01em}
+.il-btn-white{background:#fff;color:${CHARCOAL};padding:12px 24px;border-radius:9px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .25s;font-family:'Poppins',sans-serif;display:inline-block;text-decoration:none;letter-spacing:-.01em}
 .il-btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.18)}
-.il-btn-ow{border:1.5px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.76);padding:11px 20px;border-radius:9px;font-size:.9rem;font-weight:500;cursor:pointer;background:none;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.il-btn-ow{border:1.5px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.76);padding:11px 20px;border-radius:9px;font-size:.9rem;font-weight:500;cursor:pointer;background:none;transition:all .25s;font-family:'Poppins',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .il-btn-ow:hover{border-color:rgba(255,255,255,0.44);color:#fff}
 
 /* ── FOOTER ── */
@@ -345,17 +345,17 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-svc-pick-bullets{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:4px}
 .il-svc-pick-bullets li{font-size:.76rem;color:${MID};display:flex;align-items:center;gap:6px}
 .il-svc-pick-bullets li::before{content:'▪';color:${RED};font-size:.6rem;flex-shrink:0}
-.il-svc-view-toggle{background:none;border:none;color:${RED};font-size:.76rem;font-weight:600;cursor:pointer;padding:8px 14px;text-align:left;font-family:'DM Sans',sans-serif;border-top:1px solid rgba(0,0,0,0.06);width:100%;transition:background .2s}
+.il-svc-view-toggle{background:none;border:none;color:${RED};font-size:.76rem;font-weight:600;cursor:pointer;padding:8px 14px;text-align:left;font-family:'Poppins',sans-serif;border-top:1px solid rgba(0,0,0,0.06);width:100%;transition:background .2s}
 .il-svc-view-toggle:hover{background:${RED_LT}}
 .il-form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .il-form-group{margin-bottom:11px}
 .il-form-group label{display:block;font-size:.75rem;font-weight:600;margin-bottom:5px;color:${CHARCOAL};letter-spacing:-.01em}
 .il-form-group label span{color:${RED}}
-.il-form-group input,.il-form-group select,.il-form-group textarea{width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;font-family:'DM Sans',sans-serif;font-size:.87rem;color:${CHARCOAL};outline:none;transition:all .2s}
+.il-form-group input,.il-form-group select,.il-form-group textarea{width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;font-family:'Poppins',sans-serif;font-size:.87rem;color:${CHARCOAL};outline:none;transition:all .2s}
 .il-form-group input:focus,.il-form-group select:focus,.il-form-group textarea:focus{border-color:${RED};box-shadow:0 0 0 3px rgba(232,41,28,0.07)}
 .il-form-group input:hover,.il-form-group select:hover,.il-form-group textarea:hover{border-color:#ccc}
 .il-contact-pref{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:4px}
-.il-pref-btn{padding:9px 7px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.78rem;font-weight:500;color:${MID};transition:all .2s;font-family:'DM Sans',sans-serif}
+.il-pref-btn{padding:9px 7px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.78rem;font-weight:500;color:${MID};transition:all .2s;font-family:'Poppins',sans-serif}
 .il-pref-btn.active{border-color:${RED};background:${RED_LT};color:${RED};font-weight:600}
 .il-pref-btn:hover{border-color:rgba(232,41,28,0.4)}
 .il-pref-ico{font-size:1.05rem}
@@ -366,7 +366,7 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-map-label .pin{color:${RED}}
 .il-map-body{height:160px;display:flex;align-items:center;justify-content:center;position:relative}
 .il-map-note{font-size:.74rem;color:${MID};margin-top:6px;line-height:1.5}
-.il-loc-btn{display:inline-flex;align-items:center;gap:5px;font-size:.79rem;color:${RED};font-weight:600;cursor:pointer;background:${RED_LT};border:1.5px solid rgba(232,41,28,0.18);padding:5px 12px;border-radius:7px;font-family:'DM Sans',sans-serif;margin-top:9px;transition:all .2s}
+.il-loc-btn{display:inline-flex;align-items:center;gap:5px;font-size:.79rem;color:${RED};font-weight:600;cursor:pointer;background:${RED_LT};border:1.5px solid rgba(232,41,28,0.18);padding:5px 12px;border-radius:7px;font-family:'Poppins',sans-serif;margin-top:9px;transition:all .2s}
 .il-loc-btn:hover{background:rgba(232,41,28,0.12)}
 .il-prop-full h4{font-family:'Fraunces',serif;font-size:.97rem;font-weight:700;margin-bottom:11px;margin-top:18px;padding-top:14px;border-top:1px solid ${BORDER};letter-spacing:-.02em}
 .il-cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
@@ -402,13 +402,13 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-review-row:last-child{border-bottom:none}
 .il-review-row span:first-child{color:${MID};font-weight:500}
 .il-review-row span:last-child{color:${CHARCOAL};font-weight:600}
-.il-submit-btn{width:100%;padding:13px;background:${RED};color:#fff;border:none;border-radius:9px;font-size:.93rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;margin-top:7px;letter-spacing:-.01em;box-shadow:0 4px 13px rgba(232,41,28,0.24)}
+.il-submit-btn{width:100%;padding:13px;background:${RED};color:#fff;border:none;border-radius:9px;font-size:.93rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Poppins',sans-serif;margin-top:7px;letter-spacing:-.01em;box-shadow:0 4px 13px rgba(232,41,28,0.24)}
 .il-submit-btn:hover{background:${RED_DK};transform:translateY(-1px)}
 .il-submit-btn.sent{background:#16a34a;box-shadow:0 4px 13px rgba(22,163,74,0.26)}
 .il-terms{font-size:.71rem;color:${MID};text-align:center;margin-top:9px;line-height:1.55}
 .il-modal-footer{padding:14px 30px;border-top:1px solid ${BORDER};background:#fff;display:flex;justify-content:space-between;align-items:center}
 .il-footer-hint{font-size:.74rem;color:${MID};font-weight:500}
-.il-next-btn{background:${CHARCOAL};color:#fff;padding:10px 26px;border-radius:8px;font-size:.87rem;font-weight:600;cursor:pointer;border:none;display:flex;align-items:center;gap:6px;transition:all .25s;font-family:'DM Sans',sans-serif;letter-spacing:-.01em}
+.il-next-btn{background:${CHARCOAL};color:#fff;padding:10px 26px;border-radius:8px;font-size:.87rem;font-weight:600;cursor:pointer;border:none;display:flex;align-items:center;gap:6px;transition:all .25s;font-family:'Poppins',sans-serif;letter-spacing:-.01em}
 .il-next-btn:hover{background:${RED};transform:translateY(-1px);box-shadow:0 5px 14px rgba(232,41,28,0.26)}
 .il-next-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none;background:${CHARCOAL}}
 
@@ -467,6 +467,33 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
   .il-time-slots{grid-template-columns:repeat(3,1fr)}
   .il-cta-btns .il-btn-white,.il-cta-btns .il-btn-ow{width:100%;justify-content:center}
   .il-rev-card{padding:32px 24px 28px}
+}
+@media(max-width:480px){
+  .il-nav{padding:0 14px;height:58px}
+  .il-hero{padding:90px 14px 44px}
+  .il-hero h1{font-size:clamp(2rem,9vw,2.8rem)}
+  .il-hero-stats{flex-direction:column;align-items:stretch;width:100%}
+  .il-stat{padding:10px 16px}
+  .il-stat:not(:last-child)::after{right:auto;bottom:0;left:12%;width:76%;height:1px;top:auto}
+  .il-hero-btns{flex-direction:column;align-items:stretch}
+  .il-hero-btns .il-btn,.il-hero-btns .il-btn-ghost{width:100%;justify-content:center}
+  .il-svc-grid{grid-template-columns:1fr}
+  .il-wrap{padding:0 14px}
+  .il-contact-section{padding:0 14px 44px}
+  .il-footer{padding:36px 14px 20px}
+  .il-footer-grid{grid-template-columns:1fr;gap:28px}
+  .il-cta{padding:28px 16px;border-radius:14px}
+  .il-cta-text h2{font-size:1.45rem}
+  .il-cta-contact-info{flex-direction:column;gap:12px}
+  .il-trust{padding:11px 14px}
+  .il-trust-logos{gap:10px;flex-wrap:wrap}
+  .il-rev-card{padding:20px 14px 18px}
+  .il-form-row{grid-template-columns:1fr}
+  .il-time-slots{grid-template-columns:repeat(2,1fr)}
+  .il-clients-grid{gap:12px}
+  .il-client-card{min-width:140px;padding:20px 24px;min-height:100px}
+  .il-section-title{font-size:clamp(1.7rem,7vw,2.3rem)}
+  .il-modal-body h3{font-size:1.25rem}
 }
 `;
 const ILovahLogo = ({ size = 40 }) => (
@@ -955,7 +982,7 @@ function BookingModal({ isOpen, onClose }) {
             {step === 1 && <ServicePicker service={service} setService={setService} />}
             {step === 2 && (<><h3>Your Contact Details</h3><p className="il-modal-sub">We'll send your quote within 2 hours</p><div className="il-form-row"><div className="il-form-group"><label>First Name <span>*</span></label><input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Jane" /></div><div className="il-form-group"><label>Last Name <span>*</span></label><input type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Smith" /></div></div><div className="il-form-row"><div className="il-form-group"><label>Email <span>*</span></label><input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="jane@example.com" /></div><div className="il-form-group"><label>Phone <span>*</span></label><input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="0400 000 000" /></div></div><div className="il-form-group"><label>Preferred contact method</label><div className="il-contact-pref">{[{ label: "Phone", ico: "📞" }, { label: "Email", ico: "✉️" }, { label: "SMS", ico: "💬" }].map(p => (<button key={p.label} className={`il-pref-btn ${pref === p.label ? "active" : ""}`} onClick={() => setPref(p.label)}><span className="il-pref-ico">{p.ico}</span>{p.label}</button>))}</div></div></>)}
             {step === 3 && <PropertyStep street={street} setStreet={setStreet} suburb={suburb} setSuburb={setSuburb} propState={propState} setPropState={setPropState} postcode={postcode} setPostcode={setPostcode} notes={notes} setNotes={setNotes} />}
-            {step === 4 && (<><h3>Choose Date & Time</h3><p className="il-modal-sub">Pick a date — highlighted dates have slots</p><div className="il-cal-header"><button className="il-cal-nav" onClick={() => { const prev = new Date(year, month - 1); const now = new Date(); if (prev.getFullYear() > now.getFullYear() || (prev.getFullYear() === now.getFullYear() && prev.getMonth() >= now.getMonth())) setCalDate(prev); }}>‹</button><span className="il-cal-month">{MONTHS[month]} {year}</span><button className="il-cal-nav" onClick={() => setCalDate(new Date(year, month + 1))}>›</button></div><div className="il-cal-grid">{DAYS.map(d => <div key={d} className="il-cal-dow">{d}</div>)}{calCells.map((d, i) => d === null ? <div key={`e${i}`} /> : (<div key={d} className={`il-cal-day ${isPast(d) ? "past" : ""} ${selDay === d ? "selected" : ""} ${d === today.getDate() && month === today.getMonth() && year === today.getFullYear() ? "today" : ""} ${hasSlots(d) ? "has-slots" : ""}`} onClick={() => !isPast(d) && setSelDay(d)}>{d}{hasSlots(d) && (() => { const key = `${year}-${month}-${d}`; const taken = (TAKEN_SLOTS[key] || []).length; const rem = TIME_SLOTS.length - taken; return <span className="il-slot-count">{rem} slots</span>; })()}</div>))}</div><div style={{ marginBottom: 14 }}><label style={{ fontSize: ".75rem", fontWeight: 600, display: "block", marginBottom: 8 }}>Preferred time slot</label><div className="il-time-slots">{TIME_SLOTS.map(t => { const isTaken = TAKEN_SLOTS[`${year}-${month}-${selDay}`]?.includes(t); return <div key={t} className={`il-time-slot ${selTime === t && !isTaken ? "active" : ""} ${isTaken ? "taken" : ""}`} onClick={() => !isTaken && setSelTime(t)} title={isTaken ? "This slot is already booked" : ""}>{t}{isTaken && <span className="il-slot-taken-label">Taken</span>}</div>; })}</div></div><div className="il-urgency"><label>Urgency</label><select value={urgency} onChange={e => setUrgency(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: `1.5px solid ${BORDER}`, fontFamily: "'DM Sans',sans-serif", fontSize: ".87rem", outline: "none", color: CHARCOAL, background: "#fff" }}><option>Flexible — within 2 weeks</option><option>Soon — within 3 days</option><option>Urgent — ASAP</option></select></div><div className="il-info-box"><span className="il-info-ico">ℹ️</span><p>We'll confirm your arrival window within <strong>2 hours</strong> of booking.</p></div></>)}
+            {step === 4 && (<><h3>Choose Date & Time</h3><p className="il-modal-sub">Pick a date — highlighted dates have slots</p><div className="il-cal-header"><button className="il-cal-nav" onClick={() => { const prev = new Date(year, month - 1); const now = new Date(); if (prev.getFullYear() > now.getFullYear() || (prev.getFullYear() === now.getFullYear() && prev.getMonth() >= now.getMonth())) setCalDate(prev); }}>‹</button><span className="il-cal-month">{MONTHS[month]} {year}</span><button className="il-cal-nav" onClick={() => setCalDate(new Date(year, month + 1))}>›</button></div><div className="il-cal-grid">{DAYS.map(d => <div key={d} className="il-cal-dow">{d}</div>)}{calCells.map((d, i) => d === null ? <div key={`e${i}`} /> : (<div key={d} className={`il-cal-day ${isPast(d) ? "past" : ""} ${selDay === d ? "selected" : ""} ${d === today.getDate() && month === today.getMonth() && year === today.getFullYear() ? "today" : ""} ${hasSlots(d) ? "has-slots" : ""}`} onClick={() => !isPast(d) && setSelDay(d)}>{d}{hasSlots(d) && (() => { const key = `${year}-${month}-${d}`; const taken = (TAKEN_SLOTS[key] || []).length; const rem = TIME_SLOTS.length - taken; return <span className="il-slot-count">{rem} slots</span>; })()}</div>))}</div><div style={{ marginBottom: 14 }}><label style={{ fontSize: ".75rem", fontWeight: 600, display: "block", marginBottom: 8 }}>Preferred time slot</label><div className="il-time-slots">{TIME_SLOTS.map(t => { const isTaken = TAKEN_SLOTS[`${year}-${month}-${selDay}`]?.includes(t); return <div key={t} className={`il-time-slot ${selTime === t && !isTaken ? "active" : ""} ${isTaken ? "taken" : ""}`} onClick={() => !isTaken && setSelTime(t)} title={isTaken ? "This slot is already booked" : ""}>{t}{isTaken && <span className="il-slot-taken-label">Taken</span>}</div>; })}</div></div><div className="il-urgency"><label>Urgency</label><select value={urgency} onChange={e => setUrgency(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: `1.5px solid ${BORDER}`, fontFamily: "'Poppins',sans-serif", fontSize: ".87rem", outline: "none", color: CHARCOAL, background: "#fff" }}><option>Flexible — within 2 weeks</option><option>Soon — within 3 days</option><option>Urgent — ASAP</option></select></div><div className="il-info-box"><span className="il-info-ico">ℹ️</span><p>We'll confirm your arrival window within <strong>2 hours</strong> of booking.</p></div></>)}
             {step === 5 && (<><h3>Review & Confirm</h3><p className="il-modal-sub">Double-check before submitting</p><div className="il-review-card"><h4>🧹 Service Details</h4><div className="il-review-row"><span>Service</span><span>{service || "General House Clean"}</span></div><div className="il-review-row"><span>Date</span><span>{MONTHS[month]} {selDay}, {year}</span></div><div className="il-review-row"><span>Time</span><span>{selTime}</span></div><div className="il-review-row"><span>Urgency</span><span>{urgency}</span></div><div className="il-review-row"><span>Location</span><span>{suburb}, {propState}</span></div></div><div className="il-review-card"><h4>👤 Contact Details</h4><div className="il-review-row"><span>Name</span><span>{firstName} {lastName}</span></div><div className="il-review-row"><span>Email</span><span>{email}</span></div><div className="il-review-row"><span>Phone</span><span>{phone}</span></div><div className="il-review-row"><span>Contact via</span><span>{pref}</span></div></div>{sendError && <p style={{ color: RED, fontSize: ".82rem", fontWeight: 600, marginBottom: 10, textAlign: "center" }}>{sendError}</p>}<button className={`il-submit-btn ${submitted ? "sent" : ""}`} onClick={handleSubmit} disabled={sending || submitted}>{submitted ? "✓ Booking Sent! We'll be in touch shortly." : sending ? "Sending…" : "Confirm & Send Booking Request"}</button><p className="il-terms">By submitting, you agree to our Terms & Privacy Policy.<br />We'll respond within 2 hours.</p></>)}
           </div>
         </div>
@@ -971,7 +998,6 @@ export default function ILovah() {
   const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => { const h = () => setScrolled(window.scrollY > 30); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
-  useEffect(() => { const link = document.querySelector("link[rel~='icon']") || document.createElement("link"); link.rel = "icon"; link.href = ilovahLogoSrc; document.head.appendChild(link); }, []);
   const go = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
 
   const services = [
