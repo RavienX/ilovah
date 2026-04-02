@@ -322,6 +322,53 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-social{width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:.76rem;color:rgba(255,255,255,0.3);transition:all .25s;cursor:pointer;font-weight:700}
 .il-social:hover{border-color:${RED};color:${RED};background:rgba(232,41,28,0.1)}
 
+/* ── SERVICE DETAIL MODAL ── */
+.il-svc-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.62);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:12px;animation:fadeIn .2s ease}
+.il-svc-modal{background:#fff;border-radius:22px;width:min(720px,100%);max-height:94vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 40px 100px rgba(0,0,0,0.25);animation:modalUp .32s cubic-bezier(.34,1.56,.64,1);position:relative}
+@keyframes modalUp{from{opacity:0;transform:translateY(28px) scale(0.97)}to{opacity:1;transform:none}}
+/* Close button floats above the scroll */
+.il-svc-modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,0.45);border:none;color:#fff;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:10;backdrop-filter:blur(4px)}
+.il-svc-modal-close:hover{background:rgba(232,41,28,0.8)}
+/* Single unified scroll container */
+.il-svc-modal-scroll{overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch;scroll-behavior:smooth}
+/* Image with overflow hidden for parallax clipping */
+.il-svc-modal-img{position:relative;width:100%;aspect-ratio:16/7;overflow:hidden;background:#eee;flex-shrink:0}
+.il-svc-modal-img img{position:absolute;inset:-20% 0;width:100%;height:140%;object-fit:cover;display:block;will-change:transform;transition:none}
+.il-svc-modal-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.05) 55%,transparent 100%);z-index:1}
+.il-svc-modal-img-info{position:absolute;bottom:16px;left:20px;z-index:2}
+.il-svc-modal-name{font-family:'DM Sans',sans-serif;font-size:clamp(1.1rem,3vw,1.4rem);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1}
+.il-svc-modal-body{padding:20px 24px 24px}
+.il-svc-modal-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.il-svc-meta-pill{background:#f4f4f4;border:1.5px solid #ebebeb;border-radius:100px;padding:5px 13px;font-size:.76rem;font-weight:600;color:#444;display:inline-flex;align-items:center;gap:5px}
+.il-svc-modal-desc{font-size:.9rem;color:${MID};line-height:1.78;margin-bottom:20px}
+.il-svc-modal-section{margin-bottom:20px}
+.il-svc-modal-section-title{font-family:'DM Sans',sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:${RED};margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.il-svc-modal-section-title::after{content:'';flex:1;height:1.5px;background:linear-gradient(to right,rgba(232,41,28,0.2),transparent)}
+.il-svc-steps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.il-svc-step-card{background:${CREAM};border:1.5px solid ${BORDER};border-radius:13px;padding:14px;position:relative;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.il-svc-step-card:hover{border-color:rgba(232,41,28,0.3);box-shadow:0 4px 16px rgba(232,41,28,0.07)}
+.il-svc-step-num{position:absolute;top:10px;right:12px;font-size:1.8rem;font-weight:900;color:rgba(0,0,0,0.05);line-height:1;font-family:'DM Sans',sans-serif}
+.il-svc-step-title{font-size:.88rem;font-weight:700;color:${CHARCOAL};margin-bottom:4px;letter-spacing:-.01em}
+.il-svc-step-desc{font-size:.78rem;color:${MID};line-height:1.6}
+.il-svc-includes-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}
+.il-svc-include-item{display:flex;align-items:center;gap:8px;font-size:.84rem;color:${CHARCOAL};background:#f9fdf9;border:1.5px solid #e4f0e4;border-radius:9px;padding:8px 12px}
+.il-svc-include-check{color:#16a34a;font-weight:700;font-size:.9rem;flex-shrink:0}
+.il-svc-modal-footer{display:flex;align-items:center;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1.5px solid ${BORDER};gap:12px}
+@media(max-width:600px){
+  .il-svc-overlay{padding:0;align-items:flex-end}
+  .il-svc-modal{width:100%;max-height:96vh;border-radius:20px 20px 0 0}
+  .il-svc-modal-img{aspect-ratio:16/9}
+  .il-svc-steps-grid{grid-template-columns:1fr}
+  .il-svc-includes-grid{grid-template-columns:1fr}
+  .il-svc-modal-body{padding:16px 16px 20px}
+  .il-svc-modal-footer{flex-direction:column;align-items:stretch}
+  .il-svc-modal-footer .il-btn{width:100%;justify-content:center}
+}
+@media(max-width:400px){
+  .il-svc-modal-img{aspect-ratio:4/3}
+  .il-svc-modal-body{padding:14px 14px 18px}
+}
+
 /* ── VALIDATION ERRORS ── */
 .il-field-error{color:#e8291c;font-size:.72rem;font-weight:600;margin-top:4px;display:flex;align-items:center;gap:4px}
 .il-field-error::before{content:"⚠";font-size:.7rem}
@@ -597,9 +644,9 @@ const useReveal = () => {
   }, []);
   return ref;
 };
-const R = ({ className = "", children, style }) => {
+const R = ({ className = "", children, style, onClick, ...rest }) => {
   const ref = useReveal();
-  return <div ref={ref} className={`il-reveal ${className}`} style={style}>{children}</div>;
+  return <div ref={ref} className={`il-reveal ${className}`} style={style} onClick={onClick} {...rest}>{children}</div>;
 };
 
 const SvcImg = ({ img, emoji }) => (
@@ -612,14 +659,110 @@ const SvcImg = ({ img, emoji }) => (
 );
 
 const SERVICES_DATA = [
-  { name: "Carpet Cleaning", emoji: "🧹", price: "From $89", img: imgCarpet, desc: "Deep-cleaning that removes dirt, stains, and allergens using professional equipment and eco-friendly solutions. Ideal for homes, offices, and rentals.", bullets: ["Deep professional cleaning", "Duration: 2–4 hours"] },
-  { name: "End of Lease Cleaning", emoji: "🚚", price: "From $249", img: imgEndOfLease, desc: "We promise to promptly address and rectify any cleaning issues your property manager identifies during the final inspection, ensuring your bond is secured.", bullets: ["Bond Back Guarantee", "Duration: 4–8 hours"] },
-  { name: "Gutter Cleaning", emoji: "🌿", price: "From $120", img: imgGutter, desc: "Protect your property with precision. Our discreet, thorough gutter cleaning ensures seamless drainage and lasting curb appeal.", bullets: ["Precision gutter cleaning", "Duration: 2–3 hours"] },
-  { name: "Window Cleaning", emoji: "🪟", price: "From $79", img: imgWindow, desc: "Professional window cleaning for streak-free, crystal-clear results — inside and out.", bullets: ["Spotless, streak-free window cleaning", "Duration: Varies"] },
-  { name: "Pram Cleaning", emoji: "👶", price: "From $49", img: imgPram, desc: "Safe, thorough sanitising of prams and strollers to keep your little one's ride fresh and hygienic.", bullets: ["The Pram Patch", "Duration: Varies"] },
-  { name: "Pest Control", emoji: "🐛", price: "From $150", img: imgPest, desc: "Safe and effective pest treatment for homes and businesses, keeping unwanted visitors out for good.", bullets: ["Professional service", "Duration: Varies"] },
-  { name: "Pressure Washing", emoji: "💧", price: "From $99", img: imgPressure, desc: "Professional pressure washing for buildings, walkways, and common areas. Ideal for property managers, clinics, and commercial spaces.", bullets: ["Professional pressure washing", "Duration: 2–4 hours"] },
-  { name: "General House Clean", emoji: "✨", price: "From $89", img: imgGeneral, desc: "Crystal-clear windows inside and out. We remove dirt, spots, and streaks for a spotless finish that brightens your home or business.", bullets: ["Crystal-clear windows", "Duration: 1–3 hours"] },
+  {
+    name: "Carpet Cleaning", emoji: "🧹", price: "From $89", img: imgCarpet,
+    desc: "Deep-cleaning that removes dirt, stains, and allergens using professional equipment and eco-friendly solutions. Ideal for homes, offices, and rentals.",
+    bullets: ["Deep professional cleaning", "Duration: 2–4 hours"],
+    duration: "2–4 hours", ideal: "Homes, offices & rentals",
+    steps: [
+      { icon: "🔍", title: "Inspection", desc: "We assess carpet condition, fibre type, and stain locations before starting." },
+      { icon: "🧴", title: "Pre-treatment", desc: "Stains and high-traffic areas are pre-treated with eco-safe solutions." },
+      { icon: "💨", title: "Steam Cleaning", desc: "Hot water extraction removes deep-seated dirt, allergens, and bacteria." },
+      { icon: "🌬️", title: "Drying", desc: "Fast-dry techniques leave carpets fresh and walkable within hours." },
+    ],
+    includes: ["All rooms & hallways", "Stain pre-treatment", "Deodorising", "Eco-safe products", "Furniture moved on request"],
+  },
+  {
+    name: "End of Lease Cleaning", emoji: "🚚", price: "From $249", img: imgEndOfLease,
+    desc: "We promise to promptly address and rectify any cleaning issues your property manager identifies during the final inspection, ensuring your bond is secured.",
+    bullets: ["Bond Back Guarantee", "Duration: 4–8 hours"],
+    duration: "4–8 hours", ideal: "Renters & landlords",
+    steps: [
+      { icon: "📋", title: "Checklist Review", desc: "We follow your real estate agent's exact end-of-lease checklist." },
+      { icon: "🍳", title: "Kitchen & Bathrooms", desc: "Deep scrub of oven, stovetop, sinks, tiles, and all fixtures." },
+      { icon: "🪟", title: "Windows & Walls", desc: "Interior windows, tracks, skirting boards, and wall marks cleaned." },
+      { icon: "✅", title: "Final Walkthrough", desc: "We check every room before leaving — bond back guaranteed." },
+    ],
+    includes: ["Full kitchen deep clean", "Bathroom & toilet scrub", "Interior windows", "Oven & rangehood", "Skirting boards & doors", "Bond back guarantee"],
+  },
+  {
+    name: "Gutter Cleaning", emoji: "🌿", price: "From $120", img: imgGutter,
+    desc: "Protect your property with precision. Our discreet, thorough gutter cleaning ensures seamless drainage and lasting curb appeal.",
+    bullets: ["Precision gutter cleaning", "Duration: 2–3 hours"],
+    duration: "2–3 hours", ideal: "Houses & commercial buildings",
+    steps: [
+      { icon: "🏠", title: "Roof Access", desc: "Safely access your gutters using ladders and harness equipment." },
+      { icon: "🍂", title: "Debris Removal", desc: "Remove all leaves, twigs, dirt, and blockages by hand and blower." },
+      { icon: "💧", title: "Flush & Test", desc: "Gutters are flushed with water to confirm clear drainage flow." },
+      { icon: "🔍", title: "Damage Report", desc: "We flag any cracks, sagging, or rust for your attention." },
+    ],
+    includes: ["All gutters & downpipes", "Debris bagged & removed", "Water flow test", "Minor blockage clearing", "Damage report if found"],
+  },
+  {
+    name: "Window Cleaning", emoji: "🪟", price: "From $79", img: imgWindow,
+    desc: "Professional window cleaning for streak-free, crystal-clear results — inside and out.",
+    bullets: ["Spotless, streak-free window cleaning", "Duration: Varies"],
+    duration: "1–3 hours", ideal: "Homes & businesses",
+    steps: [
+      { icon: "🧽", title: "Frame & Track Clean", desc: "Frames, sills, and tracks wiped down to remove built-up grime." },
+      { icon: "🪟", title: "Interior Glass", desc: "Inside surfaces cleaned with streak-free solution and microfibre cloths." },
+      { icon: "💦", title: "Exterior Glass", desc: "Outside glass cleaned with water-fed pole or squeegee system." },
+      { icon: "✨", title: "Streak-Free Finish", desc: "Final polish ensures crystal-clear, spot-free results every time." },
+    ],
+    includes: ["Interior & exterior glass", "Window frames & sills", "Sliding door tracks", "Streak-free guarantee", "Fly screens cleaned on request"],
+  },
+  {
+    name: "Pram Cleaning", emoji: "👶", price: "From $49", img: imgPram,
+    desc: "Safe, thorough sanitising of prams and strollers to keep your little one's ride fresh and hygienic.",
+    bullets: ["The Pram Patch", "Duration: Varies"],
+    duration: "1–2 hours", ideal: "Families with young children",
+    steps: [
+      { icon: "🔧", title: "Disassembly", desc: "Fabric, harness, and removable parts are carefully taken apart." },
+      { icon: "🧼", title: "Hand Wash", desc: "All fabric components washed with baby-safe, non-toxic detergents." },
+      { icon: "🦠", title: "Sanitising", desc: "Frame, wheels, and buckles sanitised to remove bacteria and mould." },
+      { icon: "👶", title: "Reassembly", desc: "Pram reassembled, dried, and ready for your little one." },
+    ],
+    includes: ["Fabric hand wash", "Frame sanitising", "Wheel & buckle clean", "Baby-safe products only", "Mould treatment if needed"],
+  },
+  {
+    name: "Pest Control", emoji: "🐛", price: "From $150", img: imgPest,
+    desc: "Safe and effective pest treatment for homes and businesses, keeping unwanted visitors out for good.",
+    bullets: ["Professional service", "Duration: Varies"],
+    duration: "1–3 hours", ideal: "Homes, offices & warehouses",
+    steps: [
+      { icon: "🔎", title: "Pest Inspection", desc: "We identify the type and extent of infestation before treatment." },
+      { icon: "🚪", title: "Entry Point Check", desc: "Gaps, cracks, and access points are identified and noted." },
+      { icon: "🧪", title: "Treatment Applied", desc: "Targeted, pet-safe treatments applied inside and outside the property." },
+      { icon: "📅", title: "Follow-up Plan", desc: "We recommend a maintenance schedule to keep pests away long-term." },
+    ],
+    includes: ["Full property inspection", "Interior & exterior treatment", "Pet & child safe products", "Common pests covered", "Follow-up visit if needed"],
+  },
+  {
+    name: "Pressure Washing", emoji: "💧", price: "From $99", img: imgPressure,
+    desc: "Professional pressure washing for buildings, walkways, and common areas. Ideal for property managers, clinics, and commercial spaces.",
+    bullets: ["Professional pressure washing", "Duration: 2–4 hours"],
+    duration: "2–4 hours", ideal: "Driveways, decks & exteriors",
+    steps: [
+      { icon: "🧹", title: "Surface Prep", desc: "Loose debris swept away and delicate areas protected before washing." },
+      { icon: "🧴", title: "Pre-soak", desc: "Degreaser or mould treatment applied to stubborn stains." },
+      { icon: "💦", title: "High-Pressure Wash", desc: "Professional-grade pressure washer blasts away grime, oil, and algae." },
+      { icon: "✅", title: "Rinse & Inspect", desc: "Surface rinsed clean and inspected for any missed areas." },
+    ],
+    includes: ["Driveways & paths", "Decks & patios", "Fences & walls", "Garage floors", "Mould & algae treatment"],
+  },
+  {
+    name: "General House Clean", emoji: "✨", price: "From $89", img: imgGeneral,
+    desc: "Regular maintenance cleaning covering all rooms — dusting, vacuuming, mopping, and surface sanitising.",
+    bullets: ["Crystal-clear windows", "Duration: 1–3 hours"],
+    duration: "2–4 hours", ideal: "Weekly, fortnightly or monthly",
+    steps: [
+      { icon: "🌀", title: "Dusting & Surfaces", desc: "All surfaces, shelves, and fixtures dusted from top to bottom." },
+      { icon: "🧹", title: "Vacuuming", desc: "Carpets, rugs, and hard floors vacuumed throughout the home." },
+      { icon: "🪣", title: "Mopping", desc: "Hard floors mopped with appropriate solution for floor type." },
+      { icon: "🚿", title: "Bathrooms & Kitchen", desc: "Sinks, benches, stovetop, toilets, and mirrors cleaned and sanitised." },
+    ],
+    includes: ["All rooms & living areas", "Kitchen & bathrooms", "Vacuuming & mopping", "Dusting all surfaces", "Bin emptying", "Eco-safe products"],
+  },
 ];
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -939,6 +1082,99 @@ function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setProp
   );
 }
 
+function ServiceDetailModal({ service, onClose, onBook }) {
+  const scrollRef = useRef(null);
+  const imgRef = useRef(null);
+
+  useEffect(() => {
+    if (!service) return;
+    document.body.style.overflow = "hidden";
+    // Reset scroll and parallax when a new service opens
+    if (scrollRef.current) scrollRef.current.scrollTop = 0;
+    if (imgRef.current) imgRef.current.style.transform = "translateY(0px)";
+    return () => { document.body.style.overflow = ""; };
+  }, [service]);
+
+  useEffect(() => {
+    const h = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", h);
+    return () => document.removeEventListener("keydown", h);
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!service) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const img = imgRef.current;
+      if (!img) return;
+      img.style.transform = `translateY(${el.scrollTop * 0.45}px)`;
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [service]);
+
+  if (!service) return null;
+  return (
+    <div className="il-svc-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="il-svc-modal">
+        {/* Close button floats fixed above scroll */}
+        <button className="il-svc-modal-close" onClick={onClose}>✕</button>
+
+        {/* One unified scrollable container */}
+        <div className="il-svc-modal-scroll" ref={scrollRef}>
+          <div className="il-svc-modal-img">
+            <img src={service.img} alt={service.name} ref={imgRef} />
+            <div className="il-svc-modal-img-overlay" />
+            <div className="il-svc-modal-img-info">
+              <div className="il-svc-modal-name">{service.name}</div>
+            </div>
+          </div>
+
+          <div className="il-svc-modal-body">
+            <div className="il-svc-modal-meta">
+              <span className="il-svc-meta-pill">⏱ {service.duration}</span>
+              <span className="il-svc-meta-pill">🏠 {service.ideal}</span>
+            </div>
+            <p className="il-svc-modal-desc">{service.desc}</p>
+
+            <div className="il-svc-modal-section">
+              <div className="il-svc-modal-section-title">How It Works</div>
+              <div className="il-svc-steps-grid">
+                {service.steps.map((step, i) => (
+                  <div key={i} className="il-svc-step-card">
+                    <div className="il-svc-step-num">{i + 1}</div>
+                    <div className="il-svc-step-title">{step.title}</div>
+                    <div className="il-svc-step-desc">{step.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="il-svc-modal-section">
+              <div className="il-svc-modal-section-title">What's Included</div>
+              <div className="il-svc-includes-grid">
+                {service.includes.map((item, i) => (
+                  <div key={i} className="il-svc-include-item">
+                    <span className="il-svc-include-check">✓</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="il-svc-modal-footer">
+              <button className="il-btn" onClick={() => { onClose(); onBook(service.name); }}>
+                Book {service.name} <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function BookingModal({ isOpen, onClose, initialService = "" }) {
   const [step, setStep] = useState(initialService ? 2 : 1);
   const [service, setService] = useState(initialService);
@@ -1124,6 +1360,7 @@ export default function ILovah() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [bookingService, setBookingService] = useState("");
+  const [detailService, setDetailService] = useState(null);
 
   const openBooking = (serviceName = "") => {
     setBookingService(serviceName);
@@ -1260,16 +1497,19 @@ export default function ILovah() {
         <div className="il-wrap">
           <R><div className="il-section-eyebrow">What We Offer</div><div className="il-section-title">Cleaning services <em>tailored</em><br />to every space</div></R>
           <div className="il-svc-grid">
-            {services.map((s, i) => (
-              <R key={i} className={`il-svc-card ${s.featured ? "featured" : ""}`} style={{ transitionDelay: `${i * 0.07}s` }}>
-                <SvcImg img={s.img} emoji={s.emoji} />
-                <div className="il-svc-body">
-                  <div className="il-svc-title">{s.title}</div>
-                  <div className="il-svc-desc">{s.desc}</div>
-                  <button className="il-svc-link" onClick={() => openBooking(s.title)}>Book Now <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button>
-                </div>
-              </R>
-            ))}
+            {services.map((s, i) => {
+              const svcData = SERVICES_DATA.find(d => d.name === s.title);
+              return (
+                <R key={i} className={`il-svc-card ${s.featured ? "featured" : ""}`} style={{ transitionDelay: `${i * 0.07}s`, cursor: "pointer" }} onClick={() => svcData && setDetailService(svcData)}>
+                  <SvcImg img={s.img} emoji={s.emoji} />
+                  <div className="il-svc-body">
+                    <div className="il-svc-title">{s.title}</div>
+                    <div className="il-svc-desc">{s.desc}</div>
+                    <button className="il-svc-link" onClick={e => { e.stopPropagation(); svcData && openBooking(s.title); }}>Book Now <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button>
+                  </div>
+                </R>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1423,6 +1663,7 @@ export default function ILovah() {
         </div>
       </footer>
 
+      <ServiceDetailModal service={detailService} onClose={() => setDetailService(null)} onBook={openBooking} />
       <BookingModal isOpen={modalOpen} onClose={() => { setModalOpen(false); setBookingService(""); }} initialService={bookingService} />
     </div>
   );
