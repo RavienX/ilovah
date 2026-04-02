@@ -78,8 +78,8 @@ exports.sendBookingEmail = onRequest(
                 body: JSON.stringify({
                     // ⚠️ sender email MUST be verified in your Brevo account
                     // Go to Brevo → Senders & IPs → Senders → add & verify your email
-                    sender: { name: "iLovah Booking System", email: "frankbernardpidot@gmail.com" },
-                    to: [{ email: "frankbernardpidot@gmail.com", name: "iLovah Cleaning Services" }],
+                    sender: { name: "iLovah Booking System", email: "ilovahcleaning@gmail.com" },
+                    to: [{ email: "ilovahcleaning@gmail.com", name: "iLovah Cleaning Services" }],
                     replyTo: { email: email, name: `${firstName} ${lastName}` },
                     subject: `New Booking - ${service} on ${date}`,
                     htmlContent: htmlBody,

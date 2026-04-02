@@ -321,34 +321,44 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 
 /* ── CONTACT / CTA ── */
 .il-contact-section{padding:0 48px 72px}
-.il-cta{background:${CHARCOAL};border-radius:20px;padding:56px 60px;display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;overflow:hidden}
-.il-cta::before{content:'';position:absolute;right:-80px;bottom:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(232,41,28,0.13) 0%,transparent 70%)}
+.il-cta{background:${CREAM};border:1.5px solid ${BORDER};border-radius:20px;padding:56px 60px;display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;overflow:hidden}
+.il-cta::before{content:'';position:absolute;right:-80px;bottom:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(232,41,28,0.08) 0%,transparent 70%)}
 .il-cta-text{position:relative;z-index:1}
-.il-cta-text h2{font-family:'DM Sans',sans-serif;font-size:clamp(1.65rem,2.6vw,2.2rem);color:#fff;margin-bottom:9px;font-weight:800;letter-spacing:-.04em}
-.il-cta-text h2 em{font-style:italic;color:${RED_MID}}
-.il-cta-text p{font-size:.9rem;color:rgba(255,255,255,0.46);max-width:380px;line-height:1.7}
+.il-cta-text h2{font-family:'DM Sans',sans-serif;font-size:clamp(1.65rem,2.6vw,2.2rem);color:${CHARCOAL};margin-bottom:9px;font-weight:800;letter-spacing:-.04em}
+.il-cta-text h2 em{font-style:italic;color:${RED}}
+.il-cta-text p{font-size:.9rem;color:${MID};max-width:380px;line-height:1.7}
 .il-cta-btns{display:flex;gap:11px;flex-shrink:0;position:relative;z-index:1}
 .il-cta-contact-info{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;position:relative;z-index:1}
-.il-cta-info-item{display:flex;align-items:center;gap:8px;font-size:.83rem;color:rgba(255,255,255,0.5)}
-.il-cta-info-item strong{color:rgba(255,255,255,0.85);font-weight:500}
-.il-btn-white{background:#fff;color:${CHARCOAL};padding:12px 24px;border-radius:9px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .25s;font-family:'DM Sans',sans-serif;display:inline-block;text-decoration:none;letter-spacing:-.01em}
-.il-btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.18)}
-.il-btn-ow{border:1.5px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.76);padding:11px 20px;border-radius:9px;font-size:.9rem;font-weight:500;cursor:pointer;background:none;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
-.il-btn-ow:hover{border-color:rgba(255,255,255,0.44);color:#fff}
+.il-cta-info-item{display:flex;align-items:center;gap:8px;font-size:.83rem;color:${MID}}
+.il-cta-info-item strong{color:${CHARCOAL};font-weight:600}
+.il-btn-white{background:${RED};color:#fff;padding:12px 24px;border-radius:9px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .25s;font-family:'DM Sans',sans-serif;display:inline-block;text-decoration:none;letter-spacing:-.01em;box-shadow:0 4px 14px rgba(232,41,28,0.28)}
+.il-btn-white:hover{background:${RED_DK};transform:translateY(-2px);box-shadow:0 10px 28px rgba(232,41,28,0.38)}
+.il-btn-ow{border:1.5px solid ${BORDER};color:${CHARCOAL};padding:11px 20px;border-radius:9px;font-size:.9rem;font-weight:500;cursor:pointer;background:#fff;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.il-btn-ow:hover{border-color:${CHARCOAL};background:#f5f5f5;color:${CHARCOAL}}
 
 /* ── FOOTER ── */
-.il-footer{background:${CHARCOAL};padding:52px 48px 30px;color:rgba(255,255,255,0.4)}
+.il-footer{background:${CREAM};border-top:1.5px solid ${BORDER};padding:52px 48px 30px;color:${MID}}
 .il-footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px}
 .il-footer-brand p{font-size:.83rem;line-height:1.7;max-width:250px;margin-top:13px}
-.il-footer-col h4{color:rgba(255,255,255,0.86);font-size:.69rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;font-weight:600}
+.il-footer-col h4{color:${CHARCOAL};font-size:.69rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;font-weight:700}
 .il-footer-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.il-footer-col ul a{text-decoration:none;color:rgba(255,255,255,0.38);font-size:.835rem;transition:color .2s;letter-spacing:-.01em}
-.il-footer-col ul a:hover{color:rgba(255,255,255,0.84)}
-.il-footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:22px;display:flex;justify-content:space-between;align-items:center}
-.il-footer-bottom p{font-size:.76rem}
-.il-socials{display:flex;gap:7px}
-.il-social{width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:.76rem;color:rgba(255,255,255,0.3);transition:all .25s;cursor:pointer;font-weight:700}
-.il-social:hover{border-color:${RED};color:${RED};background:rgba(232,41,28,0.1)}
+.il-footer-col ul a{text-decoration:none;color:${MID};font-size:.835rem;transition:color .2s;letter-spacing:-.01em}
+.il-footer-col ul a:hover{color:${RED}}
+.il-footer-bottom{border-top:1px solid ${BORDER};padding-top:22px;display:flex;justify-content:space-between;align-items:center}
+.il-footer-bottom p{font-size:.76rem;color:${MID}}
+.il-socials{display:flex;flex-direction:column;gap:8px;margin-top:16px}
+.il-social-link{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:10px;border:1px solid ${BORDER};background:#fff;color:${MID};text-decoration:none;font-size:.8rem;font-weight:500;transition:all .25s;cursor:pointer;width:fit-content}
+.il-social-link:hover{border-color:${RED};color:${RED};background:${RED_LT}}
+.il-social-icon{width:26px;height:26px;border-radius:7px;background:${RED_LT};display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;color:${RED};flex-shrink:0;transition:all .25s}
+.il-social-link:hover .il-social-icon{background:${RED};color:#fff}
+.il-social-label{line-height:1.2}
+.il-social-label-main{display:block;font-weight:600;color:${CHARCOAL};font-size:.8rem;transition:color .25s}
+.il-social-link:hover .il-social-label-main{color:${RED}}
+.il-social-label-sub{display:block;font-size:.68rem;color:${MID};margin-top:1px}
+/* keep old .il-social for non-fb icons */
+.il-social{width:32px;height:32px;border-radius:8px;border:1px solid ${BORDER};background:#fff;display:flex;align-items:center;justify-content:center;font-size:.76rem;color:${MID};transition:all .25s;cursor:pointer;font-weight:700;text-decoration:none}
+.il-social:hover{border-color:${RED};color:${RED};background:${RED_LT}}
+.il-socials-row{display:flex;gap:7px;margin-top:8px}
 
 /* ── SERVICE DETAIL MODAL ── */
 .il-svc-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.62);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:12px;animation:fadeIn .2s ease}
@@ -1689,11 +1699,27 @@ export default function ILovah() {
           <div className="il-footer-brand">
             <div className="il-logo" style={{ cursor: "default" }}>
               <ILovahLogo size={32} />
-              <div><span className="il-logo-text" style={{ color: "#fff" }}>iLovah</span><span className="il-logo-sub" style={{ color: "rgba(255,255,255,0.35)" }}>Cleaning Services</span></div>
+              <div><span className="il-logo-text" style={{ color: RED }}>iLovah</span><span className="il-logo-sub" style={{ color: MID }}>Cleaning Services</span></div>
             </div>
             <p>Professional cleaning for homes and businesses in Toowoomba & surrounds. Reliable, eco-friendly, always on time.</p>
             <div className="il-socials" style={{ marginTop: 16 }}>
-              {[{ l: "f", t: "Facebook" }, { l: "ig", t: "Instagram" }, { l: "yt", t: "YouTube" }, { l: "𝕏", t: "Twitter" }, { l: "♪", t: "TikTok" }].map(s => <span key={s.l} className="il-social" title={s.t}>{s.l}</span>)}
+              <a href="https://www.facebook.com/people/i-LovahCleaning-Services/61558661136011/" target="_blank" rel="noopener noreferrer" className="il-social-link">
+                <div className="il-social-icon">f</div>
+                <div className="il-social-label">
+                  <span className="il-social-label-main">iLovah Cleaning Services</span>
+                  <span className="il-social-label-sub">Facebook Page</span>
+                </div>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61583659933160" target="_blank" rel="noopener noreferrer" className="il-social-link">
+                <div className="il-social-icon">f</div>
+                <div className="il-social-label">
+                  <span className="il-social-label-main">Rest in Pest Control Service</span>
+                  <span className="il-social-label-sub">Facebook Page</span>
+                </div>
+              </a>
+              <div className="il-socials-row">
+                {[{ l: "ig", t: "Instagram" }, { l: "yt", t: "YouTube" }, { l: "𝕏", t: "Twitter" }, { l: "♪", t: "TikTok" }].map(s => <span key={s.l} className="il-social" title={s.t}>{s.l}</span>)}
+              </div>
             </div>
           </div>
           <div className="il-footer-col"><h4>Services</h4><ul>{["Standard Clean", "Deep Clean", "End of Lease", "Carpet Cleaning", "Window Cleaning", "Office Cleaning"].map(s => <li key={s}><a href="#">{s}</a></li>)}</ul></div>
@@ -1703,9 +1729,9 @@ export default function ILovah() {
         <div className="il-footer-bottom">
           <p>© 2025 iLovah Cleaning Services. All rights reserved. | ABN: 12 345 678 901</p>
           <div style={{ display: "flex", gap: 16, fontSize: ".76rem" }}>
-            <a href="#" style={{ color: "rgba(255,255,255,0.38)", textDecoration: "none" }}>Privacy Policy</a>
-            <a href="#" style={{ color: "rgba(255,255,255,0.38)", textDecoration: "none" }}>Terms of Service</a>
-            <a href="#" style={{ color: "rgba(255,255,255,0.38)", textDecoration: "none" }}>Sitemap</a>
+            <a href="#" style={{ color: MID, textDecoration: "none" }}>Privacy Policy</a>
+            <a href="#" style={{ color: MID, textDecoration: "none" }}>Terms of Service</a>
+            <a href="#" style={{ color: MID, textDecoration: "none" }}>Sitemap</a>
           </div>
         </div>
       </footer>
