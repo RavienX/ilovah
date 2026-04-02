@@ -27,11 +27,11 @@ const BORDER = "#e8e8e8";
 const CREAM = "#fdfaf9";
 
 const CSS = `
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400;1,9..40,700&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};overflow-x:hidden}
+body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};overflow-x:hidden}
 :root{--red:${RED};--red-dk:${RED_DK};--red-lt:${RED_LT};--charcoal:${CHARCOAL};--mid:${MID};--border:${BORDER};--cream:${CREAM}}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:#f5f5f5}
@@ -62,18 +62,39 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 }
 .il-nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.08);height:60px;top:0}
 .il-logo{display:flex;align-items:center;gap:9px;cursor:pointer;text-decoration:none;flex-shrink:0}
-.il-logo-text{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:700;color:${RED};line-height:1}
+.il-logo-text{font-family:'DM Sans',sans-serif;font-size:1.35rem;font-weight:700;color:${RED};line-height:1}
 .il-logo-sub{font-size:.58rem;font-weight:600;letter-spacing:.12em;color:${MID};text-transform:uppercase;display:block;margin-top:2px}
-.il-nav-links{display:flex;gap:1px;list-style:none;align-items:center}
-.il-nav-links a{text-decoration:none;color:${CHARCOAL};font-size:.84rem;font-weight:500;padding:7px 12px;border-radius:7px;transition:all .2s;cursor:pointer;letter-spacing:-.01em;white-space:nowrap}
-.il-nav-links a:hover{color:${RED};background:${RED_LT}}
+.il-nav-links-desktop{display:flex;gap:1px;list-style:none;align-items:center}
+.il-nav-links-desktop a{text-decoration:none;color:${CHARCOAL};font-size:.84rem;font-weight:500;padding:7px 12px;border-radius:7px;transition:all .2s;cursor:pointer;letter-spacing:-.01em;white-space:nowrap}
+.il-nav-links-desktop a:hover{color:${RED};background:${RED_LT}}
+/* Mobile drawer (always rendered, slides off-screen when closed) */
+.il-nav-links{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:4px;list-style:none;
+  position:fixed;top:0;right:0;bottom:0;width:min(300px,82vw);
+  background:#fff;z-index:9999;
+  padding:72px 20px 32px;
+  transform:translateX(110%);
+  transition:transform .38s cubic-bezier(.4,0,.2,1);
+  box-shadow:-12px 0 48px rgba(0,0,0,0.18);
+  overflow-y:auto;
+}
+.il-nav-links.open{transform:translateX(0)}
+.il-drawer-close{position:absolute;top:16px;right:16px;background:none;border:1.5px solid ${BORDER};border-radius:9px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:${MID};transition:all .2s}
+.il-drawer-close:hover{border-color:${RED};color:${RED};background:${RED_LT}}
+.il-nav-links::before{content:'Menu';display:block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:${MID};padding:0 4px 14px;border-bottom:1px solid ${BORDER};margin-bottom:8px}
+.il-nav-links a{text-decoration:none;font-size:.97rem;font-weight:500;padding:13px 16px;border-radius:10px;display:block;color:${CHARCOAL};border:1px solid transparent;transition:all .2s;cursor:pointer}
+.il-nav-links a:hover{background:${RED_LT};color:${RED};border-color:rgba(232,41,28,0.15)}
+.il-nav-links .il-nav-quote{margin-top:10px!important;background:${RED}!important;color:#fff!important;text-align:center!important;padding:14px 20px!important;border-radius:10px!important;font-weight:700!important;box-shadow:0 4px 14px rgba(232,41,28,0.3)!important;font-size:.95rem!important;display:block}
+.il-nav-links .il-nav-quote:hover{background:${RED_DK}!important}
+.il-nav-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9998;opacity:0;pointer-events:none;transition:opacity .38s ease;backdrop-filter:blur(4px)}
+.il-nav-backdrop.open{opacity:1;pointer-events:all}
 .il-nav-quote{background:${RED}!important;color:#fff!important;padding:9px 20px!important;border-radius:9px!important;font-weight:700!important;transition:all .2s!important;box-shadow:0 3px 12px rgba(232,41,28,0.3)!important;font-size:.84rem!important;margin-left:6px}
 .il-nav-quote:hover{background:${RED_DK}!important;transform:translateY(-1px)!important}
-.il-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;border-radius:7px}
-.il-burger span{width:22px;height:2px;background:${CHARCOAL};border-radius:2px;display:block;transition:all .3s}
-.il-burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.il-burger.open span:nth-child(2){opacity:0}
-.il-burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.il-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px;border-radius:9px;transition:background .2s;z-index:1100;position:relative}
+.il-burger:hover{background:${RED_LT}}
+.il-burger span{width:24px;height:2.5px;background:${CHARCOAL};border-radius:3px;display:block;transition:all .35s cubic-bezier(.4,0,.2,1);transform-origin:center}
+.il-burger.open span:nth-child(1){transform:rotate(45deg) translate(0,7px)}
+.il-burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.il-burger.open span:nth-child(3){transform:rotate(-45deg) translate(0,-7px)}
 
 /* ── TAGLINE PILL ── */
 .il-nav-tagline{
@@ -97,7 +118,7 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-hero>*{position:relative;z-index:1}
 .il-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid ${BORDER};border-radius:100px;padding:5px 14px 5px 8px;font-size:.76rem;font-weight:600;color:${MID};margin-bottom:20px;animation:fadeUp .6s ease both;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
 .il-eyebrow-dot{width:20px;height:20px;border-radius:50%;background:${RED_LT};display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
-.il-hero h1{font-family:'Fraunces',serif;font-size:clamp(2.6rem,5vw,4rem);line-height:1.06;color:${CHARCOAL};margin-bottom:18px;animation:fadeUp .6s .1s ease both;font-weight:900;letter-spacing:-.03em}
+.il-hero h1{font-family:'DM Sans',sans-serif;font-size:clamp(2.6rem,5vw,4rem);line-height:1.04;color:${CHARCOAL};margin-bottom:18px;animation:fadeUp .6s .1s ease both;font-weight:900;letter-spacing:-.04em}
 .il-hero h1 em{font-style:italic;color:${RED}}
 .il-hero h1 .il-h1-line{display:block}
 .il-hero-p{font-size:1rem;line-height:1.78;color:${MID};max-width:460px;margin-bottom:32px;animation:fadeUp .6s .2s ease both}
@@ -105,7 +126,7 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-hero-stats{display:flex;gap:0;margin-top:40px;animation:fadeUp .6s .4s ease both;background:#fff;border:1px solid ${BORDER};border-radius:14px;padding:6px;box-shadow:0 3px 16px rgba(0,0,0,0.05);overflow:hidden;width:fit-content}
 .il-stat{text-align:center;padding:12px 28px;position:relative}
 .il-stat:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:${BORDER}}
-.il-stat-num{font-family:'Fraunces',serif;font-size:1.7rem;font-weight:700;color:${CHARCOAL};line-height:1}
+.il-stat-num{font-family:'DM Sans',sans-serif;font-size:1.7rem;font-weight:700;color:${CHARCOAL};line-height:1}
 .il-stat-num span{color:${RED}}
 .il-stat-label{font-size:.69rem;color:${MID};font-weight:500;margin-top:3px}
 .il-hero-visual{position:relative;animation:fadeIn .8s .2s ease both}
@@ -120,11 +141,11 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(22,163,74,0.5)}50%{box-shadow:0 0 0 5px rgba(22,163,74,0)}}
 
 /* ── BUTTONS ── */
-.il-btn{background:${RED};color:#fff;padding:13px 26px;border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;border:none;transition:all .25s;font-family:'Poppins',sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(232,41,28,0.3);letter-spacing:-.01em}
+.il-btn{background:${RED};color:#fff;padding:13px 26px;border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;border:none;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;box-shadow:0 4px 14px rgba(232,41,28,0.3);letter-spacing:-.01em}
 .il-btn:hover{background:${RED_DK};transform:translateY(-2px);box-shadow:0 8px 22px rgba(232,41,28,0.4)}
 .il-btn svg{transition:transform .2s}
 .il-btn:hover svg{transform:translateX(3px)}
-.il-btn-ghost{background:#fff;color:${CHARCOAL};border:1.5px solid ${BORDER};padding:12px 24px;border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .25s;font-family:'Poppins',sans-serif;text-decoration:none}
+.il-btn-ghost{background:#fff;color:${CHARCOAL};border:1.5px solid ${BORDER};padding:12px 24px;border-radius:10px;font-size:.92rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none}
 .il-btn-ghost:hover{border-color:${CHARCOAL};background:#fafafa;transform:translateY(-1px)}
 
 /* ── TRUST BAR ── */
@@ -140,7 +161,7 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 /* ── SECTION HEADER ── */
 .il-section-eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:${RED};font-weight:700;margin-bottom:12px}
 .il-section-eyebrow::before{content:'';width:18px;height:2px;background:${RED};border-radius:2px}
-.il-section-title{font-family:'Fraunces',serif;font-size:clamp(2rem,3.2vw,2.7rem);line-height:1.1;color:${CHARCOAL};max-width:520px;margin-bottom:36px;font-weight:700;letter-spacing:-.03em}
+.il-section-title{font-family:'DM Sans',sans-serif;font-size:clamp(2rem,3.2vw,2.7rem);line-height:1.08;color:${CHARCOAL};max-width:520px;margin-bottom:36px;font-weight:800;letter-spacing:-.04em}
 .il-section-title em{font-style:italic;color:${RED}}
 
 /* ── SERVICES ── */
@@ -168,9 +189,9 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-svc-tag{display:flex;align-items:center;gap:6px;margin-bottom:9px}
 .il-svc-emoji{font-size:1rem}
 .il-svc-price-badge{font-size:.67rem;font-weight:700;color:${RED};background:${RED_LT};padding:2px 8px;border-radius:20px}
-.il-svc-title{font-family:'Fraunces',serif;font-size:1.03rem;font-weight:700;margin-bottom:7px;letter-spacing:-.02em;line-height:1.2}
+.il-svc-title{font-family:'DM Sans',sans-serif;font-size:1.03rem;font-weight:700;margin-bottom:7px;letter-spacing:-.02em;line-height:1.2}
 .il-svc-desc{font-size:.83rem;line-height:1.7;color:${MID};margin-bottom:14px;flex:1}
-.il-svc-link{font-size:.81rem;font-weight:600;color:${RED};background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:gap .2s;font-family:'Poppins',sans-serif;padding:0;letter-spacing:-.01em;margin-top:auto}
+.il-svc-link{font-size:.81rem;font-weight:600;color:${RED};background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:gap .2s;font-family:'DM Sans',sans-serif;padding:0;letter-spacing:-.01em;margin-top:auto}
 .il-svc-link:hover{gap:9px}
 .il-svc-link svg{transition:transform .2s}
 .il-svc-link:hover svg{transform:translateX(3px)}
@@ -183,7 +204,7 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:8px}
 .il-step{padding:28px 22px;border:1px solid rgba(255,255,255,0.07);border-radius:14px;position:relative;transition:all .3s;background:rgba(255,255,255,0.02)}
 .il-step:hover{border-color:rgba(232,41,28,0.4);background:rgba(232,41,28,0.05);transform:translateY(-3px)}
-.il-step-num{font-family:'Fraunces',serif;font-size:3.2rem;font-weight:900;color:rgba(255,255,255,0.05);position:absolute;top:12px;right:16px;line-height:1}
+.il-step-num{font-family:'DM Sans',sans-serif;font-size:3.2rem;font-weight:900;color:rgba(255,255,255,0.05);position:absolute;top:12px;right:16px;line-height:1}
 .il-step-ico{font-size:1.5rem;margin-bottom:14px}
 .il-step-title{font-size:.92rem;font-weight:600;color:#fff;margin-bottom:7px;letter-spacing:-.01em}
 .il-step-desc{font-size:.82rem;line-height:1.66;color:rgba(255,255,255,0.4)}
@@ -194,7 +215,7 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-why-img{border-radius:20px;overflow:hidden;position:relative;box-shadow:0 24px 64px rgba(0,0,0,0.1);min-height:440px}
 .il-why-badge{position:absolute;bottom:20px;left:20px;background:#fff;color:${CHARCOAL};padding:13px 17px;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,0.12);display:flex;align-items:center;gap:12px}
 .il-why-badge-icon{width:38px;height:38px;border-radius:9px;background:${RED};display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
-.il-why-badge strong{display:block;font-family:'Fraunces',serif;font-size:1rem;font-weight:700;letter-spacing:-.02em}
+.il-why-badge strong{display:block;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;letter-spacing:-.02em}
 .il-why-badge span{font-size:.7rem;color:${MID};font-weight:500}
 .il-why-intro{font-size:.93rem;color:${MID};line-height:1.78}
 .il-features{display:flex;flex-direction:column;gap:10px;margin-top:24px}
@@ -267,7 +288,7 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-faq-item.open .il-faq-icon{transform:rotate(45deg);background:${RED};color:#fff}
 .il-faq-a{max-height:0;overflow:hidden;transition:max-height .38s ease,padding .3s;padding:0 22px;font-size:.87rem;color:${MID};line-height:1.76}
 .il-faq-item.open .il-faq-a{max-height:220px;padding:0 22px 20px}
-.il-faq-toggle{display:block;margin:22px auto 0;background:none;border:1.5px solid ${BORDER};color:${RED};font-family:'Poppins',sans-serif;font-size:.84rem;font-weight:600;cursor:pointer;padding:9px 24px;border-radius:9px;transition:all .2s;display:flex;align-items:center;gap:6px}
+.il-faq-toggle{display:block;margin:22px auto 0;background:none;border:1.5px solid ${BORDER};color:${RED};font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:600;cursor:pointer;padding:9px 24px;border-radius:9px;transition:all .2s;display:flex;align-items:center;gap:6px}
 .il-faq-toggle:hover{background:${RED_LT};border-color:rgba(232,41,28,0.3)}
 
 /* ── CONTACT / CTA ── */
@@ -275,16 +296,16 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-cta{background:${CHARCOAL};border-radius:20px;padding:56px 60px;display:flex;align-items:center;justify-content:space-between;gap:32px;position:relative;overflow:hidden}
 .il-cta::before{content:'';position:absolute;right:-80px;bottom:-80px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(232,41,28,0.13) 0%,transparent 70%)}
 .il-cta-text{position:relative;z-index:1}
-.il-cta-text h2{font-family:'Fraunces',serif;font-size:clamp(1.65rem,2.6vw,2.2rem);color:#fff;margin-bottom:9px;font-weight:700;letter-spacing:-.04em}
+.il-cta-text h2{font-family:'DM Sans',sans-serif;font-size:clamp(1.65rem,2.6vw,2.2rem);color:#fff;margin-bottom:9px;font-weight:800;letter-spacing:-.04em}
 .il-cta-text h2 em{font-style:italic;color:${RED_MID}}
 .il-cta-text p{font-size:.9rem;color:rgba(255,255,255,0.46);max-width:380px;line-height:1.7}
 .il-cta-btns{display:flex;gap:11px;flex-shrink:0;position:relative;z-index:1}
 .il-cta-contact-info{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;position:relative;z-index:1}
 .il-cta-info-item{display:flex;align-items:center;gap:8px;font-size:.83rem;color:rgba(255,255,255,0.5)}
 .il-cta-info-item strong{color:rgba(255,255,255,0.85);font-weight:500}
-.il-btn-white{background:#fff;color:${CHARCOAL};padding:12px 24px;border-radius:9px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .25s;font-family:'Poppins',sans-serif;display:inline-block;text-decoration:none;letter-spacing:-.01em}
+.il-btn-white{background:#fff;color:${CHARCOAL};padding:12px 24px;border-radius:9px;font-size:.9rem;font-weight:600;cursor:pointer;border:none;transition:all .25s;font-family:'DM Sans',sans-serif;display:inline-block;text-decoration:none;letter-spacing:-.01em}
 .il-btn-white:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,0.18)}
-.il-btn-ow{border:1.5px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.76);padding:11px 20px;border-radius:9px;font-size:.9rem;font-weight:500;cursor:pointer;background:none;transition:all .25s;font-family:'Poppins',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.il-btn-ow{border:1.5px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.76);padding:11px 20px;border-radius:9px;font-size:.9rem;font-weight:500;cursor:pointer;background:none;transition:all .25s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .il-btn-ow:hover{border-color:rgba(255,255,255,0.44);color:#fff}
 
 /* ── FOOTER ── */
@@ -300,6 +321,15 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-socials{display:flex;gap:7px}
 .il-social{width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:.76rem;color:rgba(255,255,255,0.3);transition:all .25s;cursor:pointer;font-weight:700}
 .il-social:hover{border-color:${RED};color:${RED};background:rgba(232,41,28,0.1)}
+
+/* ── VALIDATION ERRORS ── */
+.il-field-error{color:#e8291c;font-size:.72rem;font-weight:600;margin-top:4px;display:flex;align-items:center;gap:4px}
+.il-field-error::before{content:"⚠";font-size:.7rem}
+.il-form-group input.error,.il-form-group select.error,.il-form-group textarea.error{border-color:#e8291c!important;background:#fff8f8}
+.il-step-error-banner{background:#fff0f0;border:1.5px solid rgba(232,41,28,0.3);border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.8rem;color:#e8291c;font-weight:600;display:flex;align-items:center;gap:7px}
+.il-date-error{color:#e8291c;font-size:.76rem;font-weight:600;margin-top:6px;margin-bottom:8px;display:flex;align-items:center;gap:5px}
+.il-time-slot-wrap{position:relative}
+.il-time-slots.error-outline{border:1.5px solid #e8291c;border-radius:10px;padding:6px}
 
 /* ── MODAL ── */
 .il-overlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.56);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;padding:16px}
@@ -319,12 +349,15 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-step-label.active{color:${CHARCOAL};font-weight:700}
 .il-step-label.done{color:${RED}}
 .il-step-line{width:38px;height:2px;background:${BORDER};margin-bottom:18px;transition:background .3s}
-.il-step-line.done{background:${RED}}
-.il-progress-bar{height:3px;background:${BORDER};overflow:hidden}
+.il-step-line.done{background:${RED}}.il-progress-bar{height:3px;background:${BORDER};overflow:hidden}
 .il-progress-fill{height:100%;background:${RED};transition:width .4s cubic-bezier(.4,0,.2,1)}
 .il-modal-body{flex:1;overflow-y:auto;padding:26px 30px;scroll-behavior:smooth}
-.il-modal-body h3{font-family:'Fraunces',serif;font-size:1.55rem;font-weight:700;color:${CHARCOAL};margin-bottom:5px;text-align:center;letter-spacing:-.03em}
+.il-modal-body h3{font-family:'DM Sans',sans-serif;font-size:1.55rem;font-weight:800;color:${CHARCOAL};margin-bottom:5px;text-align:center;letter-spacing:-.04em}
 .il-modal-body .il-modal-sub{font-size:.86rem;color:${MID};text-align:center;margin-bottom:22px}
+.il-selected-svc-pill{display:flex;align-items:center;gap:8px;background:${RED_LT};border:1.5px solid rgba(232,41,28,0.25);border-radius:10px;padding:9px 14px;margin-bottom:18px;font-size:.83rem;color:${CHARCOAL}}
+.il-selected-svc-check{color:${RED};font-size:.9rem;font-weight:700;flex-shrink:0}
+.il-selected-svc-change{margin-left:auto;background:none;border:1.5px solid rgba(232,41,28,0.3);border-radius:6px;color:${RED};font-size:.72rem;font-weight:600;cursor:pointer;padding:3px 9px;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap}
+.il-selected-svc-change:hover{background:${RED};color:#fff;border-color:${RED}}
 .il-svc-pick-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .il-svc-pick{display:flex;align-items:center;padding:11px 13px;border-radius:10px;border:1.5px solid ${BORDER};cursor:pointer;transition:all .2s;gap:10px;background:#fff}
 .il-svc-pick:hover{border-color:rgba(232,41,28,0.4);background:${RED_LT}}
@@ -345,32 +378,32 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-svc-pick-bullets{list-style:none;display:flex;flex-direction:column;gap:4px;margin-bottom:4px}
 .il-svc-pick-bullets li{font-size:.76rem;color:${MID};display:flex;align-items:center;gap:6px}
 .il-svc-pick-bullets li::before{content:'▪';color:${RED};font-size:.6rem;flex-shrink:0}
-.il-svc-view-toggle{background:none;border:none;color:${RED};font-size:.76rem;font-weight:600;cursor:pointer;padding:8px 14px;text-align:left;font-family:'Poppins',sans-serif;border-top:1px solid rgba(0,0,0,0.06);width:100%;transition:background .2s}
+.il-svc-view-toggle{background:none;border:none;color:${RED};font-size:.76rem;font-weight:600;cursor:pointer;padding:8px 14px;text-align:left;font-family:'DM Sans',sans-serif;border-top:1px solid rgba(0,0,0,0.06);width:100%;transition:background .2s}
 .il-svc-view-toggle:hover{background:${RED_LT}}
 .il-form-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .il-form-group{margin-bottom:11px}
 .il-form-group label{display:block;font-size:.75rem;font-weight:600;margin-bottom:5px;color:${CHARCOAL};letter-spacing:-.01em}
 .il-form-group label span{color:${RED}}
-.il-form-group input,.il-form-group select,.il-form-group textarea{width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;font-family:'Poppins',sans-serif;font-size:.87rem;color:${CHARCOAL};outline:none;transition:all .2s}
+.il-form-group input,.il-form-group select,.il-form-group textarea{width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;font-family:'DM Sans',sans-serif;font-size:.87rem;color:${CHARCOAL};outline:none;transition:all .2s}
 .il-form-group input:focus,.il-form-group select:focus,.il-form-group textarea:focus{border-color:${RED};box-shadow:0 0 0 3px rgba(232,41,28,0.07)}
 .il-form-group input:hover,.il-form-group select:hover,.il-form-group textarea:hover{border-color:#ccc}
 .il-contact-pref{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:4px}
-.il-pref-btn{padding:9px 7px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.78rem;font-weight:500;color:${MID};transition:all .2s;font-family:'Poppins',sans-serif}
+.il-pref-btn{padding:9px 7px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:.78rem;font-weight:500;color:${MID};transition:all .2s;font-family:'DM Sans',sans-serif}
 .il-pref-btn.active{border-color:${RED};background:${RED_LT};color:${RED};font-weight:600}
 .il-pref-btn:hover{border-color:rgba(232,41,28,0.4)}
 .il-pref-ico{font-size:1.05rem}
 .il-property-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
-.il-addr-section h4{font-family:'Fraunces',serif;font-size:.97rem;font-weight:700;margin-bottom:14px;color:${CHARCOAL};letter-spacing:-.02em}
+.il-addr-section h4{font-family:'DM Sans',sans-serif;font-size:.97rem;font-weight:700;margin-bottom:14px;color:${CHARCOAL};letter-spacing:-.02em}
 .il-map-placeholder{border-radius:10px;border:1.5px solid ${BORDER};overflow:hidden;background:#e8f0e8}
 .il-map-label{background:#fff;padding:8px 12px;display:flex;align-items:center;gap:5px;border-bottom:1px solid ${BORDER};font-size:.78rem;font-weight:600}
 .il-map-label .pin{color:${RED}}
 .il-map-body{height:160px;display:flex;align-items:center;justify-content:center;position:relative}
 .il-map-note{font-size:.74rem;color:${MID};margin-top:6px;line-height:1.5}
-.il-loc-btn{display:inline-flex;align-items:center;gap:5px;font-size:.79rem;color:${RED};font-weight:600;cursor:pointer;background:${RED_LT};border:1.5px solid rgba(232,41,28,0.18);padding:5px 12px;border-radius:7px;font-family:'Poppins',sans-serif;margin-top:9px;transition:all .2s}
+.il-loc-btn{display:inline-flex;align-items:center;gap:5px;font-size:.79rem;color:${RED};font-weight:600;cursor:pointer;background:${RED_LT};border:1.5px solid rgba(232,41,28,0.18);padding:5px 12px;border-radius:7px;font-family:'DM Sans',sans-serif;margin-top:9px;transition:all .2s}
 .il-loc-btn:hover{background:rgba(232,41,28,0.12)}
-.il-prop-full h4{font-family:'Fraunces',serif;font-size:.97rem;font-weight:700;margin-bottom:11px;margin-top:18px;padding-top:14px;border-top:1px solid ${BORDER};letter-spacing:-.02em}
+.il-prop-full h4{font-family:'DM Sans',sans-serif;font-size:.97rem;font-weight:700;margin-bottom:11px;margin-top:18px;padding-top:14px;border-top:1px solid ${BORDER};letter-spacing:-.02em}
 .il-cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.il-cal-month{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;letter-spacing:-.03em}
+.il-cal-month{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;letter-spacing:-.03em}
 .il-cal-nav{background:#fff;border:1.5px solid ${BORDER};border-radius:7px;width:28px;height:28px;cursor:pointer;font-size:.86rem;display:flex;align-items:center;justify-content:center;transition:all .2s;color:${MID}}
 .il-cal-nav:hover{border-color:${RED};color:${RED};background:${RED_LT}}
 .il-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:16px}
@@ -385,30 +418,32 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-cal-day.selected .il-slot-count{color:rgba(255,255,255,0.75)}
 .il-urgency{margin-bottom:14px}
 .il-urgency label{font-size:.75rem;font-weight:600;margin-bottom:6px;display:block}
-.il-time-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:16px}
-.il-time-slot{padding:7px 5px;border-radius:7px;border:1.5px solid ${BORDER};background:#f8f8f8;font-size:.75rem;font-weight:500;text-align:center;cursor:pointer;transition:all .2s;color:${MID}}
-.il-time-slot:hover{border-color:${RED};color:${RED};background:${RED_LT}}
-.il-time-slot.active{border-color:${RED};background:${RED};color:#fff}
-.il-time-slot.taken{opacity:.45;cursor:not-allowed;background:#f0f0f0;border-color:#ddd;color:#aaa;position:relative}
-.il-time-slot.taken:hover{border-color:#ddd;background:#f0f0f0;color:#aaa}
-.il-slot-taken-label{display:block;font-size:.55rem;color:#999;margin-top:1px;letter-spacing:.02em}
+.il-time-slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.il-time-slot{padding:12px 10px;border-radius:10px;border:1.5px solid ${BORDER};background:#fff;font-size:.82rem;font-weight:600;text-align:left;cursor:pointer;transition:all .2s;color:${CHARCOAL};display:flex;flex-direction:column;gap:3px;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.il-time-slot:hover:not(.taken){border-color:${RED};background:${RED_LT};color:${CHARCOAL}}
+.il-time-slot.active{border-color:${RED};background:${RED_LT};color:${CHARCOAL}}
+.il-time-slot.active .il-slot-status{color:${RED};font-weight:700}
+.il-time-slot.taken{opacity:.5;cursor:not-allowed;background:#f5f5f5;border-color:#e0e0e0;color:#999}
+.il-time-slot.taken:hover{border-color:#e0e0e0;background:#f5f5f5;color:#999}
+.il-slot-status{font-size:.72rem;font-weight:600;color:#16a34a}
+.il-slot-taken-label{font-size:.72rem;color:#aaa;font-weight:500}
 .il-info-box{background:${RED_LT};border:1px solid rgba(232,41,28,0.18);border-radius:8px;padding:11px 13px;display:flex;gap:8px;align-items:flex-start}
 .il-info-box .il-info-ico{color:${RED};font-size:.9rem;flex-shrink:0;margin-top:1px}
 .il-info-box p{font-size:.79rem;color:${CHARCOAL};line-height:1.52}
 .il-info-box strong{color:${RED}}
 .il-review-card{background:${CREAM};border-radius:10px;padding:16px;margin-bottom:11px}
-.il-review-card h4{font-family:'Fraunces',serif;font-size:.93rem;font-weight:700;margin-bottom:11px;letter-spacing:-.02em;color:${CHARCOAL}}
+.il-review-card h4{font-family:'DM Sans',sans-serif;font-size:.93rem;font-weight:700;margin-bottom:11px;letter-spacing:-.02em;color:${CHARCOAL}}
 .il-review-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid ${BORDER};font-size:.83rem}
 .il-review-row:last-child{border-bottom:none}
 .il-review-row span:first-child{color:${MID};font-weight:500}
 .il-review-row span:last-child{color:${CHARCOAL};font-weight:600}
-.il-submit-btn{width:100%;padding:13px;background:${RED};color:#fff;border:none;border-radius:9px;font-size:.93rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'Poppins',sans-serif;margin-top:7px;letter-spacing:-.01em;box-shadow:0 4px 13px rgba(232,41,28,0.24)}
+.il-submit-btn{width:100%;padding:13px;background:${RED};color:#fff;border:none;border-radius:9px;font-size:.93rem;font-weight:600;cursor:pointer;transition:all .25s;font-family:'DM Sans',sans-serif;margin-top:7px;letter-spacing:-.01em;box-shadow:0 4px 13px rgba(232,41,28,0.24)}
 .il-submit-btn:hover{background:${RED_DK};transform:translateY(-1px)}
 .il-submit-btn.sent{background:#16a34a;box-shadow:0 4px 13px rgba(22,163,74,0.26)}
 .il-terms{font-size:.71rem;color:${MID};text-align:center;margin-top:9px;line-height:1.55}
 .il-modal-footer{padding:14px 30px;border-top:1px solid ${BORDER};background:#fff;display:flex;justify-content:space-between;align-items:center}
 .il-footer-hint{font-size:.74rem;color:${MID};font-weight:500}
-.il-next-btn{background:${CHARCOAL};color:#fff;padding:10px 26px;border-radius:8px;font-size:.87rem;font-weight:600;cursor:pointer;border:none;display:flex;align-items:center;gap:6px;transition:all .25s;font-family:'Poppins',sans-serif;letter-spacing:-.01em}
+.il-next-btn{background:${CHARCOAL};color:#fff;padding:10px 26px;border-radius:8px;font-size:.87rem;font-weight:600;cursor:pointer;border:none;display:flex;align-items:center;gap:6px;transition:all .25s;font-family:'DM Sans',sans-serif;letter-spacing:-.01em}
 .il-next-btn:hover{background:${RED};transform:translateY(-1px);box-shadow:0 5px 14px rgba(232,41,28,0.26)}
 .il-next-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none;background:${CHARCOAL}}
 
@@ -425,19 +460,22 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
 @media(max-width:1024px){
   .il-nav{padding:0 26px}
   .il-topbar{padding:0 26px}
-  .il-nav-links a{padding:6px 9px;font-size:.79rem}
+  .il-nav-links-desktop a{padding:6px 9px;font-size:.79rem}
   .il-wrap{padding:0 26px}
   .il-contact-section{padding:0 26px 56px}
   .il-footer{padding:48px 26px 26px}
+}
+@media(min-width:901px){
+  .il-nav-links{display:none!important}
+  .il-nav-backdrop{display:none!important}
+  .il-burger{display:none!important}
 }
 @media(max-width:900px){
   .il-topbar{display:none}
   .il-nav{top:0;padding:0 18px}
   .il-nav.scrolled{top:0}
   .il-nav-tagline{display:none}
-  .il-nav-links{display:none;position:fixed;inset:0;background:#fff;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:1000;padding:26px}
-  .il-nav-links.open{display:flex}
-  .il-nav-links a{font-size:1rem}
+  .il-nav-links-desktop{display:none}
   .il-burger{display:flex}
   .il-hero{grid-template-columns:1fr;padding:110px 20px 52px;text-align:center;gap:32px}
   .il-hero-visual{display:none}
@@ -463,8 +501,10 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
   .il-svc-pick-grid{grid-template-columns:1fr}
   .il-property-grid{grid-template-columns:1fr}
   .il-stepper{padding:11px 8px}
-  .il-step-line{width:20px}
-  .il-time-slots{grid-template-columns:repeat(3,1fr)}
+  .il-step-line{width:16px}
+  .il-step-dot{width:26px;height:26px;font-size:.72rem}
+  .il-step-label{font-size:.6rem}
+  .il-time-slots{grid-template-columns:repeat(2,1fr)}
   .il-cta-btns .il-btn-white,.il-cta-btns .il-btn-ow{width:100%;justify-content:center}
   .il-rev-card{padding:32px 24px 28px}
 }
@@ -494,6 +534,10 @@ body,#root{font-family:'Poppins',sans-serif;background:#fff;color:${CHARCOAL};ov
   .il-client-card{min-width:140px;padding:20px 24px;min-height:100px}
   .il-section-title{font-size:clamp(1.7rem,7vw,2.3rem)}
   .il-modal-body h3{font-size:1.25rem}
+  .il-step-label{display:none}
+  .il-step-dot{width:24px;height:24px;font-size:.68rem}
+  .il-step-line{width:12px}
+  .il-steps-wrap{padding:0 4px}
 }
 `;
 const ILovahLogo = ({ size = 40 }) => (
@@ -580,7 +624,14 @@ const SERVICES_DATA = [
 
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const TIME_SLOTS = ["8:00 AM", "9:30 AM", "11:00 AM", "1:00 PM", "2:30 PM", "4:00 PM", "5:30 PM", "7:00 PM"];
+const TIME_SLOTS = [
+  { label: "9:00 AM - 10:30 AM", start: "9:00 AM" },
+  { label: "10:30 AM - 12:00 PM", start: "10:30 AM" },
+  { label: "12:00 PM - 1:30 PM", start: "12:00 PM" },
+  { label: "1:30 PM - 3:00 PM", start: "1:30 PM" },
+  { label: "3:00 PM - 4:30 PM", start: "3:00 PM" },
+  { label: "4:30 PM - 6:00 PM", start: "4:30 PM" },
+];
 
 // Simulate some taken slots — key format: "YYYY-M-D"
 const now = new Date();
@@ -592,7 +643,7 @@ const TAKEN_SLOTS = (() => {
     if (d.getDay() === 0) continue; // skip Sunday
     const key = `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
     // Use offset to seed which slots are taken (2–3 per day)
-    const taken = TIME_SLOTS.filter((_, i) => (i + offset) % 3 === 0 || (i + offset) % 5 === 0);
+    const taken = TIME_SLOTS.filter((_, i) => (i + offset) % 3 === 0 || (i + offset) % 5 === 0).map(s => s.start);
     if (taken.length) result[key] = taken;
   }
   return result;
@@ -747,7 +798,7 @@ function ServicePicker({ service, setService }) {
   );
 }
 
-function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setPropState, postcode, setPostcode, notes, setNotes }) {
+function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setPropState, postcode, setPostcode, notes, setNotes, errors = {}, touched = {}, setErrors, setTouched }) {
   const [locStatus, setLocStatus] = useState("");
   const [mapSrc, setMapSrc] = useState("https://maps.google.com/maps?q=Toowoomba,QLD,Australia&z=11&output=embed");
   const state = propState;
@@ -758,8 +809,30 @@ function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setProp
     setMapSrc(`https://maps.google.com/maps?q=${encodeURIComponent(q)}&z=13&output=embed`);
   };
 
+  const useIPLocation = async () => {
+    try {
+      const r = await fetch("https://ipapi.co/json/");
+      const d = await r.json();
+      if (d.city) {
+        setSuburb(d.city);
+        setState(d.region_code || "QLD");
+        setPostcode(d.postal || "");
+        updateMap(d.city, d.region_code);
+        setLocStatus("✓ Location estimated from IP (approximate)");
+      } else {
+        setLocStatus("⚠ Could not detect location — please enter manually");
+      }
+    } catch {
+      setLocStatus("⚠ Could not detect location — please enter manually");
+    }
+  };
+
   const handleLocate = () => {
-    if (!navigator.geolocation) { setLocStatus("Geolocation not supported"); return; }
+    if (!navigator.geolocation) {
+      setLocStatus("Locating via IP...");
+      useIPLocation();
+      return;
+    }
     setLocStatus("Locating...");
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
@@ -767,46 +840,51 @@ function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setProp
         setMapSrc(`https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`);
         try {
           const r = await fetch(
-            `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json&addressdetails=1`,
-            { headers: { "Accept-Language": "en", "User-Agent": "iLovahCleaningApp/1.0" } }
+            `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`
           );
           if (!r.ok) throw new Error("Geocode failed");
           const d = await r.json();
-          const a = d.address || {};
-          setStreet([a.house_number, a.road].filter(Boolean).join(" "));
-          setSuburb(a.suburb || a.city_district || a.town || a.city || "");
-          setState(a.state_code ? a.state_code.replace("AU-", "") : (a.state || "QLD"));
-          setPostcode(a.postcode || "");
-          setLocStatus("✓ Location found!");
+          setStreet("");
+          setSuburb(d.locality || d.city || "");
+          setState(d.principalSubdivisionCode?.replace("AU-", "") || "QLD");
+          setPostcode(d.postcode || "");
+          setLocStatus("✓ Location found! Please verify your street address.");
         } catch {
-          // Fallback: just update the map, show coords
-          setLocStatus("✓ Map updated — please enter address manually");
+          setLocStatus("✓ Map updated — please enter your address manually");
         }
       },
       (err) => {
-        if (err.code === 1) setLocStatus("⚠ Location access denied — please allow location");
-        else if (err.code === 2) setLocStatus("⚠ Location unavailable");
-        else setLocStatus("⚠ Location request timed out");
+        if (err.code === 1) {
+          setLocStatus("Location denied — trying IP-based location...");
+          useIPLocation();
+        } else if (err.code === 2) {
+          setLocStatus("⚠ Location unavailable");
+        } else {
+          setLocStatus("⚠ Location request timed out");
+        }
       },
-      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
     );
   };
 
   return (
     <>
       <h3>Property Information</h3>
+      {Object.keys(errors).some(k => errors[k] && ["street", "suburb", "postcode"].includes(k)) && <div className="il-step-error-banner">⚠ Please fill in all required address fields</div>}
       <p className="il-modal-sub">Where would you like us to clean?</p>
       <div className="il-property-grid">
         <div>
           <div className="il-addr-section"><h4>Address</h4></div>
           <div className="il-form-group">
             <label>Street Address <span style={{ color: RED }}>*</span></label>
-            <input type="text" value={street} onChange={e => setStreet(e.target.value)} placeholder="123 Main Street" />
+            <input type="text" value={street} onChange={e => { setStreet(e.target.value); if (setErrors) setErrors(p => ({ ...p, street: "" })); }} onBlur={() => setTouched && setTouched(p => ({ ...p, street: true }))} placeholder="123 Main Street" className={errors.street && touched.street ? "error" : ""} />
+            {errors.street && touched.street && <div className="il-field-error">{errors.street}</div>}
           </div>
           <div className="il-form-row">
             <div className="il-form-group">
               <label>Suburb <span style={{ color: RED }}>*</span></label>
-              <input type="text" value={suburb} onChange={e => { setSuburb(e.target.value); updateMap(e.target.value, state); }} placeholder="Toowoomba" />
+              <input type="text" value={suburb} onChange={e => { setSuburb(e.target.value); updateMap(e.target.value, state); if (setErrors) setErrors(p => ({ ...p, suburb: "" })); }} onBlur={() => setTouched && setTouched(p => ({ ...p, suburb: true }))} placeholder="Toowoomba" className={errors.suburb && touched.suburb ? "error" : ""} />
+              {errors.suburb && touched.suburb && <div className="il-field-error">{errors.suburb}</div>}
             </div>
             <div className="il-form-group">
               <label>State</label>
@@ -815,8 +893,9 @@ function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setProp
           </div>
           <div className="il-form-row">
             <div className="il-form-group">
-              <label>Postcode</label>
-              <input type="text" value={postcode} onChange={e => setPostcode(e.target.value)} placeholder="4350" />
+              <label>Postcode <span style={{ color: RED }}>*</span></label>
+              <input type="text" value={postcode} onChange={e => { setPostcode(e.target.value); if (setErrors) setErrors(p => ({ ...p, postcode: "" })); }} onBlur={() => setTouched && setTouched(p => ({ ...p, postcode: true }))} placeholder="4350" className={errors.postcode && touched.postcode ? "error" : ""} />
+              {errors.postcode && touched.postcode && <div className="il-field-error">{errors.postcode}</div>}
             </div>
             <div className="il-form-group">
               <label>Country</label>
@@ -860,17 +939,19 @@ function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setProp
   );
 }
 
-function BookingModal({ isOpen, onClose }) {
-  const [step, setStep] = useState(1);
-  const [service, setService] = useState("");
+function BookingModal({ isOpen, onClose, initialService = "" }) {
+  const [step, setStep] = useState(initialService ? 2 : 1);
+  const [service, setService] = useState(initialService);
   const [pref, setPref] = useState("Phone");
   const [calDate, setCalDate] = useState(() => { const n = new Date(); return new Date(n.getFullYear(), n.getMonth()); });
   const [selDay, setSelDay] = useState(null);
-  const [selTime, setSelTime] = useState("9:30 AM");
+  const [selTime, setSelTime] = useState("");
   const [urgency, setUrgency] = useState("Flexible — within 2 weeks");
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState("");
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
 
   // Contact fields
   const [firstName, setFirstName] = useState("");
@@ -886,12 +967,21 @@ function BookingModal({ isOpen, onClose }) {
   const [notes, setNotes] = useState("");
 
   const today = new Date();
+  useEffect(() => {
+    if (isOpen && initialService) {
+      setService(initialService);
+      setStep(2);
+    } else if (isOpen && !initialService) {
+      setStep(1);
+      setService("");
+    }
+  }, [isOpen, initialService]);
   useEffect(() => { document.body.style.overflow = isOpen ? "hidden" : ""; }, [isOpen]);
   useEffect(() => { const h = (e) => { if (e.key === "Escape") handleClose(); }; document.addEventListener("keydown", h); return () => document.removeEventListener("keydown", h); }, []);
   const handleClose = () => {
     onClose();
     setTimeout(() => {
-      setStep(1); setService(""); setSubmitted(false); setSending(false); setSendError("");
+      setStep(initialService ? 2 : 1); setService(initialService); setSubmitted(false); setSending(false); setSendError("");
       setFirstName(""); setLastName(""); setEmail(""); setPhone("");
       setStreet(""); setSuburb("Toowoomba"); setPropState("QLD"); setPostcode("4350"); setNotes("");
     }, 400);
@@ -909,6 +999,43 @@ function BookingModal({ isOpen, onClose }) {
     return dow !== 0; // no slots on Sunday
   };
   const progressWidth = `${(step / steps.length) * 100}%`;
+
+  const validate = (stepNum) => {
+    const errs = {};
+    if (stepNum === 1) {
+      if (!service) errs.service = "Please select a service";
+    }
+    if (stepNum === 2) {
+      if (!firstName.trim()) errs.firstName = "First name is required";
+      if (!lastName.trim()) errs.lastName = "Last name is required";
+      if (!email.trim()) errs.email = "Email is required";
+      else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) errs.email = "Enter a valid email";
+      if (!phone.trim()) errs.phone = "Phone number is required";
+      else if (!/^[0-9\s\+\-\(\)]{8,}$/.test(phone)) errs.phone = "Enter a valid phone number";
+    }
+    if (stepNum === 3) {
+      if (!street.trim()) errs.street = "Street address is required";
+      if (!suburb.trim()) errs.suburb = "Suburb is required";
+      if (!postcode.trim()) errs.postcode = "Postcode is required";
+    }
+    if (stepNum === 4) {
+      if (!selDay) errs.selDay = "Please select a date";
+      if (!selTime) errs.selTime = "Please select a time slot";
+    }
+    return errs;
+  };
+
+  const handleNext = () => {
+    const errs = validate(step);
+    if (Object.keys(errs).length > 0) {
+      setErrors(errs);
+      setTouched(Object.keys(errs).reduce((a, k) => ({ ...a, [k]: true }), {}));
+      return;
+    }
+    setErrors({});
+    setTouched({});
+    setStep(s => s + 1);
+  };
 
   const handleSubmit = async () => {
     setSending(true);
@@ -980,13 +1107,13 @@ function BookingModal({ isOpen, onClose }) {
         <div className="il-modal-body">
           <div className="il-step-content">
             {step === 1 && <ServicePicker service={service} setService={setService} />}
-            {step === 2 && (<><h3>Your Contact Details</h3><p className="il-modal-sub">We'll send your quote within 2 hours</p><div className="il-form-row"><div className="il-form-group"><label>First Name <span>*</span></label><input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} placeholder="Jane" /></div><div className="il-form-group"><label>Last Name <span>*</span></label><input type="text" value={lastName} onChange={e => setLastName(e.target.value)} placeholder="Smith" /></div></div><div className="il-form-row"><div className="il-form-group"><label>Email <span>*</span></label><input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="jane@example.com" /></div><div className="il-form-group"><label>Phone <span>*</span></label><input type="tel" value={phone} onChange={e => setPhone(e.target.value)} placeholder="0400 000 000" /></div></div><div className="il-form-group"><label>Preferred contact method</label><div className="il-contact-pref">{[{ label: "Phone", ico: "📞" }, { label: "Email", ico: "✉️" }, { label: "SMS", ico: "💬" }].map(p => (<button key={p.label} className={`il-pref-btn ${pref === p.label ? "active" : ""}`} onClick={() => setPref(p.label)}><span className="il-pref-ico">{p.ico}</span>{p.label}</button>))}</div></div></>)}
-            {step === 3 && <PropertyStep street={street} setStreet={setStreet} suburb={suburb} setSuburb={setSuburb} propState={propState} setPropState={setPropState} postcode={postcode} setPostcode={setPostcode} notes={notes} setNotes={setNotes} />}
-            {step === 4 && (<><h3>Choose Date & Time</h3><p className="il-modal-sub">Pick a date — highlighted dates have slots</p><div className="il-cal-header"><button className="il-cal-nav" onClick={() => { const prev = new Date(year, month - 1); const now = new Date(); if (prev.getFullYear() > now.getFullYear() || (prev.getFullYear() === now.getFullYear() && prev.getMonth() >= now.getMonth())) setCalDate(prev); }}>‹</button><span className="il-cal-month">{MONTHS[month]} {year}</span><button className="il-cal-nav" onClick={() => setCalDate(new Date(year, month + 1))}>›</button></div><div className="il-cal-grid">{DAYS.map(d => <div key={d} className="il-cal-dow">{d}</div>)}{calCells.map((d, i) => d === null ? <div key={`e${i}`} /> : (<div key={d} className={`il-cal-day ${isPast(d) ? "past" : ""} ${selDay === d ? "selected" : ""} ${d === today.getDate() && month === today.getMonth() && year === today.getFullYear() ? "today" : ""} ${hasSlots(d) ? "has-slots" : ""}`} onClick={() => !isPast(d) && setSelDay(d)}>{d}{hasSlots(d) && (() => { const key = `${year}-${month}-${d}`; const taken = (TAKEN_SLOTS[key] || []).length; const rem = TIME_SLOTS.length - taken; return <span className="il-slot-count">{rem} slots</span>; })()}</div>))}</div><div style={{ marginBottom: 14 }}><label style={{ fontSize: ".75rem", fontWeight: 600, display: "block", marginBottom: 8 }}>Preferred time slot</label><div className="il-time-slots">{TIME_SLOTS.map(t => { const isTaken = TAKEN_SLOTS[`${year}-${month}-${selDay}`]?.includes(t); return <div key={t} className={`il-time-slot ${selTime === t && !isTaken ? "active" : ""} ${isTaken ? "taken" : ""}`} onClick={() => !isTaken && setSelTime(t)} title={isTaken ? "This slot is already booked" : ""}>{t}{isTaken && <span className="il-slot-taken-label">Taken</span>}</div>; })}</div></div><div className="il-urgency"><label>Urgency</label><select value={urgency} onChange={e => setUrgency(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: `1.5px solid ${BORDER}`, fontFamily: "'Poppins',sans-serif", fontSize: ".87rem", outline: "none", color: CHARCOAL, background: "#fff" }}><option>Flexible — within 2 weeks</option><option>Soon — within 3 days</option><option>Urgent — ASAP</option></select></div><div className="il-info-box"><span className="il-info-ico">ℹ️</span><p>We'll confirm your arrival window within <strong>2 hours</strong> of booking.</p></div></>)}
+            {step === 2 && (<><h3>Your Contact Details</h3><p className="il-modal-sub">We'll send your quote within 2 hours</p>{service && <div className="il-selected-svc-pill"><span className="il-selected-svc-check">✓</span><span>Booking: <strong>{service}</strong></span><button onClick={() => setStep(1)} className="il-selected-svc-change">Change</button></div>}{Object.keys(errors).length > 0 && <div className="il-step-error-banner">⚠ Please fill in all required fields before continuing</div>}<div className="il-form-row"><div className="il-form-group"><label>First Name <span style={{ color: RED }}>*</span></label><input type="text" value={firstName} onChange={e => { setFirstName(e.target.value); if (errors.firstName) setErrors(p => ({ ...p, firstName: "" })); }} onBlur={() => setTouched(p => ({ ...p, firstName: true }))} placeholder="Jane" className={errors.firstName && touched.firstName ? "error" : ""} />{errors.firstName && touched.firstName && <div className="il-field-error">{errors.firstName}</div>}</div><div className="il-form-group"><label>Last Name <span style={{ color: RED }}>*</span></label><input type="text" value={lastName} onChange={e => { setLastName(e.target.value); if (errors.lastName) setErrors(p => ({ ...p, lastName: "" })); }} onBlur={() => setTouched(p => ({ ...p, lastName: true }))} placeholder="Smith" className={errors.lastName && touched.lastName ? "error" : ""} />{errors.lastName && touched.lastName && <div className="il-field-error">{errors.lastName}</div>}</div></div><div className="il-form-row"><div className="il-form-group"><label>Email <span style={{ color: RED }}>*</span></label><input type="email" value={email} onChange={e => { setEmail(e.target.value); if (errors.email) setErrors(p => ({ ...p, email: "" })); }} onBlur={() => setTouched(p => ({ ...p, email: true }))} placeholder="jane@example.com" className={errors.email && touched.email ? "error" : ""} />{errors.email && touched.email && <div className="il-field-error">{errors.email}</div>}</div><div className="il-form-group"><label>Phone <span style={{ color: RED }}>*</span></label><input type="tel" value={phone} onChange={e => { setPhone(e.target.value); if (errors.phone) setErrors(p => ({ ...p, phone: "" })); }} onBlur={() => setTouched(p => ({ ...p, phone: true }))} placeholder="0400 000 000" className={errors.phone && touched.phone ? "error" : ""} />{errors.phone && touched.phone && <div className="il-field-error">{errors.phone}</div>}</div></div><div className="il-form-group"><label>Preferred contact method</label><div className="il-contact-pref">{[{ label: "Phone", ico: "📞" }, { label: "Email", ico: "✉️" }, { label: "SMS", ico: "💬" }].map(p => (<button key={p.label} className={`il-pref-btn ${pref === p.label ? "active" : ""}`} onClick={() => setPref(p.label)}><span className="il-pref-ico">{p.ico}</span>{p.label}</button>))}</div></div></>)}
+            {step === 3 && <PropertyStep street={street} setStreet={setStreet} suburb={suburb} setSuburb={setSuburb} propState={propState} setPropState={setPropState} postcode={postcode} setPostcode={setPostcode} notes={notes} setNotes={setNotes} errors={errors} touched={touched} setErrors={setErrors} setTouched={setTouched} />}
+            {step === 4 && (<><h3>Choose Date & Time</h3><p className="il-modal-sub">Pick a date — highlighted dates have slots</p>{(errors.selDay || errors.selTime) && <div className="il-step-error-banner">⚠ Please select both a date and a time slot</div>}<div className="il-cal-header"><button className="il-cal-nav" onClick={() => { const prev = new Date(year, month - 1); const now = new Date(); if (prev.getFullYear() > now.getFullYear() || (prev.getFullYear() === now.getFullYear() && prev.getMonth() >= now.getMonth())) setCalDate(prev); }}>‹</button><span className="il-cal-month">{MONTHS[month]} {year}</span><button className="il-cal-nav" onClick={() => setCalDate(new Date(year, month + 1))}>›</button></div><div className="il-cal-grid">{DAYS.map(d => <div key={d} className="il-cal-dow">{d}</div>)}{calCells.map((d, i) => d === null ? <div key={`e${i}`} /> : (<div key={d} className={`il-cal-day ${isPast(d) ? "past" : ""} ${selDay === d ? "selected" : ""} ${d === today.getDate() && month === today.getMonth() && year === today.getFullYear() ? "today" : ""} ${hasSlots(d) ? "has-slots" : ""}`} onClick={() => { if (!isPast(d)) { setSelDay(d); setErrors(p => ({ ...p, selDay: "" })); } }}>{d}{hasSlots(d) && (() => { const key = `${year}-${month}-${d}`; const taken = (TAKEN_SLOTS[key] || []).length; const rem = TIME_SLOTS.length - taken; return <span className="il-slot-count">{rem} slots</span>; })()}</div>))}</div><div style={{ marginBottom: 14 }}>{errors.selDay && !selDay && <div className="il-date-error">⚠ Please select a date from the calendar above</div>}<div className="il-cal-month" style={{ marginBottom: 10, fontSize: ".9rem" }}>Available Time Slots{selDay ? ` for ${DAYS[new Date(year, month, selDay).getDay()]}, ${MONTHS[month]} ${selDay}` : ""}</div><div className={`il-time-slots ${errors.selTime && !selTime ? "error-outline" : ""}`}>{TIME_SLOTS.map(slot => { const isTaken = TAKEN_SLOTS[`${year}-${month}-${selDay}`]?.includes(slot.start); const isActive = selTime === slot.label && !isTaken; return <div key={slot.label} className={`il-time-slot ${isActive ? "active" : ""} ${isTaken ? "taken" : ""}`} onClick={() => { if (!isTaken) { setSelTime(slot.label); setErrors(p => ({ ...p, selTime: "" })); } }} title={isTaken ? "This slot is already booked" : ""}><span>{slot.label}</span>{isTaken ? <span className="il-slot-taken-label">Booked</span> : <span className="il-slot-status">Available</span>}</div>; })}</div>{errors.selTime && !selTime && <div className="il-date-error">⚠ Please select a time slot</div>}</div><div className="il-urgency"><label>Urgency</label><select value={urgency} onChange={e => setUrgency(e.target.value)} style={{ width: "100%", padding: "9px 12px", borderRadius: 8, border: `1.5px solid ${BORDER}`, fontFamily: "'DM Sans',sans-serif", fontSize: ".87rem", outline: "none", color: CHARCOAL, background: "#fff" }}><option>Flexible — within 2 weeks</option><option>Soon — within 3 days</option><option>Urgent — ASAP</option></select></div><div className="il-info-box"><span className="il-info-ico">ℹ️</span><p>We'll confirm your arrival window within <strong>2 hours</strong> of booking.</p></div></>)}
             {step === 5 && (<><h3>Review & Confirm</h3><p className="il-modal-sub">Double-check before submitting</p><div className="il-review-card"><h4>🧹 Service Details</h4><div className="il-review-row"><span>Service</span><span>{service || "General House Clean"}</span></div><div className="il-review-row"><span>Date</span><span>{MONTHS[month]} {selDay}, {year}</span></div><div className="il-review-row"><span>Time</span><span>{selTime}</span></div><div className="il-review-row"><span>Urgency</span><span>{urgency}</span></div><div className="il-review-row"><span>Location</span><span>{suburb}, {propState}</span></div></div><div className="il-review-card"><h4>👤 Contact Details</h4><div className="il-review-row"><span>Name</span><span>{firstName} {lastName}</span></div><div className="il-review-row"><span>Email</span><span>{email}</span></div><div className="il-review-row"><span>Phone</span><span>{phone}</span></div><div className="il-review-row"><span>Contact via</span><span>{pref}</span></div></div>{sendError && <p style={{ color: RED, fontSize: ".82rem", fontWeight: 600, marginBottom: 10, textAlign: "center" }}>{sendError}</p>}<button className={`il-submit-btn ${submitted ? "sent" : ""}`} onClick={handleSubmit} disabled={sending || submitted}>{submitted ? "✓ Booking Sent! We'll be in touch shortly." : sending ? "Sending…" : "Confirm & Send Booking Request"}</button><p className="il-terms">By submitting, you agree to our Terms & Privacy Policy.<br />We'll respond within 2 hours.</p></>)}
           </div>
         </div>
-        {step < 5 && (<div className="il-modal-footer"><span className="il-footer-hint">Step {step} of {steps.length}</span><button className="il-next-btn" disabled={step === 1 && !service} onClick={() => setStep(s => s + 1)}>Continue <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button></div>)}
+        {step < 5 && (<div className="il-modal-footer"><span className="il-footer-hint">Step {step} of {steps.length}</span><button className="il-next-btn" onClick={handleNext}>Continue <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button></div>)}
       </div>
     </div>
   );
@@ -996,6 +1123,12 @@ export default function ILovah() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [bookingService, setBookingService] = useState("");
+
+  const openBooking = (serviceName = "") => {
+    setBookingService(serviceName);
+    setModalOpen(true);
+  };
 
   useEffect(() => { const h = () => setScrolled(window.scrollY > 30); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
   const go = (id) => { document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
@@ -1062,18 +1195,30 @@ export default function ILovah() {
           <ILovahLogo size={36} />
           <div><span className="il-logo-text">iLovah</span><span className="il-logo-sub">Cleaning Services</span></div>
         </div>
-        <ul className={`il-nav-links ${menuOpen ? "open" : ""}`}>
+        {/* Desktop nav links */}
+        <ul className="il-nav-links-desktop">
           <li><a onClick={() => go("services")}>Services</a></li>
           <li><a onClick={() => go("about")}>About</a></li>
           <li><a onClick={() => go("reviews")}>Reviews</a></li>
           <li><a onClick={() => go("faq")}>FAQ</a></li>
           <li><a onClick={() => go("contact")}>Contact</a></li>
-          <li><a className="il-nav-quote" onClick={() => setModalOpen(true)}>Get Quote</a></li>
+          <li><a className="il-nav-quote" onClick={() => openBooking()}>Get Quote</a></li>
         </ul>
-        <button className={`il-burger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
+        <button className={`il-burger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           <span /><span /><span />
         </button>
       </nav>
+      {/* Mobile drawer — outside nav to avoid stacking context trap */}
+      <div className={`il-nav-backdrop ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(false)} />
+      <ul className={`il-nav-links ${menuOpen ? "open" : ""}`}>
+        <button className="il-drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">✕</button>
+        <li><a onClick={() => go("services")}>Services</a></li>
+        <li><a onClick={() => go("about")}>About</a></li>
+        <li><a onClick={() => go("reviews")}>Reviews</a></li>
+        <li><a onClick={() => go("faq")}>FAQ</a></li>
+        <li><a onClick={() => go("contact")}>Contact</a></li>
+        <li><a className="il-nav-quote" onClick={() => { openBooking(); setMenuOpen(false); }}>Get Quote</a></li>
+      </ul>
 
       {/* TAGLINE */}
       <div className={`il-nav-tagline ${scrolled ? "scrolled" : ""}`}>
@@ -1088,7 +1233,7 @@ export default function ILovah() {
           <h1><span className="il-h1-line">Your home,</span><span className="il-h1-line"><em>loved clean</em></span><span className="il-h1-line">every time.</span></h1>
           <p className="il-hero-p">Professional cleaning services tailored to your lifestyle. iLovah handles the mess so you can enjoy a fresh, spotless home — backed by a 100% satisfaction guarantee.</p>
           <div className="il-hero-btns">
-            <button className="il-btn" onClick={() => setModalOpen(true)}>Book a Clean <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button>
+            <button className="il-btn" onClick={() => openBooking()}>Book a Clean <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button>
             <button className="il-btn-ghost" onClick={() => go("services")}>View Services</button>
           </div>
           <div className="il-hero-stats">
@@ -1121,7 +1266,7 @@ export default function ILovah() {
                 <div className="il-svc-body">
                   <div className="il-svc-title">{s.title}</div>
                   <div className="il-svc-desc">{s.desc}</div>
-                  <button className="il-svc-link" onClick={() => setModalOpen(true)}>Book Now <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button>
+                  <button className="il-svc-link" onClick={() => openBooking(s.title)}>Book Now <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button>
                 </div>
               </R>
             ))}
@@ -1244,7 +1389,7 @@ export default function ILovah() {
               </div>
             </div>
             <div className="il-cta-btns">
-              <button className="il-btn-white" onClick={() => setModalOpen(true)}>Book a Clean</button>
+              <button className="il-btn-white" onClick={() => openBooking()}>Book a Clean</button>
               <a href="tel:0478711829" className="il-btn-ow"><span>📞</span> 0478 711 829</a>
             </div>
           </div>
@@ -1278,7 +1423,7 @@ export default function ILovah() {
         </div>
       </footer>
 
-      <BookingModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <BookingModal isOpen={modalOpen} onClose={() => { setModalOpen(false); setBookingService(""); }} initialService={bookingService} />
     </div>
   );
 }
