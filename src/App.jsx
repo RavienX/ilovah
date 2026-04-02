@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import heroImg from "./assets/hero.jpg";
+import heroImg2 from "./assets/hero2.jpg";
 import imgCarpet from "./assets/carpet cleaning.jpg";
 import imgEndOfLease from "./assets/end of lease cleaning.jpg";
 import imgGutter from "./assets/glutter cleaning.jpg";
@@ -13,6 +14,7 @@ import imgPressure from "./assets/pressure washing.jpg";
 import imgGeneral from "./assets/general house clean.jpg";
 import ilovahLogoSrc from "./assets/logo.jpg";
 import imgBox from "./assets/box.png";
+import imgBackground from "./assets/background.png";
 import imgCherub from "./assets/cherub.png";
 import imgClinic from "./assets/clinic.png";
 import imgHousing from "./assets/housing.png";
@@ -115,7 +117,7 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 }
 .il-hero-bg{position:absolute;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 700px 600px at 75% 40%,rgba(232,41,28,0.06) 0%,transparent 70%),radial-gradient(ellipse 350px 280px at 10% 80%,rgba(232,41,28,0.04) 0%,transparent 60%)}
 .il-hero-noise{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
-.il-hero>*{position:relative;z-index:1}
+.il-hero>*{position:relative;z-index:2}
 .il-hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid ${BORDER};border-radius:100px;padding:5px 14px 5px 8px;font-size:.76rem;font-weight:600;color:${MID};margin-bottom:20px;animation:fadeUp .6s ease both;box-shadow:0 2px 10px rgba(0,0,0,0.06)}
 .il-eyebrow-dot{width:20px;height:20px;border-radius:50%;background:${RED_LT};display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
 .il-hero h1{font-family:'DM Sans',sans-serif;font-size:clamp(2.6rem,5vw,4rem);line-height:1.04;color:${CHARCOAL};margin-bottom:18px;animation:fadeUp .6s .1s ease both;font-weight:900;letter-spacing:-.04em}
@@ -130,7 +132,33 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 .il-stat-num span{color:${RED}}
 .il-stat-label{font-size:.69rem;color:${MID};font-weight:500;margin-top:3px}
 .il-hero-visual{position:relative;animation:fadeIn .8s .2s ease both}
-.il-hero-card{border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.13);width:420px;height:420px;margin:0 auto}
+
+/* ── MOBILE HERO GRAPHICS ── */
+.il-hero-mobile-art{display:none}
+/* ── MOBILE HERO BG IMAGE ── */
+.il-hero-mobile-bg-img{
+  display:none;
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;
+  opacity:0;animation:heroBgReveal 1.1s .15s cubic-bezier(.4,0,.2,1) forwards;
+}
+.il-hero-mobile-overlay{
+  display:none;
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom,rgba(253,250,249,0.55) 0%,rgba(253,250,249,0.72) 50%,rgba(253,250,249,0.92) 85%,rgba(253,250,249,1) 100%);
+}
+@keyframes heroBgReveal{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:scale(1)}}
+/* staggered text reveal for mobile hero */
+@keyframes heroSlideUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.il-hero-text-item-1{animation:heroSlideUp .65s .35s cubic-bezier(.25,.46,.45,.94) both}
+.il-hero-text-item-2{animation:heroSlideUp .65s .52s cubic-bezier(.25,.46,.45,.94) both}
+.il-hero-text-item-3{animation:heroSlideUp .65s .68s cubic-bezier(.25,.46,.45,.94) both}
+.il-hero-text-item-4{animation:heroSlideUp .65s .82s cubic-bezier(.25,.46,.45,.94) both}
+.il-hero-text-item-5{animation:heroSlideUp .65s .96s cubic-bezier(.25,.46,.45,.94) both}
+.il-hero-card{border-radius:22px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,0.13);width:420px;height:420px;margin:0 auto;position:relative}
+.il-hero-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:opacity 1.2s ease}
+.il-hero-card img.active{opacity:1}
+.il-hero-card img.inactive{opacity:0}
+
 .il-float-card{position:absolute;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 12px 40px rgba(0,0,0,0.14);display:flex;align-items:center;gap:10px}
 .il-fc1{bottom:30px;left:-24px;animation:float 4s ease-in-out infinite}
 .il-fc2{top:38px;right:-16px;animation:float 4s 1.5s ease-in-out infinite}
@@ -524,9 +552,11 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
   .il-nav-tagline{display:none}
   .il-nav-links-desktop{display:none}
   .il-burger{display:flex}
-  .il-hero{grid-template-columns:1fr;padding:110px 20px 52px;text-align:center;gap:32px}
+  .il-hero{grid-template-columns:1fr;padding:100px 20px 48px;text-align:center;gap:24px;min-height:auto}
+  .il-hero-mobile-bg-img{display:block}
+  .il-hero-mobile-overlay{display:block}
   .il-hero-visual{display:none}
-  .il-hero-stats{justify-content:center}
+  .il-hero-stats{justify-content:center;width:100%}
   .il-hero-btns{justify-content:center}
   .il-trust{padding:13px 18px;flex-wrap:wrap;gap:9px}
   .il-trust-logos{gap:13px;flex-wrap:wrap;justify-content:center}
@@ -557,13 +587,19 @@ body,#root{font-family:'DM Sans',sans-serif;background:#fff;color:${CHARCOAL};ov
 }
 @media(max-width:480px){
   .il-nav{padding:0 14px;height:58px}
-  .il-hero{padding:90px 14px 44px}
+  .il-hero{padding:84px 14px 40px}
   .il-hero h1{font-size:clamp(2rem,9vw,2.8rem)}
   .il-hero-stats{flex-direction:column;align-items:stretch;width:100%}
   .il-stat{padding:10px 16px}
   .il-stat:not(:last-child)::after{right:auto;bottom:0;left:12%;width:76%;height:1px;top:auto}
   .il-hero-btns{flex-direction:column;align-items:stretch}
   .il-hero-btns .il-btn,.il-hero-btns .il-btn-ghost{width:100%;justify-content:center}
+  .il-hero-visual{max-width:100%;padding:0 4px}
+  .il-fc1{bottom:12px;left:0px}
+  .il-fc2{top:12px;right:0px}
+  .il-float-card{padding:8px 11px;gap:7px;font-size:.75rem}
+  .il-fc-t{font-size:.72rem}
+  .il-fc-s{font-size:.62rem}
   .il-svc-grid{grid-template-columns:1fr}
   .il-wrap{padding:0 14px}
   .il-contact-section{padding:0 14px 44px}
@@ -1361,6 +1397,12 @@ export default function ILovah() {
   const [modalOpen, setModalOpen] = useState(false);
   const [bookingService, setBookingService] = useState("");
   const [detailService, setDetailService] = useState(null);
+  const [heroSlide, setHeroSlide] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setHeroSlide(s => s === 0 ? 1 : 0), 4000);
+    return () => clearInterval(t);
+  }, []);
 
   const openBooking = (serviceName = "") => {
     setBookingService(serviceName);
@@ -1465,22 +1507,27 @@ export default function ILovah() {
       {/* HERO */}
       <section className="il-hero">
         <div className="il-hero-bg" /><div className="il-hero-noise" />
+        <img src={imgBackground} alt="" className="il-hero-mobile-bg-img" aria-hidden="true" />
+        <div className="il-hero-mobile-overlay" aria-hidden="true" />
         <div>
-          <div className="il-hero-eyebrow"><div className="il-eyebrow-dot">❤️</div>Trusted by 5,000+ homes across Queensland</div>
-          <h1><span className="il-h1-line">Your home,</span><span className="il-h1-line"><em>loved clean</em></span><span className="il-h1-line">every time.</span></h1>
-          <p className="il-hero-p">Professional cleaning services tailored to your lifestyle. iLovah handles the mess so you can enjoy a fresh, spotless home — backed by a 100% satisfaction guarantee.</p>
-          <div className="il-hero-btns">
+          <div className="il-hero-eyebrow il-hero-text-item-1"><div className="il-eyebrow-dot">❤️</div>Cleaning & Pest Control · Trusted by 5,000+ homes</div>
+          <h1 className="il-hero-text-item-2"><span className="il-h1-line">Clean home,</span><span className="il-h1-line"><em>pest-free</em> life,</span><span className="il-h1-line">every time.</span></h1>
+          <p className="il-hero-p il-hero-text-item-3">Professional cleaning & pest control tailored to your lifestyle. iLovah eliminates dirt, allergens, and pests so you can enjoy a fresh, spotless, pest-free home — backed by a 100% satisfaction guarantee.</p>
+          <div className="il-hero-btns il-hero-text-item-4">
             <button className="il-btn" onClick={() => openBooking()}>Book a Clean <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7" /></svg></button>
             <button className="il-btn-ghost" onClick={() => go("services")}>View Services</button>
           </div>
-          <div className="il-hero-stats">
+          <div className="il-hero-stats il-hero-text-item-5">
             <div className="il-stat"><div className="il-stat-num">5K<span>+</span></div><div className="il-stat-label">Happy Clients</div></div>
             <div className="il-stat"><div className="il-stat-num">4.9<span>★</span></div><div className="il-stat-label">Avg Rating</div></div>
             <div className="il-stat"><div className="il-stat-num">12<span>yr</span></div><div className="il-stat-label">Experience</div></div>
           </div>
         </div>
         <div className="il-hero-visual">
-          <div className="il-hero-card"><img src={heroImg} alt="iLovah cleaning service" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} /></div>
+          <div className="il-hero-card">
+            <img src={heroImg} alt="iLovah cleaning service" className={heroSlide === 0 ? "active" : "inactive"} />
+            <img src={heroImg2} alt="iLovah pest control service" className={heroSlide === 1 ? "active" : "inactive"} />
+          </div>
           <div className="il-float-card il-fc1"><div className="il-fc-pulse" /><div className="il-fc-ico">🧹</div><div><div className="il-fc-t">Today's Booking</div><div className="il-fc-s">Deep Clean · 2:00 PM</div></div></div>
           <div className="il-float-card il-fc2"><div className="il-fc-ico">✅</div><div><div className="il-fc-t">Job Completed</div><div className="il-fc-s">Just now · Sarah M.</div></div></div>
         </div>
