@@ -19,7 +19,72 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "redirects": [
+      {
+        "source": "/service-page/gutter-cleaning",
+        "destination": "/gutter-cleaning",
+        "type": 301
+      },
+      {
+        "source": "/service-page/carpet-cleaning",
+        "destination": "/carpet-cleaning",
+        "type": 301
+      },
+      {
+        "source": "/service-page/window-cleaning",
+        "destination": "/window-cleaning",
+        "type": 301
+      },
+      {
+        "source": "/service-page/pest-control",
+        "destination": "/pest-control",
+        "type": 301
+      },
+      {
+        "source": "/service-page/pressure-washing",
+        "destination": "/pressure-washing",
+        "type": 301
+      },
+      {
+        "source": "/service-page/end-of-lease-cleaning",
+        "destination": "/end-of-lease-cleaning",
+        "type": 301
+      },
+      {
+        "source": "/service-page/general-house-cleaning",
+        "destination": "/general-house-cleaning",
+        "type": 301
+      },
+      {
+        "source": "/service-page/house-cleaning",
+        "destination": "/general-house-cleaning",
+        "type": 301
+      },
+      {
+        "source": "/service-page/pram-cleaning",
+        "destination": "/pram-cleaning",
+        "type": 301
+      },
+      {
+        "source": "/service-page/bond-cleaning",
+        "destination": "/end-of-lease-cleaning",
+        "type": 301
+      },
+      {
+        "source": "/service-page/**",
+        "destination": "/services",
+        "type": 301
+      }
+    ],
     "rewrites": [
+      {
+        "source": "/robots.txt",
+        "destination": "/robots.txt"
+      },
+      {
+        "source": "/sitemap.xml",
+        "destination": "/sitemap.xml"
+      },
       {
         "source": "**",
         "destination": "/index.html"

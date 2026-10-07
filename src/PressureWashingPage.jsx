@@ -16,10 +16,10 @@ import imgGeneral from "./assets/general house clean.jpg";
 import { saveBooking, saveQuote } from "./firebaseConfig";
 
 // ── Design tokens (shared) ─────────────────────────────────────────────────
-const RED = "#E8232A";
-const RED2 = "#ff4e55";
-const RED_DK = "#b01018";
-const RED_GLOW = "rgba(232,35,42,0.4)";
+const RED = "#2B8FD4";
+const RED2 = "#4AABDB";
+const RED_DK = "#1a6fa8";
+const RED_GLOW = "rgba(43,143,212,0.4)";
 const BLUE = "#2B8FD4";
 const BLUE2 = "#4AABDB";
 const BLUE_GLOW = "rgba(43,143,212,0.35)";
@@ -30,11 +30,11 @@ const WHITE = "#ffffff";
 const OFFWHITE = "#f7f9fc";
 const MID = "#64748b";
 const GOLD = "#FFB800";
-const PEST_BG = "#0f0a08";
+const PEST_BG = "#ffffff";
 const BORDER = "#e8e8e8";
 const CREAM = "#fdfaf9";
 const CHARCOAL = "#1a1a1a";
-const RED_LT = "#fdecea";
+const RED_LT = "#e8f4fd";
 
 // ── Services data (shared with main page) ─────────────────────────────────
 const SERVICES_DATA = [
@@ -329,26 +329,26 @@ body,#root{
 .pest-page-hero::before{
   content:'';position:absolute;inset:0;
   background:
-    radial-gradient(ellipse 70% 60% at 50% 40%,rgba(204,26,26,0.22),transparent 70%),
-    radial-gradient(ellipse 40% 40% at 0% 100%,rgba(232,35,42,0.06),transparent 60%);
+    radial-gradient(ellipse 70% 60% at 50% 40%,rgba(43,143,212,0.08),transparent 70%),
+    radial-gradient(ellipse 40% 40% at 0% 100%,rgba(74,171,219,0.06),transparent 60%);
 }
 .bug-bg{position:absolute;right:-40px;bottom:-20px;width:22rem;height:22rem;opacity:.04;user-select:none;pointer-events:none;animation:bugCreep 20s ease-in-out infinite;color:#fff}
 @keyframes bugCreep{0%,100%{transform:translate(0,0) rotate(-10deg)}50%{transform:translate(-20px,-15px) rotate(5deg)}}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:50px;margin-bottom:24px;font-size:.7rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;width:fit-content;position:relative;z-index:3}
-.ey-red{background:rgba(232,35,42,0.12);border:1px solid rgba(232,35,42,0.35);color:${RED2}}
+.ey-red{background:rgba(43,143,212,0.1);border:1px solid rgba(43,143,212,0.3);color:${RED_DK}}
 .ey-dot{width:7px;height:7px;border-radius:50%;animation:dotPulse 2s infinite}
 .dot-r{background:${RED}}
 @keyframes dotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:.3}}
-.pest-hero-h1{font-family:'Black Ops One',cursive;font-weight:400;line-height:1.1;letter-spacing:.02em;font-size:clamp(2.8rem,6vw,4.8rem);color:${WHITE};position:relative;z-index:3;margin-bottom:20px}
-.pest-hero-h1 .hl-red{color:${RED};text-shadow:0 0 30px rgba(232,35,42,.5)}
-.pest-hero-p{font-size:1.02rem;line-height:1.72;color:rgba(255,255,255,.55);max-width:540px;margin:0 auto 36px;position:relative;z-index:3}
+.pest-hero-h1{font-family:'Black Ops One',cursive;font-weight:400;line-height:1.1;letter-spacing:.02em;font-size:clamp(2.8rem,6vw,4.8rem);color:#fff;position:relative;z-index:3;margin-bottom:20px}
+.pest-hero-h1 .hl-red{color:${RED};text-shadow:0 0 30px rgba(43,143,212,.25)}
+.pest-hero-p{font-size:1.02rem;line-height:1.72;color:rgba(255,255,255,.6);max-width:540px;margin:0 auto 36px;position:relative;z-index:3}
 .pest-hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;position:relative;z-index:3}
 .pest-hero-stats{display:flex;gap:36px;margin-top:48px;flex-wrap:wrap;justify-content:center;position:relative;z-index:3}
 .hs{text-align:center}
-.hs-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;line-height:1}
-.hs-n.clr-red{color:${RED}}
-.hs-l{font-size:.68rem;font-weight:800;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
-.hs-sep{width:1px;background:rgba(255,255,255,.1);align-self:stretch}
+.hs-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.8rem;line-height:1;color:#fff}
+.hs-n.clr-red{color:${RED2}}
+.hs-l{font-size:.68rem;font-weight:800;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+.hs-sep{width:1px;background:rgba(255,255,255,.15);align-self:stretch}
 
 /* ── PEST SECTION (main content block) ── */
 .pest-section{
@@ -358,12 +358,12 @@ body,#root{
 }
 .pest-section::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 50% at 0% 50%,rgba(176,16,24,0.15),transparent 65%),
-             radial-gradient(ellipse 50% 60% at 100% 80%,rgba(232,35,42,0.08),transparent 60%);
+  background:radial-gradient(ellipse 60% 50% at 0% 50%,rgba(43,143,212,0.06),transparent 65%),
+             radial-gradient(ellipse 50% 60% at 100% 80%,rgba(74,171,219,0.05),transparent 60%);
   pointer-events:none;
 }
 .zzz-bug{
-  position:absolute;font-size:1.1rem;color:rgba(255,80,80,0.35);
+  position:absolute;font-size:1.1rem;color:rgba(43,143,212,0.3);
   font-weight:900;letter-spacing:.1em;z-index:0;
   animation:zzFloat 6s ease-in-out infinite;
   display:flex;align-items:center;gap:4px;
@@ -376,53 +376,54 @@ body,#root{
 }
 .pest-logo-display{display:flex;justify-content:flex-start}
 .pest-crescent-wrap{
-  position:relative;width:380px;height:380px;flex-shrink:0;
+  position:relative;width:440px;height:440px;flex-shrink:0;
 }
 .rip-crescent{width:320px;height:320px}
 .pest-svg-logo{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:200px;height:200px;border-radius:50%;overflow:hidden;
-  border:3px solid rgba(232,35,42,0.4);
-  box-shadow:0 0 40px rgba(232,35,42,0.25);
+  width:380px;height:380px;border-radius:20px;overflow:hidden;
+  border:3px solid rgba(43,143,212,0.25);
+  box-shadow:0 12px 48px rgba(43,143,212,0.18);
 }
 .pest-fact{
-  position:absolute;background:rgba(20,10,10,0.9);
-  border:1px solid rgba(232,35,42,0.25);border-radius:12px;
+  position:absolute;background:#fff;
+  border:1px solid ${BORDER};border-radius:12px;
   padding:10px 14px;display:flex;align-items:center;gap:10px;
   backdrop-filter:blur(8px);
-  box-shadow:0 4px 20px rgba(0,0,0,0.4);
+  box-shadow:0 8px 28px rgba(0,0,0,0.1);
   white-space:nowrap;
 }
 .pest-fact:first-of-type{top:8%;right:-10px}
 .pest-fact:last-of-type{bottom:15%;right:-20px}
 .pf-ico{font-size:1.4rem;display:flex;align-items:center;justify-content:center}
-.pf-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;color:#fff;line-height:1}
-.pf-l{font-size:.66rem;color:rgba(255,255,255,.4);margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.pf-n{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.95rem;color:${DARK};line-height:1}
+.pf-l{font-size:.66rem;color:${MID};margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
 .pest-content{display:flex;flex-direction:column;gap:4px}
 .section-tag{
   display:inline-flex;align-items:center;gap:6px;
   font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;
-  color:${RED2};background:rgba(232,35,42,0.1);
-  border:1px solid rgba(232,35,42,0.2);border-radius:50px;
+  color:${RED2};background:rgba(43,143,212,0.1);
+  border:1px solid rgba(43,143,212,0.2);border-radius:50px;
   padding:5px 14px;width:fit-content;margin-bottom:20px;
 }
 .pest-title{
   font-family:'Black Ops One',cursive;
-  font-size:clamp(2.4rem,4vw,4rem);color:#fff;
+  font-size:clamp(2.4rem,4vw,4rem);color:${DARK};
   line-height:1.1;letter-spacing:.02em;margin-bottom:10px;
 }
-.pest-title .hl-red{color:${RED};text-shadow:0 0 30px rgba(232,35,42,.5)}
-.pest-tagline{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:1.1rem;color:rgba(255,255,255,.35);margin-bottom:20px;letter-spacing:-.01em}
-.pest-desc{font-size:.97rem;line-height:1.72;color:rgba(255,255,255,.5);margin-bottom:36px;max-width:520px}
+.pest-title .hl-red{color:${RED};text-shadow:0 0 30px rgba(43,143,212,.25)}
+.pest-tagline{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:1.1rem;color:${RED2};margin-bottom:20px;letter-spacing:-.01em}
+.pest-desc{font-size:.97rem;line-height:1.72;color:${MID};margin-bottom:36px;max-width:520px}
 .pest-services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px}
 .ps-card{
-  background:rgba(255,255,255,0.04);border:1px solid rgba(232,35,42,0.15);
+  background:#fff;border:1px solid ${BORDER};
   border-radius:14px;padding:18px 14px;transition:all .25s;
+  box-shadow:0 2px 10px rgba(0,0,0,0.03);
 }
-.ps-card:hover{background:rgba(232,35,42,0.08);border-color:rgba(232,35,42,0.35);transform:translateY(-3px)}
-.ps-ico{margin-bottom:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7)}
-.ps-card h4{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:900;color:#fff;margin-bottom:5px;letter-spacing:-.01em}
-.ps-card p{font-size:.74rem;color:rgba(255,255,255,.4);line-height:1.55}
+.ps-card:hover{background:rgba(43,143,212,0.05);border-color:rgba(43,143,212,0.3);transform:translateY(-3px)}
+.ps-ico{margin-bottom:8px;display:flex;align-items:center;justify-content:center;color:${RED}}
+.ps-card h4{font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:900;color:${DARK};margin-bottom:5px;letter-spacing:-.01em}
+.ps-card p{font-size:.74rem;color:${MID};line-height:1.55}
 .pest-cta{display:flex;gap:12px;flex-wrap:wrap}
 
 /* ── WHY CHOOSE US (on pest page) ── */
@@ -438,7 +439,7 @@ body,#root{
   padding:32px 24px;text-align:center;
   transition:all .28s;
 }
-.pest-why-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.1);border-color:rgba(232,35,42,.25)}
+.pest-why-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.1);border-color:rgba(43,143,212,.25)}
 .pest-why-ico{margin-bottom:14px;display:flex;align-items:center;justify-content:center}
 .pest-why-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1.05rem;color:${DARK};margin-bottom:8px;letter-spacing:-.02em}
 .pest-why-desc{font-size:.85rem;color:${MID};line-height:1.65}
@@ -456,8 +457,8 @@ body,#root{
   border-radius:16px;padding:28px 20px;text-align:center;
   transition:all .25s;position:relative;
 }
-.pest-step:hover{border-color:rgba(232,35,42,.4);background:rgba(232,35,42,.06);transform:translateY(-3px)}
-.pest-step-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.4rem;color:rgba(232,35,42,.18);line-height:1;margin-bottom:10px}
+.pest-step:hover{border-color:rgba(43,143,212,.4);background:rgba(43,143,212,.06);transform:translateY(-3px)}
+.pest-step-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:2.4rem;color:rgba(43,143,212,.18);line-height:1;margin-bottom:10px}
 .pest-step-ico{margin-bottom:10px;display:flex;align-items:center;justify-content:center}
 .pest-step-title{font-family:'Montserrat',sans-serif;font-size:.88rem;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-.01em}
 .pest-step-desc{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.6}
@@ -491,8 +492,8 @@ body,#root{
 .il-gq-group input.error,.il-gq-group select.error{border-color:${RED};background:#fff8f8}
 .il-gq-field-error{font-size:.74rem;color:${RED};font-weight:700;margin-top:2px}
 .il-gq-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.il-gq-submit{width:100%;padding:15px;background:linear-gradient(135deg,${RED},${RED_DK});color:#fff;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .25s;box-shadow:0 4px 16px rgba(232,35,42,.35);letter-spacing:-.01em;margin-top:4px}
-.il-gq-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,35,42,.4)}
+.il-gq-submit{width:100%;padding:15px;background:linear-gradient(135deg,${RED},${RED_DK});color:#fff;border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .25s;box-shadow:0 4px 16px rgba(43,143,212,.35);letter-spacing:-.01em;margin-top:4px}
+.il-gq-submit:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 24px rgba(43,143,212,.4)}
 .il-gq-submit:disabled{opacity:.7;cursor:not-allowed;transform:none}
 .il-gq-submit.sent{background:#16a34a;box-shadow:0 4px 16px rgba(22,163,74,.35)}
 .il-gq-disclaimer{font-size:.74rem;color:${MID};text-align:center;line-height:1.5;padding:0 4px}
@@ -500,7 +501,7 @@ body,#root{
 /* ── SHARED LAYOUT ── */
 .il-wrap{max-width:1200px;margin:0 auto;padding:0 5%}
 .sec-tag-blue{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:${BLUE2};background:rgba(74,171,219,0.1);border:1px solid rgba(74,171,219,0.2);border-radius:50px;padding:5px 14px;margin-bottom:14px}
-.sec-tag-red{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:${RED2};background:rgba(232,35,42,0.1);border:1px solid rgba(232,35,42,0.2);border-radius:50px;padding:5px 14px;margin-bottom:14px}
+.sec-tag-red{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:${RED2};background:rgba(43,143,212,0.1);border:1px solid rgba(43,143,212,0.2);border-radius:50px;padding:5px 14px;margin-bottom:14px}
 .sec-h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-.04em;line-height:1.08;margin-bottom:14px;color:${DARK}}
 .sec-h2-white{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-.04em;line-height:1.08;margin-bottom:14px;color:#fff}
 .sec-sub{font-size:.95rem;color:${MID};line-height:1.72;margin-bottom:40px;max-width:560px}
@@ -510,7 +511,7 @@ body,#root{
 .il-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(6px)}
 .il-overlay.active{opacity:1;pointer-events:all}
 .il-modal{background:#fff;border-radius:24px;width:min(680px,100%);max-height:92vh;overflow-y:auto;box-shadow:0 40px 100px rgba(0,0,0,.25);display:flex;flex-direction:column}
-.il-progress-bar{height:3px;background:rgba(232,35,42,.12);border-radius:3px 3px 0 0;overflow:hidden}
+.il-progress-bar{height:3px;background:rgba(43,143,212,.12);border-radius:3px 3px 0 0;overflow:hidden}
 .il-progress-fill{height:100%;background:linear-gradient(90deg,${RED},${RED2});transition:width .4s ease;border-radius:3px}
 .il-stepper{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid ${BORDER};gap:8px}
 .il-stepper-back,.il-stepper-close{background:none;border:1.5px solid ${BORDER};border-radius:9px;width:34px;height:34px;cursor:pointer;font-size:1rem;color:${MID};display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;font-family:'Nunito',sans-serif}
@@ -519,7 +520,7 @@ body,#root{
 .il-steps-wrap{display:flex;align-items:center;flex:1;justify-content:center;flex-wrap:wrap;gap:0}
 .il-step-item{display:flex;flex-direction:column;align-items:center;gap:4px}
 .il-step-dot{width:28px;height:28px;border-radius:50%;border:2px solid ${BORDER};background:#fff;color:${MID};font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:all .3s;font-family:'Montserrat',sans-serif}
-.il-step-dot.active{border-color:${RED};background:${RED};color:#fff;box-shadow:0 3px 10px rgba(232,35,42,.3)}
+.il-step-dot.active{border-color:${RED};background:${RED};color:#fff;box-shadow:0 3px 10px rgba(43,143,212,.3)}
 .il-step-dot.done{border-color:${RED};background:${RED_LT};color:${RED}}
 .il-step-label{font-size:.62rem;font-weight:700;color:${MID};letter-spacing:.05em}
 .il-step-label.active{color:${RED}}
@@ -536,16 +537,16 @@ body,#root{
 .il-form-group input.error,.il-form-group select.error{border-color:${RED};background:#fff8f8}
 .il-field-error{font-size:.73rem;color:${RED};font-weight:700}
 .il-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.il-step-error-banner{background:#fff0f0;border:1.5px solid rgba(232,35,42,.25);border-radius:9px;padding:10px 14px;font-size:.83rem;color:${RED};font-weight:700;margin-bottom:14px}
+.il-step-error-banner{background:#fff0f0;border:1.5px solid rgba(43,143,212,.25);border-radius:9px;padding:10px 14px;font-size:.83rem;color:${RED};font-weight:700;margin-bottom:14px}
 .il-contact-pref{display:flex;gap:8px;flex-wrap:wrap}
 .il-pref-btn{display:flex;align-items:center;gap:6px;padding:9px 16px;border-radius:8px;border:1.5px solid ${BORDER};background:#fff;font-size:.85rem;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s}
 .il-pref-btn.active{border-color:${RED};background:${RED_LT};color:${RED}}
-.il-selected-svc-pill{display:flex;align-items:center;gap:8px;background:${RED_LT};border:1px solid rgba(232,35,42,.2);border-radius:8px;padding:8px 12px;font-size:.84rem;margin-bottom:16px}
+.il-selected-svc-pill{display:flex;align-items:center;gap:8px;background:${RED_LT};border:1px solid rgba(43,143,212,.2);border-radius:8px;padding:8px 12px;font-size:.84rem;margin-bottom:16px}
 .il-selected-svc-check{color:${RED};font-weight:900}
 .il-selected-svc-change{background:none;border:none;color:${RED};cursor:pointer;font-size:.8rem;font-weight:700;font-family:'Nunito',sans-serif;margin-left:auto;text-decoration:underline}
 .il-svc-pick-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:8px}
 .il-svc-pick{border:1.5px solid ${BORDER};border-radius:12px;padding:14px;cursor:pointer;transition:all .25s;background:#fff}
-.il-svc-pick.selected{border-color:${RED};background:${RED_LT};box-shadow:0 4px 16px rgba(232,35,42,.12)}
+.il-svc-pick.selected{border-color:${RED};background:${RED_LT};box-shadow:0 4px 16px rgba(43,143,212,.12)}
 .il-svc-pick-top{display:flex;align-items:center;gap:10px}
 .il-svc-pick-img{width:44px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0;background:${RED_LT};display:flex;align-items:center;justify-content:center}
 .il-svc-pick-name{font-size:.84rem;font-weight:800;color:${DARK};font-family:'Montserrat',sans-serif}
@@ -564,7 +565,7 @@ body,#root{
 .il-cal-dow{text-align:center;font-size:.67rem;font-weight:800;color:${MID};padding:4px 0;text-transform:uppercase;letter-spacing:.05em}
 .il-cal-day{aspect-ratio:1;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;border:1.5px solid transparent;font-size:.8rem;font-weight:500;color:${MID};background:#f8f8f8}
 .il-cal-day:hover:not(.past){border-color:${RED};background:${RED_LT};color:${RED}}
-.il-cal-day.selected{background:${RED};color:#fff;border-color:${RED};box-shadow:0 3px 9px rgba(232,35,42,.26)}
+.il-cal-day.selected{background:${RED};color:#fff;border-color:${RED};box-shadow:0 3px 9px rgba(43,143,212,.26)}
 .il-cal-day.today{border-color:${RED};color:${RED};background:#fff;font-weight:700}
 .il-cal-day.today.selected{background:${RED};color:#fff}
 .il-cal-day.past{opacity:.3;cursor:not-allowed}
@@ -577,7 +578,7 @@ body,#root{
 .il-time-slot.active .il-slot-status{color:${RED};font-weight:800}
 .il-time-slot.taken{opacity:.5;cursor:not-allowed;background:#f5f5f5;border-color:#e0e0e0;color:#999}
 .il-slot-status{font-size:.72rem;font-weight:700;color:#16a34a}
-.il-info-box{background:${RED_LT};border:1px solid rgba(232,35,42,.18);border-radius:8px;padding:11px 13px;display:flex;gap:8px;align-items:flex-start}
+.il-info-box{background:${RED_LT};border:1px solid rgba(43,143,212,.18);border-radius:8px;padding:11px 13px;display:flex;gap:8px;align-items:flex-start}
 .il-info-box .il-info-ico{color:${RED};font-size:.9rem;flex-shrink:0;margin-top:1px}
 .il-info-box p{font-size:.79rem;color:${CHARCOAL};line-height:1.52}
 .il-info-box strong{color:${RED}}
@@ -589,32 +590,32 @@ body,#root{
 .il-review-row:last-child{border-bottom:none}
 .il-review-row span:first-child{color:${MID};font-weight:500}
 .il-review-row span:last-child{color:${CHARCOAL};font-weight:700}
-.il-submit-btn{width:100%;padding:13px;background:${RED};color:#fff;border:none;border-radius:9px;font-size:.93rem;font-weight:900;cursor:pointer;transition:all .25s;font-family:'Nunito',sans-serif;margin-top:7px;letter-spacing:-.01em;box-shadow:0 4px 13px rgba(232,35,42,.24)}
+.il-submit-btn{width:100%;padding:13px;background:${RED};color:#fff;border:none;border-radius:9px;font-size:.93rem;font-weight:900;cursor:pointer;transition:all .25s;font-family:'Nunito',sans-serif;margin-top:7px;letter-spacing:-.01em;box-shadow:0 4px 13px rgba(43,143,212,.24)}
 .il-submit-btn:hover{background:${RED_DK};transform:translateY(-1px)}
 .il-submit-btn.sent{background:#16a34a;box-shadow:0 4px 13px rgba(22,163,74,.26)}
 .il-terms{font-size:.71rem;color:${MID};text-align:center;margin-top:9px;line-height:1.55}
 .il-modal-footer{padding:14px 28px;border-top:1px solid ${BORDER};background:#fff;display:flex;justify-content:space-between;align-items:center}
 .il-footer-hint{font-size:.74rem;color:${MID};font-weight:600}
 .il-next-btn{background:${CHARCOAL};color:#fff;padding:10px 26px;border-radius:8px;font-size:.87rem;font-weight:900;cursor:pointer;border:none;display:flex;align-items:center;gap:6px;transition:all .25s;font-family:'Nunito',sans-serif;letter-spacing:-.01em}
-.il-next-btn:hover{background:${RED};transform:translateY(-1px);box-shadow:0 5px 14px rgba(232,35,42,.26)}
+.il-next-btn:hover{background:${RED};transform:translateY(-1px);box-shadow:0 5px 14px rgba(43,143,212,.26)}
 .il-next-btn:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none;background:${CHARCOAL}}
 .il-property-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
 .il-map-placeholder{border-radius:10px;border:1.5px solid ${BORDER};overflow:hidden}
 .il-map-label{background:#fff;padding:8px 12px;display:flex;align-items:center;gap:5px;border-bottom:1px solid ${BORDER};font-size:.78rem;font-weight:700}
 .il-map-label .pin{color:${RED}}
 .il-map-note{font-size:.74rem;color:${MID};margin-top:6px;line-height:1.5}
-.il-loc-btn{display:inline-flex;align-items:center;gap:5px;font-size:.79rem;color:${RED};font-weight:700;cursor:pointer;background:${RED_LT};border:1.5px solid rgba(232,35,42,.18);padding:5px 12px;border-radius:7px;font-family:'Nunito',sans-serif;margin-top:9px;transition:all .2s}
-.il-loc-btn:hover{background:rgba(232,35,42,.12)}
+.il-loc-btn{display:inline-flex;align-items:center;gap:5px;font-size:.79rem;color:${RED};font-weight:700;cursor:pointer;background:${RED_LT};border:1.5px solid rgba(43,143,212,.18);padding:5px 12px;border-radius:7px;font-family:'Nunito',sans-serif;margin-top:9px;transition:all .2s}
+.il-loc-btn:hover{background:rgba(43,143,212,.12)}
 
 /* ── FAQ SECTION (visible, matches FAQPage schema) ── */
 .pest-faq-section{background:${OFFWHITE};padding:80px 5%;position:relative}
 .pest-faq-inner{max-width:800px;margin:0 auto}
 .pest-faq-list{display:flex;flex-direction:column;gap:8px;margin-top:32px}
 .pest-faq-item{border:1.5px solid ${BORDER};border-radius:14px;overflow:hidden;background:#fff;transition:border-color .25s,box-shadow .25s}
-.pest-faq-item.open{border-color:rgba(232,35,42,.35);box-shadow:0 6px 24px rgba(232,35,42,.09)}
+.pest-faq-item.open{border-color:rgba(43,143,212,.35);box-shadow:0 6px 24px rgba(43,143,212,.09)}
 .pest-faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-weight:800;font-size:.93rem;color:${DARK};gap:12px;font-family:'Montserrat',sans-serif;background:none;border:none;width:100%;text-align:left;transition:color .2s}
 .pest-faq-item.open .pest-faq-q{color:${RED}}
-.pest-faq-icon{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(232,35,42,.25);display:flex;align-items:center;justify-content:center;color:${RED};font-size:.85rem;font-weight:900;transition:transform .3s,background .2s;flex-shrink:0;line-height:1}
+.pest-faq-icon{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(43,143,212,.25);display:flex;align-items:center;justify-content:center;color:${RED};font-size:.85rem;font-weight:900;transition:transform .3s,background .2s;flex-shrink:0;line-height:1}
 .pest-faq-item.open .pest-faq-icon{transform:rotate(45deg);background:${RED};color:#fff;border-color:${RED}}
 .pest-faq-a{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1),padding .3s;font-size:.88rem;color:${MID};line-height:1.75;padding:0 22px}
 .pest-faq-item.open .pest-faq-a{max-height:300px;padding:0 22px 20px}
@@ -626,7 +627,8 @@ body,#root{
 @media(max-width:1024px){
   .pest-inner{grid-template-columns:1fr;gap:48px;text-align:center}
   .pest-logo-display{justify-content:center}
-  .pest-crescent-wrap{width:320px;height:320px}
+  .pest-crescent-wrap{width:340px;height:340px}
+  .pest-svg-logo{width:300px;height:300px}
   .rip-crescent{width:280px;height:280px}
   .pest-services{grid-template-columns:repeat(3,1fr)}
   .pest-cta{justify-content:center}
@@ -648,9 +650,15 @@ body,#root{
   .pest-why-grid{grid-template-columns:1fr}
   .pest-process-grid{grid-template-columns:1fr 1fr}
   .il-time-slots{grid-template-columns:1fr 1fr}
+  .pest-crescent-wrap{width:280px;height:280px}
+  .pest-svg-logo{width:250px;height:250px}
+  .pest-fact{padding:8px 11px}
+  .pf-n{font-size:.84rem}
 }
 @media(max-width:480px){
   .pest-process-grid{grid-template-columns:1fr}
+  .pest-crescent-wrap{width:240px;height:240px}
+  .pest-svg-logo{width:215px;height:215px;border-radius:16px}
 }
 `;
 
@@ -1073,22 +1081,19 @@ function BookingModal({ isOpen, onClose, initialService = "" }) {
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// PEST CONTROL PAGE
+// PRESSURE WASHING PAGE
 // ══════════════════════════════════════════════════════════════════════════════
-export default function PestControlPage() {
+export default function PressureWashingPage() {
     const navigate = useNavigate();
     const [quoteOpen, setQuoteOpen] = useState(false);
     const [bookingOpen, setBookingOpen] = useState(false);
     const [openFaq, setOpenFaq] = useState(0);
 
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    useEffect(() => { window.scrollTo(0, 0); }, []);
 
-
-    // SEO: meta tags, Open Graph, JSON-LD structured data
     useEffect(() => {
-        document.title = "Pest Control Toowoomba | Rest In Pest \u2013 Licensed & Certified | iLovah";
+        const BASE_URL = "https://www.ilovahcleaningservices.com.au";
+        document.title = "Pressure Washing Toowoomba | Driveways, Decks & Fences – iLovah";
 
         const setMeta = (name, content, attr = "name") => {
             let el = document.querySelector(`meta[${attr}="${name}"]`);
@@ -1101,373 +1106,219 @@ export default function PestControlPage() {
             el.setAttribute("href", href);
         };
 
-        setMeta("description", "Rest In Pest \u2013 Toowoomba\u2019s licensed pest control specialists. Cockroach, ant, spider, rodent control & end-of-lease flea treatments. Safe, certified, guaranteed. Call 0478 711 829 for a free quote.");
-        setMeta("keywords", "pest control Toowoomba, cockroach control Toowoomba, ant treatment Toowoomba, spider control Toowoomba, rodent control Toowoomba, flea treatment Toowoomba, end of lease pest control Toowoomba, licensed pest control QLD, Rest In Pest, iLovah pest control, residential pest control Toowoomba, commercial pest control Toowoomba, wasp removal Toowoomba, pest inspection Toowoomba");
+        setMeta("description", "High-pressure cleaning for driveways, decks, fences & exteriors in Toowoomba. Looking brand new again. Free quotes within 1 hour. Call 0478 711 829.");
+        setMeta("keywords", "pressure washing Toowoomba, driveway cleaning Toowoomba QLD, deck cleaning Toowoomba, high pressure cleaning Toowoomba, exterior cleaning Toowoomba, iLovah pressure washing");
         setMeta("robots", "index, follow");
-        setMeta("author", "Rest In Pest \u2013 iLovah Cleaning Services");
+        setMeta("author", "iLovah Cleaning Services");
         setMeta("geo.region", "AU-QLD");
         setMeta("geo.placename", "Toowoomba, Queensland, Australia");
         setMeta("geo.position", "-27.5598;151.9507");
         setMeta("ICBM", "-27.5598, 151.9507");
 
-        setLink("canonical", "https://www.ilovahcleaningservices.com.au/pest-control");
+        setLink("canonical", `${BASE_URL}/pressure-washing`);
 
         setMeta("og:type", "website", "property");
-        setMeta("og:title", "Pest Control Toowoomba | Rest In Pest \u2013 Licensed Technicians", "property");
-        setMeta("og:description", "Licensed pest control in Toowoomba QLD. Cockroach, ant, spider, rodent & flea treatments for homes and businesses. Family-owned. Free quotes within 1 hour. Call 0478 711 829.", "property");
-        setMeta("og:url", "https://www.ilovahcleaningservices.com.au/pest-control", "property");
-        setMeta("og:site_name", "iLovah Cleaning Services & Rest In Pest", "property");
+        setMeta("og:title", "Pressure Washing Toowoomba | Driveways, Decks & Fences – iLovah", "property");
+        setMeta("og:description", "Professional pressure washing across Toowoomba QLD for driveways, decks, fences, and exteriors. Free quotes within 1 hour. Call 0478 711 829.", "property");
+        setMeta("og:url", `${BASE_URL}/pressure-washing`, "property");
+        setMeta("og:site_name", "iLovah Cleaning Services", "property");
         setMeta("og:locale", "en_AU", "property");
 
         setMeta("twitter:card", "summary_large_image");
-        setMeta("twitter:title", "Rest In Pest \u2013 Licensed Pest Control Toowoomba QLD");
-        setMeta("twitter:description", "Cockroach, ant, spider, rodent & flea treatments across Toowoomba. Certified technicians, pet-safe products. Call 0478 711 829.");
+        setMeta("twitter:title", "Pressure Washing Toowoomba | iLovah Cleaning Services");
+        setMeta("twitter:description", "High-pressure cleaning for driveways, decks, fences & exteriors across Toowoomba QLD. Call 0478 711 829.");
 
-        const existing = document.getElementById("rip-jsonld-main");
+        const existing = document.getElementById("pressure-jsonld-main");
         if (existing) existing.remove();
         const script = document.createElement("script");
-        script.id = "rip-jsonld-main";
+        script.id = "pressure-jsonld-main";
         script.type = "application/ld+json";
         script.text = JSON.stringify({
             "@context": "https://schema.org",
             "@graph": [
                 {
-                    "@type": ["LocalBusiness", "ProfessionalService"],
-                    "@id": "https://www.ilovahcleaningservices.com.au/pest-control#business",
-                    "name": "Rest In Pest \u2013 Pest Control Toowoomba",
-                    "alternateName": ["Rest In Pest", "iLovah Pest Control"],
-                    "description": "Licensed and certified pest control specialists serving Toowoomba and surrounding Queensland suburbs. Treatments for cockroaches, ants, spiders, rodents, wasps, fleas, and more. Safe, targeted, and guaranteed results for residential and commercial properties.",
-                    "url": "https://www.ilovahcleaningservices.com.au/pest-control",
-                    "telephone": "+61478711829",
-                    "email": "ilovahclean@gmail.com",
-                    "priceRange": "$$",
-                    "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": "4 Kelfield Street",
-                        "addressLocality": "North Toowoomba",
-                        "addressRegion": "QLD",
-                        "postalCode": "4350",
-                        "addressCountry": "AU"
-                    },
-                    "geo": { "@type": "GeoCoordinates", "latitude": -27.5598, "longitude": 151.9507 },
-                    "areaServed": [
-                        { "@type": "City", "name": "Toowoomba" },
-                        { "@type": "AdministrativeArea", "name": "Queensland" }
-                    ],
-                    "openingHoursSpecification": [
-                        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "07:00", "closes": "18:00" }
-                    ],
-                    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "87", "bestRating": "5" },
-                    "hasOfferCatalog": {
-                        "@type": "OfferCatalog",
-                        "name": "Pest Control Services Toowoomba",
-                        "itemListElement": [
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cockroach Control Toowoomba", "description": "Full cockroach elimination with residual internal and external treatment." } },
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ant Treatment Toowoomba", "description": "Baiting, barrier spray and nest elimination for all ant species." } },
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Spider Control Toowoomba", "description": "Safe removal and repellent treatment for dangerous and nuisance spiders." } },
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rodent Control Toowoomba", "description": "Rat and mouse trapping, baiting, and exclusion services." } },
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wasp and Bee Removal Toowoomba", "description": "Fast, safe nest removal and treatment for wasps and bees." } },
-                            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "End of Lease Flea Treatment Toowoomba", "description": "Full property flea treatment for end-of-lease requirements." } }
-                        ]
-                    },
-                    "sameAs": ["https://www.facebook.com/ilovahcleaning", "https://www.instagram.com/ilovahcleaning"]
-                },
-                {
                     "@type": "BreadcrumbList",
-                    "@id": "https://www.ilovahcleaningservices.com.au/pest-control#breadcrumb",
+                    "@id": `${BASE_URL}/pressure-washing#breadcrumb`,
                     "itemListElement": [
-                        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.ilovahcleaningservices.com.au/" },
-                        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://www.ilovahcleaningservices.com.au/services" },
-                        { "@type": "ListItem", "position": 3, "name": "Pest Control Toowoomba", "item": "https://www.ilovahcleaningservices.com.au/pest-control" }
+                        { "@type": "ListItem", "position": 1, "name": "Home", "item": `${BASE_URL}/` },
+                        { "@type": "ListItem", "position": 2, "name": "Services", "item": `${BASE_URL}/services` },
+                        { "@type": "ListItem", "position": 3, "name": "Pressure Washing Toowoomba", "item": `${BASE_URL}/pressure-washing` }
                     ]
                 },
                 {
+                    "@type": "Service",
+                    "@id": `${BASE_URL}/pressure-washing#service`,
+                    "name": "Pressure Washing Toowoomba",
+                    "serviceType": "Pressure Washing",
+                    "provider": { "@id": `${BASE_URL}/#business` },
+                    "areaServed": [
+                        { "@type": "City", "name": "Toowoomba" },
+                        { "@type": "AdministrativeArea", "name": "North Toowoomba" },
+                        { "@type": "AdministrativeArea", "name": "Highfields" },
+                        { "@type": "State", "name": "Queensland" }
+                    ],
+                    "description": "Professional high-pressure cleaning in Toowoomba QLD for driveways, decks, fences, garage floors, and exterior surfaces. Mould and algae treatment included.",
+                    "url": `${BASE_URL}/pressure-washing`,
+                    "image": `${BASE_URL}/og-image.jpg`
+                },
+                {
                     "@type": "FAQPage",
-                    "@id": "https://www.ilovahcleaningservices.com.au/pest-control#faq",
+                    "@id": `${BASE_URL}/pressure-washing#faq`,
                     "mainEntity": [
-                        { "@type": "Question", "name": "Are your pest control technicians licensed in Queensland?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. All Rest In Pest technicians are fully licensed and certified under Queensland pest management regulations. We use safe, targeted, and approved treatments for residential and commercial properties." } },
-                        { "@type": "Question", "name": "What pests do you treat in Toowoomba?", "acceptedAnswer": { "@type": "Answer", "text": "We treat cockroaches, ants, spiders, rodents (rats and mice), wasps, bees, and fleas across Toowoomba and surrounding QLD suburbs." } },
-                        { "@type": "Question", "name": "Are your pest treatments safe for children and pets?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We use pet-safe and child-safe approved products. Our technicians will advise on any short-term precautions needed after treatment." } },
-                        { "@type": "Question", "name": "Do you offer end-of-lease flea treatment in Toowoomba?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We provide complete end-of-lease flea treatments to meet real estate agency requirements across Toowoomba and surrounding areas." } },
-                        { "@type": "Question", "name": "How quickly can you respond for pest control in Toowoomba?", "acceptedAnswer": { "@type": "Answer", "text": "We respond to all free quote requests within 1 hour during business hours (Mon\u2013Sat 7am\u20136pm) and can often book urgent treatments within 24\u201348 hours." } }
+                        { "@type": "Question", "name": "What surfaces can be pressure washed?", "acceptedAnswer": { "@type": "Answer", "text": "We pressure wash driveways, paths, decks, patios, fences, walls, and garage floors. We adjust pressure settings to suit each surface safely." } },
+                        { "@type": "Question", "name": "Do you provide a quote before starting the job?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We provide a free quote within 1 hour, based on the size and number of areas to be cleaned." } },
+                        { "@type": "Question", "name": "Can pressure washing remove mould and algae?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We apply a degreaser or mould treatment as a pre-soak before pressure washing to lift stubborn mould, algae, and oil stains effectively." } },
+                        { "@type": "Question", "name": "Will pressure washing damage my surfaces?", "acceptedAnswer": { "@type": "Answer", "text": "No. Our technicians adjust pressure and nozzle settings for each surface type — gentler for decks and painted surfaces, stronger for concrete — to clean safely without damage." } },
+                        { "@type": "Question", "name": "Do you offer pressure washing for commercial properties?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we provide pressure washing for both residential and commercial properties, including walkways and common areas, across Toowoomba and surrounds." } }
                     ]
                 }
             ]
         });
         document.head.appendChild(script);
 
-        return () => { const s = document.getElementById("rip-jsonld-main"); if (s) s.remove(); };
+        return () => { const s = document.getElementById("pressure-jsonld-main"); if (s) s.remove(); };
     }, []);
 
-    const goMain = (section) => {
-        navigate("/", { state: { scrollTo: section || null } });
-    };
+    const goMain = (section) => { navigate("/", { state: { scrollTo: section || null } }); };
     const go = (id) => {
         const el = document.getElementById(id);
         if (el) { el.scrollIntoView({ behavior: "smooth" }); }
         else goMain(id);
     };
-
     const openQuote = () => { setQuoteOpen(true); };
+
+    const FAQS = [
+        { q: "What surfaces can be pressure washed?", a: "We pressure wash driveways, paths, decks, patios, fences, walls, and garage floors. We adjust pressure settings to suit each surface safely." },
+        { q: "Do you provide a quote before starting the job?", a: "Yes. We provide a free quote within 1 hour, based on the size and number of areas to be cleaned." },
+        { q: "Can pressure washing remove mould and algae?", a: "Yes. We apply a degreaser or mould treatment as a pre-soak before pressure washing to lift stubborn mould, algae, and oil stains effectively." },
+        { q: "Will pressure washing damage my surfaces?", a: "No. Our technicians adjust pressure and nozzle settings for each surface type — gentler for decks and painted surfaces, stronger for concrete — to clean safely without damage." },
+        { q: "Do you offer pressure washing for commercial properties?", a: "Yes, we provide pressure washing for both residential and commercial properties, including walkways and common areas, across Toowoomba and surrounds." },
+    ];
 
     return (
         <div style={{ width: "100%", maxWidth: "100%", margin: 0, padding: 0, overflowX: "hidden" }}>
             <style>{PEST_CSS}</style>
-
             <NavBar />
-
-            {/* HERO */}
             <main>
-                <section className="pest-page-hero" aria-label="Rest In Pest – Licensed Pest Control Toowoomba QLD">
-                    <div className="bug-bg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ width: "1em", height: "1em", display: "inline-block" }}><ellipse cx="12" cy="13" rx="4" ry="5" /><path d="M12 8V5" /><circle cx="12" cy="4" r="1" /><path d="M8 10 4 8M16 10l4-2M8 14l-4 2M16 14l4 2" /></svg></div>
+                <section className="pest-page-hero" aria-label="Pressure Washing Toowoomba – iLovah Cleaning Services" style={{ background: DARK }}>
                     <R>
                         <div className="hero-eyebrow ey-red" style={{ margin: "0 auto 24px" }}>
                             <span className="ey-dot dot-r" />
-                            Certified Pest Control Toowoomba · Licensed Technicians
+                            Pressure Washing Toowoomba · Driveways, Decks & Fences
                         </div>
-                        <h1 className="pest-hero-h1">
-                            <span className="hl-red">Rest In</span><br />
-                            Pest<span className="hl-red">.</span>
+                        <h1 className="pest-hero-h1" style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 900, fontSize: "clamp(2.2rem,5vw,3.6rem)" }}>
+                            Pressure <span className="hl-red">Washing</span><br />Toowoomba
                         </h1>
                         <p className="pest-hero-p">
-                            Licensed pest control technicians eliminating cockroaches, ants, spiders, rodents &amp; more across Toowoomba QLD.
-                            Safe, targeted, pet-friendly, and guaranteed treatments for homes and businesses.
+                            High-pressure cleaning for driveways, decks, fences, and exteriors — looking brand new again. Ideal for homes, property managers, and commercial spaces.
                         </p>
                         <div className="pest-hero-btns">
-                            <button className="btn-red" onClick={() => setBookingOpen(true)}>
-                                <img loading="eager" src={imgInsect} alt="" style={{ width: 40, height: 40, objectFit: "contain", filter: "brightness(0) invert(1)" }} />
-                                Book Pest Treatment
-                            </button>
-                            <button className="btn-ghost-w" onClick={() => go("pest-services")}>Our Services ↓</button>
+                            <button className="btn-red" onClick={() => setBookingOpen(true)}>Book Pressure Washing</button>
+                            <button className="btn-ghost-w" onClick={() => go("pressure-services")}>How It Works ↓</button>
                         </div>
                         <div className="pest-hero-stats">
-                            <div className="hs"><div className="hs-n clr-red">500+</div><div className="hs-l">Treatments Done</div></div>
+                            <div className="hs"><div className="hs-n clr-red">2–4 hrs</div><div className="hs-l">Typical Duration</div></div>
                             <div className="hs-sep" />
-                            <div className="hs"><div className="hs-n clr-red">8+</div><div className="hs-l">Pest Types</div></div>
-                            <div className="hs-sep" />
-                            <div className="hs"><div className="hs-n clr-red">100%</div><div className="hs-l">Safe & Certified</div></div>
+                            <div className="hs"><div className="hs-n clr-red">100%</div><div className="hs-l">Insured & Local</div></div>
                         </div>
                     </R>
                 </section>
 
-                {/* PEST SERVICES */}
-                <section className="pest-section" id="pest-services" aria-label="Pest control services in Toowoomba QLD">
-                    <div className="zzz-bug" style={{ top: "12%", right: "4%" }} aria-hidden="true">
-                        <img loading="lazy" src={imgInsect} alt="" style={{ width: 40, height: 40, objectFit: "contain", filter: "brightness(0) invert(1)" }} /> zzz
-                    </div>
-                    <div className="zzz-bug" style={{ top: "40%", left: "3%", fontSize: "1rem", animationDelay: "1.5s" }} aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: "1em", height: "1em" }}><ellipse cx="12" cy="13" rx="4" ry="5" /><path d="M12 8V5" /><circle cx="12" cy="4" r="1" /><path d="M8 10 4 8M16 10l4-2M8 14l-4 2M16 14l4 2" /></svg></div>
-                    <div className="zzz-bug" style={{ bottom: "20%", right: "6%", fontSize: ".85rem", animationDelay: "3s" }} aria-hidden="true">zzz</div>
-
+                <section className="pest-section" id="pressure-services" aria-label="Pressure washing process Toowoomba">
                     <div className="pest-inner">
-                        {/* Logo display */}
                         <R className="pest-logo-display">
                             <div className="pest-crescent-wrap">
                                 <div className="pest-svg-logo">
-                                    <img loading="lazy" src={imgLogo2} alt="Rest In Pest – Licensed Pest Control Toowoomba" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: "50%" }} />
+                                    <img src={imgPressure} alt="Pressure washing, Toowoomba" loading="eager" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
                                 </div>
-                                <div className="pest-fact">
-                                    <div className="pf-ico"><img loading="lazy" src={imgInsect} alt="" style={{ width: 40, height: 40, objectFit: "contain", filter: "brightness(0) invert(1)" }} /></div>
-                                    <div><div className="pf-n">500+</div><div className="pf-l">Treatments Done</div></div>
-                                </div>
-                                <div className="pest-fact">
-                                    <div className="pf-ico"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8232A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg></div>
-                                    <div><div className="pf-n">Certified</div><div className="pf-l">Licensed Technicians</div></div>
-                                </div>
+                                <div className="pest-fact" style={{ top: "8%", right: "-10px", bottom: "auto" }}><div><div className="pf-n">2–4 Hours</div><div className="pf-l">Typical Job Time</div></div></div>
                             </div>
                         </R>
 
-                        {/* Content */}
                         <R className="pest-content">
-                            <div className="section-tag"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg> Pest Control Toowoomba</div>
-                            <h2 className="pest-title"><span className="hl-red">REST IN</span><br />PEST<span className="hl-red">.</span></h2>
-                            <p className="pest-tagline">"Sleep Easy, We Handle the Creepy."</p>
+                            <div className="section-tag">Pressure Washing Toowoomba</div>
+                            <h2 className="pest-title">Like-New<br />Exteriors<span className="hl-red">.</span></h2>
+                            <p className="pest-tagline">"Blast Away the Grime."</p>
                             <p className="pest-desc">
-                                Our licensed pest control technicians use safe, targeted treatments to eliminate infestations
-                                and protect your Toowoomba property. We handle residential, commercial, and end-of-lease flea treatments
-                                across Toowoomba and all surrounding QLD suburbs.
+                                Professional pressure washing for buildings, walkways, and common areas. Ideal for property managers, clinics, and commercial spaces across Toowoomba.
                             </p>
 
                             <div className="pest-services">
                                 {[
-                                    { ico: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><ellipse cx="12" cy="13" rx="4" ry="5" /><path d="M12 8V5" /><circle cx="12" cy="4" r="1" /><path d="M8 10 4 8M16 10l4-2M8 14l-4 2M16 14l4 2" /></svg>, title: "Cockroach Control Toowoomba", desc: "Full elimination with residual treatment. Internal & external." },
-                                    { ico: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><ellipse cx="12" cy="14" rx="3" ry="4" /><path d="M12 10V7" /><circle cx="12" cy="6" r="1.5" /><path d="M9 11 5 9M15 11l4-2M9 15l-4 2M15 15l4 2M10 17l-2 2M14 17l2 2" /></svg>, title: "Ant Treatments Toowoomba", desc: "Baiting, barrier spray and nest elimination for all ant species." },
-                                    { ico: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 8 9 4M12 8l3-4M8 12 4 9M8 12l-4 3M16 12l4-3M16 12l4 3M12 16l-3 4M12 16l3 4" /></svg>, title: "Spider Control Toowoomba", desc: "Safe removal and repellent treatment for dangerous & nuisance spiders." },
-                                    { ico: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 7c0-2.8-4-5-4-5s-1 2-1 4c0 1.5.5 2.8 1 3.5" /><path d="M5 7c0-2.8 4-5 4-5s1 2 1 4c0 1.5-.5 2.8-1 3.5" /><ellipse cx="12" cy="15" rx="5" ry="4.5" /><path d="M7.5 12.5 4 16M16.5 12.5 20 16M9 20l-1 2M15 20l1 2" /></svg>, title: "Rodent Control Toowoomba", desc: "Trapping, baiting and exclusion for rats and mice." },
-                                    { ico: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 2c-2 2-3 4.5-3 6.5 0 2.5 1.3 4 3 4s3-1.5 3-4c0-2-1-4.5-3-6.5z" /><path d="M6 10c-2 0-4 1-4 3s2 3 4 3h3M18 10c2 0 4 1 4 3s-2 3-4 3h-3M9 16l-1 4M15 16l1 4" /></svg>, title: "Wasps & Bees Toowoomba", desc: "Nest removal and treatment. Fast, safe and effective." },
-                                    { ico: <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>, title: "End of Lease Flea Treatment", desc: "Full property flea treatment at end of lease before tenants move in." },
+                                    { title: "Surface Prep", desc: "Loose debris swept away and delicate areas protected before washing." },
+                                    { title: "Pre-soak", desc: "Degreaser or mould treatment applied to stubborn stains." },
+                                    { title: "High-Pressure Wash", desc: "Professional-grade pressure washer blasts away grime, oil, and algae." },
+                                    { title: "Rinse & Inspect", desc: "Surface rinsed clean and inspected for any missed areas." },
                                 ].map((p, i) => (
                                     <div key={i} className="ps-card">
-                                        <div className="ps-ico" aria-hidden="true">{p.ico}</div>
-                                        <h3 style={{ fontFamily: "'Montserrat',sans-serif", fontSize: ".82rem", fontWeight: 900, color: "#fff", marginBottom: 5, letterSpacing: "-.01em" }}>{p.title}</h3>
+                                        <h3 style={{ fontFamily: "'Montserrat',sans-serif", fontSize: ".82rem", fontWeight: 900, color: DARK, marginBottom: 5, letterSpacing: "-.01em" }}>{p.title}</h3>
                                         <p>{p.desc}</p>
                                     </div>
                                 ))}
                             </div>
 
+                            <p style={{ fontSize: ".85rem", color: MID, marginBottom: 24 }}>
+                                <strong style={{ color: DARK }}>What's included:</strong> Driveways &amp; paths, decks &amp; patios, fences &amp; walls, garage floors, mould &amp; algae treatment.
+                            </p>
+
                             <div className="pest-cta">
-                                <button className="btn-red" onClick={() => setBookingOpen(true)}>
-                                    <img loading="lazy" src={imgInsect} alt="" style={{ width: 40, height: 40, objectFit: "contain", filter: "brightness(0) invert(1)" }} />
-                                    Book Pest Treatment Now
-                                </button>
+                                <button className="btn-red" onClick={() => setBookingOpen(true)}>Book Pressure Washing Now</button>
                             </div>
                         </R>
                     </div>
                 </section>
 
-                {/* FAQ — visible content matching FAQPage schema above */}
-                <section className="pest-faq-section" id="pest-faq" aria-label="Pest control frequently asked questions">
+                <section className="pest-faq-section" id="pressure-faq" aria-label="Pressure washing frequently asked questions">
                     <div className="pest-faq-inner">
-                        <div className="sec-tag-blue" style={{ display: "inline-block", color: BLUE2, background: "rgba(74,171,219,0.1)", borderColor: "rgba(74,171,219,0.2)", fontSize: ".7rem", fontWeight: 900, letterSpacing: ".16em", textTransform: "uppercase", padding: "6px 16px", borderRadius: 6, border: "1px solid rgba(74,171,219,0.2)" }}>
-                            FAQ
-                        </div>
+                        <div className="sec-tag-blue" style={{ display: "inline-block", color: BLUE2, background: "rgba(74,171,219,0.1)", borderColor: "rgba(74,171,219,0.2)", fontSize: ".7rem", fontWeight: 900, letterSpacing: ".16em", textTransform: "uppercase", padding: "6px 16px", borderRadius: 6, border: "1px solid rgba(74,171,219,0.2)" }}>FAQ</div>
                         <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 900, fontSize: "clamp(1.8rem,3.5vw,2.6rem)", color: DARK, margin: "16px 0 8px", letterSpacing: "-0.02em" }}>
-                            Pest Control <span style={{ color: RED }}>Questions</span> Answered
+                            Pressure Washing <span style={{ color: RED }}>Questions</span> Answered
                         </h2>
                         <p style={{ color: MID, fontSize: ".95rem", lineHeight: 1.7 }}>
-                            Common questions about licensed pest control in Toowoomba. Can't find what you need? <a href="/faq" style={{ color: RED, fontWeight: 700 }}>See the full FAQ</a> or call 0478 711 829.
+                            Common questions about pressure washing in Toowoomba. Can't find what you need? <a href="/faq" style={{ color: RED, fontWeight: 700 }}>See the full FAQ</a> or call 0478 711 829.
                         </p>
                         <div className="pest-faq-list">
-                            {[
-                                { q: "Are your pest control technicians licensed in Queensland?", a: "Yes. All Rest In Pest technicians are fully licensed and certified under Queensland pest management regulations. We use safe, targeted, and approved treatments for residential and commercial properties." },
-                                { q: "What pests do you treat in Toowoomba?", a: "We treat cockroaches, ants, spiders, rodents (rats and mice), wasps, bees, and fleas across Toowoomba and surrounding QLD suburbs." },
-                                { q: "Are your pest treatments safe for children and pets?", a: "Yes. We use pet-safe and child-safe approved products. Our technicians will advise on any short-term precautions needed after treatment." },
-                                { q: "Do you offer end-of-lease flea treatment in Toowoomba?", a: "Yes. We provide complete end-of-lease flea treatments to meet real estate agency requirements across Toowoomba and surrounding areas." },
-                                { q: "How quickly can you respond for pest control in Toowoomba?", a: "We respond to all free quote requests within 1 hour during business hours (Mon–Sat 7am–6pm) and can often book urgent treatments within 24–48 hours." },
-                            ].map((f, i) => (
+                            {FAQS.map((f, i) => (
                                 <div key={i} className={`pest-faq-item${openFaq === i ? " open" : ""}`}>
                                     <button className="pest-faq-q" onClick={() => setOpenFaq(openFaq === i ? null : i)} aria-expanded={openFaq === i}>
-                                        {f.q}
-                                        <span className="pest-faq-icon" aria-hidden="true">+</span>
+                                        {f.q}<span className="pest-faq-icon" aria-hidden="true">+</span>
                                     </button>
-                                    <div className="pest-faq-a">
-                                        <div className="pest-faq-a-inner">{f.a}</div>
-                                    </div>
+                                    <div className="pest-faq-a"><div className="pest-faq-a-inner">{f.a}</div></div>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </section>
 
-                {/* CTA BAND */}
-                <section className="pest-cta-band" aria-label="Book pest control in Toowoomba">
+                <section className="pest-cta-band" aria-label="Book pressure washing in Toowoomba">
                     <R>
-                        <h2>Ready to live <span style={{ color: "rgba(255,255,255,.85)" }}>pest-free in Toowoomba?</span></h2>
-                        <p>Contact Rest In Pest today for a free, no-obligation pest control quote. We service Toowoomba, Highfields, Helidon, Gatton, North Toowoomba, East Toowoomba, Harristown, Rangeville, and all surrounding QLD areas.</p>
+                        <h2>Ready for <span style={{ color: "rgba(255,255,255,.85)" }}>spotless exteriors in Toowoomba?</span></h2>
+                        <p>Contact iLovah Cleaning Services today for a free, no-obligation pressure washing quote. We service Toowoomba, Highfields, Helidon, Gatton, North Toowoomba, Harristown, Rangeville, and all surrounding QLD areas.</p>
                         <div className="pest-cta-band-btns">
-                            <button className="btn-white" onClick={openQuote}>
-                                <img loading="lazy" src={imgInsect} alt="" style={{ width: 40, height: 40, objectFit: "contain", filter: "brightness(0) invert(1)" }} />
-                                Get Instant Quote
-                            </button>
-                            <a href="tel:0478711829" className="btn-ghost-w" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 30px", borderRadius: 9, fontFamily: "'Nunito',sans-serif", fontWeight: 900, fontSize: ".95rem" }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l1.27-.85a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg> Call 0478 711 829
-                            </a>
+                            <button className="btn-white" onClick={openQuote}>Get Instant Quote</button>
+                            <a href="tel:0478711829" className="btn-ghost-w" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", gap: 8, padding: "14px 30px", borderRadius: 9, fontFamily: "'Nunito',sans-serif", fontWeight: 900, fontSize: ".95rem" }}>Call 0478 711 829</a>
                         </div>
                     </R>
                 </section>
-                {/* ── FOLLOW US ON FACEBOOK ── */}
-                <section style={{ background: "#0c0c0c", borderTop: "1px solid rgba(232,35,42,0.15)", padding: "52px 5%", textAlign: "center" }}>
-                    <div style={{ maxWidth: 860, margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
-                        <div style={{ fontSize: ".68rem", fontWeight: 900, letterSpacing: ".16em", textTransform: "uppercase", color: "#4AABDB", background: "rgba(74,171,219,0.1)", border: "1px solid rgba(74,171,219,0.2)", padding: "5px 14px", borderRadius: 6 }}>Stay Connected</div>
-                        <h2 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 900, fontSize: "1.7rem", color: "#fff", letterSpacing: "-.02em", lineHeight: 1.15, margin: 0 }}>Follow Us on <span style={{ color: "#E8232A" }}>Facebook</span></h2>
-                        <p style={{ color: "rgba(255,255,255,.65)", fontSize: ".9rem", lineHeight: 1.65, margin: 0 }}>See our latest jobs, tips &amp; special offers from both of our pages.</p>
 
-                        {/* Two Facebook page cards */}
-                        <div style={{ display: "flex", gap: 20, flexWrap: "wrap", justifyContent: "center", marginTop: 8, width: "100%" }}>
-
-                            {/* iLovah Cleaning Services */}
-                            <div style={{ flex: "1 1 340px", maxWidth: 400, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(74,171,219,0.2)", borderRadius: 16, padding: "28px 24px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-                                <div style={{ width: 56, height: 56, borderRadius: "50%", background: "linear-gradient(135deg,#2B8FD4,#4AABDB)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-                                        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
-                                    </svg>
-                                </div>
-                                <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 900, fontSize: "1.05rem", color: "#fff", textAlign: "center", lineHeight: 1.2 }}>
-                                    iLovah <span style={{ color: "#4AABDB" }}>Cleaning Services</span>
-                                </div>
-                                <p style={{ color: "rgba(255,255,255,.6)", fontSize: ".82rem", lineHeight: 1.6, margin: 0, textAlign: "center" }}>Bond cleaning, carpet cleaning, window &amp; gutter cleaning, pressure washing and more.</p>
-                                <a
-                                    href="https://www.facebook.com/people/i-LovahCleaning-Services/61558661136011/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Follow iLovah Cleaning Services on Facebook"
-                                    style={{
-                                        marginTop: 4, display: "inline-flex", alignItems: "center", gap: 8,
-                                        background: "linear-gradient(135deg,#2B8FD4,#4AABDB)",
-                                        color: "#fff", padding: "11px 24px", borderRadius: 8,
-                                        fontWeight: 900, fontSize: ".88rem",
-                                        textDecoration: "none", fontFamily: "'Nunito',sans-serif",
-                                        boxShadow: "0 4px 16px rgba(43,143,212,0.35)",
-                                    }}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-                                        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
-                                    </svg>
-                                    Follow iLovah
-                                </a>
-                            </div>
-
-                            {/* Rest In Pest Control */}
-                            <div style={{ flex: "1 1 340px", maxWidth: 400, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(232,35,42,0.25)", borderRadius: 16, padding: "28px 24px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
-                                <div style={{ width: 56, height: 56, borderRadius: "50%", background: "linear-gradient(135deg,#E8232A,#b01018)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-                                        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
-                                    </svg>
-                                </div>
-                                <div style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 900, fontSize: "1.05rem", color: "#fff", textAlign: "center", lineHeight: 1.2 }}>
-                                    Rest In <span style={{ color: "#E8232A" }}>Pest Control</span>
-                                </div>
-                                <p style={{ color: "rgba(255,255,255,.6)", fontSize: ".82rem", lineHeight: 1.6, margin: 0, textAlign: "center" }}>Licensed pest treatments for cockroaches, ants, spiders, rodents &amp; more across Toowoomba.</p>
-                                <a
-                                    href="https://www.facebook.com/profile.php?id=61583659933160"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Follow Rest In Pest Control on Facebook"
-                                    style={{
-                                        marginTop: 4, display: "inline-flex", alignItems: "center", gap: 8,
-                                        background: "linear-gradient(135deg,#E8232A,#b01018)",
-                                        color: "#fff", padding: "11px 24px", borderRadius: 8,
-                                        fontWeight: 900, fontSize: ".88rem",
-                                        textDecoration: "none", fontFamily: "'Nunito',sans-serif",
-                                        boxShadow: "0 4px 16px rgba(232,35,42,0.35)",
-                                    }}
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-                                        <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
-                                    </svg>
-                                    Follow Rest In Pest
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-                {/* RELATED SERVICES */}
                 <section style={{ background: OFFWHITE, padding: "60px 5%" }}>
                     <div className="il-wrap" style={{ textAlign: "center" }}>
                         <h2 className="sec-h2" style={{ textAlign: "center", maxWidth: "100%" }}>Related <span className="hl-red">Services</span></h2>
                         <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginTop: 24 }}>
-                            <a href="/end-of-lease-cleaning" style={{ background: "#fff", border: `1.5px solid ${BORDER}`, borderRadius: 10, padding: "12px 22px", fontWeight: 800, color: DARK, textDecoration: "none", fontSize: ".88rem" }}>End of Lease Cleaning →</a>
-                            <a href="/carpet-cleaning" style={{ background: "#fff", border: `1.5px solid ${BORDER}`, borderRadius: 10, padding: "12px 22px", fontWeight: 800, color: DARK, textDecoration: "none", fontSize: ".88rem" }}>Carpet Cleaning →</a>
+                            <a href="/gutter-cleaning" style={{ background: "#fff", border: `1.5px solid ${BORDER}`, borderRadius: 10, padding: "12px 22px", fontWeight: 800, color: DARK, textDecoration: "none", fontSize: ".88rem" }}>Gutter Cleaning →</a>
+                            <a href="/window-cleaning" style={{ background: "#fff", border: `1.5px solid ${BORDER}`, borderRadius: 10, padding: "12px 22px", fontWeight: 800, color: DARK, textDecoration: "none", fontSize: ".88rem" }}>Window Cleaning →</a>
                             <a href="/general-house-cleaning" style={{ background: "#fff", border: `1.5px solid ${BORDER}`, borderRadius: 10, padding: "12px 22px", fontWeight: 800, color: DARK, textDecoration: "none", fontSize: ".88rem" }}>General House Cleaning →</a>
+                            <a href="/pest-control" style={{ background: "#fff", border: `1.5px solid ${BORDER}`, borderRadius: 10, padding: "12px 22px", fontWeight: 800, color: DARK, textDecoration: "none", fontSize: ".88rem" }}>Pest Control →</a>
                             <a href="/services" style={{ background: RED, border: `1.5px solid ${RED}`, borderRadius: 10, padding: "12px 22px", fontWeight: 800, color: "#fff", textDecoration: "none", fontSize: ".88rem" }}>View All Services →</a>
                         </div>
                     </div>
                 </section>
 
-                {/* SEO: visually hidden LocalBusiness microdata for crawlers */}
-                <div
-                    itemScope
-                    itemType="https://schema.org/LocalBusiness"
-                    style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap" }}
-                    aria-hidden="true"
-                >
-                    <span itemProp="name">Rest In Pest – Pest Control Toowoomba</span>
-                    <span itemProp="telephone">0478 711 829</span>
+                <div itemScope itemType="https://schema.org/LocalBusiness" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap" }} aria-hidden="true">
+                    <span itemProp="name">iLovah Cleaning Services – Pressure Washing Toowoomba</span>
+                    <span itemProp="telephone">+61478711829</span>
                     <span itemProp="email">ilovahclean@gmail.com</span>
-                    <span itemProp="description">
-                        Licensed pest control in Toowoomba QLD. Rest In Pest by iLovah provides cockroach control, ant treatments, spider control, rodent control, wasp removal, and end-of-lease flea treatments across Toowoomba, Highfields, Helidon, Gatton, North Toowoomba, East Toowoomba, Harristown, Rangeville, Newtown, Cabarlah, Withcott, Laidley, and all surrounding QLD suburbs. Pet-safe, child-safe, certified technicians.
-                    </span>
+                    <span itemProp="description">Professional pressure washing in Toowoomba QLD by iLovah Cleaning Services, covering Toowoomba, Highfields, Helidon, Gatton, North Toowoomba, Harristown, Rangeville, Cabarlah, Withcott, Laidley, and surrounding QLD suburbs.</span>
                     <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
                         <span itemProp="streetAddress">4 Kelfield Street</span>
                         <span itemProp="addressLocality">North Toowoomba</span>
@@ -1480,16 +1331,10 @@ export default function PestControlPage() {
                         <span itemProp="reviewCount">87</span>
                     </span>
                 </div>
-
-                {/* FOOTER */}
             </main>
             <PageFooter />
-
-            {/* ── MODALS ── */}
-            <GetQuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} initialService="Pest Control Service (General)" />
-            <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} initialService="Pest Control Service" />
-
-
+            <GetQuoteModal isOpen={quoteOpen} onClose={() => setQuoteOpen(false)} initialService="Pressure Washing" />
+            <BookingModal isOpen={bookingOpen} onClose={() => setBookingOpen(false)} initialService="Pressure Washing" />
         </div>
     );
 }

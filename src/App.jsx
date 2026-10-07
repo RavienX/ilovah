@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { Monitor, Award, Baby, Brush, Bug, Building2, CalendarDays, CheckCircle, Clock, ClipboardList, DoorOpen, Droplets, FileCheck, FlaskConical, GraduationCap, Heart, Home, Info, Leaf, Lock, Mail, MapPin, MessageCircle, Microscope, MountainSnow, Pencil, Phone, RefreshCw, Search, ShieldCheck, ShowerHead, Sparkles, Star, Sun, Truck, UtensilsCrossed, User, Waves, Wheat, Wind, Wrench, Zap } from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import heroImg from "./assets/hero.jpg";
@@ -40,6 +42,25 @@ import imgClinic from "./assets/clinic.png";
 import imgHousing from "./assets/housing.png";
 import imgLiving from "./assets/living.png";
 import imgMoons from "./assets/moons.png";
+import { saveBooking, saveQuote } from "./firebaseConfig";
+
+
+// ── Icon map for data-driven icon rendering ──────────────────────────────────
+const ICON_MAP = {
+  Monitor, Award, Baby, Brush, Bug, Building2,
+  CalendarDays, CheckCircle, Clock, ClipboardList, DoorOpen,
+  Droplets, FileCheck, FlaskConical, GraduationCap,
+  Heart, Home, Info, Leaf, Lock, Mail, MapPin,
+  MessageCircle, Microscope, MountainSnow, Pencil, Phone,
+  RefreshCw, Search, ShieldCheck, ShowerHead,
+  Sparkles, Star, Sun, Truck, UtensilsCrossed,
+  User, Waves, Wheat, Wind, Wrench, Zap,
+};
+const Ico = ({ name, size = 18, color = "currentColor", style }) => {
+  const C = ICON_MAP[name];
+  if (!C) return null;
+  return <C size={size} color={color} strokeWidth={2} aria-hidden="true" style={style} />;
+};
 
 // ── Design tokens matching index.html ──────────────────────────────────────
 const RED = "#E8232A";
@@ -456,24 +477,6 @@ body,#root{
 .il-step-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:1rem;color:${DARK};margin-bottom:7px}
 .il-step-desc{font-size:.84rem;color:${MID};line-height:1.6}
 
-/* ── WHY / ABOUT ── */
-.il-why{padding:80px 0;background:${OFFWHITE}}
-.il-why-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-.il-why-img{border-radius:20px;overflow:hidden;position:relative;}
-.il-why-badge{
-  position:absolute;bottom:24px;left:24px;
-  background:#fff;border-radius:14px;padding:14px 18px;
-  display:flex;align-items:center;gap:12px;
-  box-shadow:0 8px 28px rgba(0,0,0,.12);
-}
-.il-why-badge-icon{font-size:1.5rem}
-.il-why-badge strong{display:block;font-size:.9rem;font-weight:900;color:${DARK};font-family:'Montserrat',sans-serif}
-.il-why-badge span{display:block;font-size:.74rem;color:${MID}}
-.il-feature{display:flex;align-items:flex-start;gap:14px;margin-bottom:22px}
-.il-feat-ico{width:42px;height:42px;border-radius:10px;background:rgba(232,35,42,.08);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.il-feat-title{font-family:'Montserrat',sans-serif;font-size:.96rem;font-weight:900;color:${DARK};margin-bottom:4px}
-.il-feat-desc{font-size:.85rem;color:${MID};line-height:1.6}
-
 /* ── RESULTS / BEFORE-AFTER ── */
 .il-results-section{padding:80px 0;background:#fff}
 .il-ba-wrap{max-width:900px;margin:48px auto 0;position:relative}
@@ -502,53 +505,6 @@ body,#root{
 .il-client-card:hover{transform:translateY(-3px)}
 .il-client-logo-img{width:300px;height:200px;object-fit:contain;display:block;filter:none;opacity:1;transition:transform .2s}
 .il-client-card:hover .il-client-logo-img{transform:scale(1.05)}
-
-/* ── TESTIMONIALS ── */
-.il-reviews-section{padding:80px 0;background:${DARK};position:relative;overflow:hidden}
-.il-reviews-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(232,35,42,.06),transparent 65%)}
-.il-rev-card{
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  border-radius:20px;padding:36px 32px;max-width:680px;margin:48px auto 0;
-  transition:all .3s;position:relative;z-index:1;
-}
-.il-rev-source{display:inline-block;font-size:.62rem;font-weight:900;padding:3px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;background:rgba(43,143,212,.15);color:${BLUE2};border:1px solid rgba(43,143,212,.2)}
-.il-rev-stars{color:${GOLD};font-size:.9rem;letter-spacing:2px;margin-bottom:16px}
-.il-rev-text{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.75;font-style:italic;margin-bottom:22px}
-.il-reviewer{display:flex;align-items:center;gap:12px}
-.il-rev-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.84rem;color:#fff;flex-shrink:0}
-.il-rev-name{font-weight:800;font-size:.9rem;color:#fff;font-family:'Montserrat',sans-serif}
-.il-rev-loc{font-size:.72rem;color:rgba(255,255,255,.35)}
-.il-rev-service{font-size:.72rem;color:${BLUE2};font-weight:700;margin-top:3px}
-.il-rev-date{font-size:.7rem;color:rgba(255,255,255,.25);margin-top:2px}
-.il-rev-dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
-.il-rev-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);border:none;cursor:pointer;transition:all .2s;padding:0}
-.il-rev-dot.active{background:${RED};transform:scale(1.2)}
-.il-rev-nav{display:flex;gap:10px;justify-content:center;margin-top:14px}
-.il-rev-btn{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.15);border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:.9rem;color:rgba(255,255,255,.6);transition:all .2s;display:flex;align-items:center;justify-content:center}
-.il-rev-btn:hover{border-color:${RED};color:${RED};background:rgba(232,35,42,.1)}
-
-/* ── FAQ ── */
-.il-faq-section{padding:80px 0;background:${OFFWHITE}}
-.il-faq-inner{max-width:800px;margin:0 auto}
-.il-faq-cats{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 32px;justify-content:center}
-.il-faq-cat{background:none;border:1.5px solid ${BORDER};color:${MID};padding:6px 16px;border-radius:20px;font-size:.78rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s;letter-spacing:.04em}
-.il-faq-cat.active,.il-faq-cat:hover{background:${RED};border-color:${RED};color:#fff}
-.il-faq-list{display:flex;flex-direction:column;gap:8px}
-.il-faq-item{border:1.5px solid ${BORDER};border-radius:14px;overflow:hidden;background:#fff;transition:border-color .25s,box-shadow .25s}
-.il-faq-item.open{border-color:rgba(232,35,42,.35);box-shadow:0 6px 24px rgba(232,35,42,.09)}
-.il-faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-weight:800;font-size:.93rem;color:${DARK};gap:12px;font-family:'Montserrat',sans-serif;background:none;border:none;width:100%;text-align:left;transition:color .2s}
-.il-faq-item.open .il-faq-q{color:${RED}}
-.il-faq-icon{width:24px;height:24px;border-radius:50%;border:1.5px solid rgba(232,35,42,.25);display:flex;align-items:center;justify-content:center;color:${RED};font-size:.85rem;font-weight:900;transition:transform .3s,background .2s;flex-shrink:0;line-height:1}
-.il-faq-item.open .il-faq-icon{transform:rotate(45deg);background:${RED};color:#fff;border-color:${RED}}
-.il-faq-a{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1),padding .3s;font-size:.88rem;color:${MID};line-height:1.75;padding:0 22px}
-.il-faq-item.open .il-faq-a{max-height:300px;padding:0 22px 20px}
-.il-faq-a-inner{border-top:1px solid ${BORDER};padding-top:14px}
-.il-faq-toggle{
-  background:none;border:1.5px solid rgba(232,35,42,.25);color:${RED};
-  padding:10px 28px;border-radius:8px;font-size:.85rem;font-weight:800;
-  cursor:pointer;font-family:'Nunito',sans-serif;margin-top:20px;transition:all .2s;
-}
-.il-faq-toggle:hover{background:${RED};color:#fff}
 
 /* ── SERVICE AREAS ACCORDION ── */
 .il-areas-section{padding:72px 0;background:#fff;border-top:1px solid ${BORDER}}
@@ -888,8 +844,6 @@ body,#root{
   .il-hero-left{padding:80px 5%}
   .il-hero-right{padding:60px 5%}
   .il-hero-left::after{display:none}
-  .il-why-inner{grid-template-columns:1fr;gap:32px}
-  .il-why-img{display:none}
   .il-steps{grid-template-columns:repeat(2,1fr)}
   .il-footer-grid{grid-template-columns:1fr 1fr;gap:28px}
   .il-svc-grid{grid-template-columns:1fr 1fr}
@@ -1034,7 +988,7 @@ const SvcImg = ({ img, emoji, alt }) => (
       />
     </div>
     : <div className="il-svc-img-ph">
-      <div className="il-svc-img-dashed"><span className="il-svc-img-icon" aria-hidden="true">{emoji}</span></div>
+      <div className="il-svc-img-dashed"><span className="il-svc-img-icon" aria-hidden="true"><Ico name={emoji} size={28} /></span></div>
       <span className="il-svc-img-label">Service Photo</span>
     </div>
 );
@@ -1075,106 +1029,106 @@ const PestCrescent = () => (
 // ── Services data ───────────────────────────────────────────────────────────
 const SERVICES_DATA = [
   {
-    name: "Dry Carpet Cleaning", emoji: "🧹", price: "From $89", img: imgCarpet,
+    name: "Dry Carpet Cleaning", emoji: "Brush", price: "From $89", img: imgCarpet,
     desc: "Dry carpet cleaning that removes dirt, stains, and allergens using minimal moisture — carpets are ready to walk on straight away, fully dry in just one to two hours.",
     bullets: ["Dry carpet cleaning", "Duration: 2–4 hours"],
     duration: "2–4 hours", ideal: "Homes, offices & rentals",
     steps: [
-      { icon: "🔍", title: "Inspection", desc: "We assess carpet condition, fibre type, and stain locations before starting." },
-      { icon: "🧴", title: "Pre-treatment", desc: "Stains and high-traffic areas are pre-treated with professional dry solutions." },
-      { icon: "🌀", title: "Dry Cleaning", desc: "Low-moisture dry compound is worked deep into fibres, lifting dirt, allergens, and bacteria without soaking." },
-      { icon: "🌬️", title: "Ready Instantly", desc: "No wet carpets — fully dry in 1–2 hours and walkable straight away." },
+      { icon: "Search", title: "Inspection", desc: "We assess carpet condition, fibre type, and stain locations before starting." },
+      { icon: "FlaskConical", title: "Pre-treatment", desc: "Stains and high-traffic areas are pre-treated with professional dry solutions." },
+      { icon: "Waves", title: "Dry Cleaning", desc: "Low-moisture dry compound is worked deep into fibres, lifting dirt, allergens, and bacteria without soaking." },
+      { icon: "Wind", title: "Ready Instantly", desc: "No wet carpets — fully dry in 1–2 hours and walkable straight away." },
     ],
     includes: ["All rooms & hallways", "Stain pre-treatment", "Deodorising", "Furniture moved on request"],
   },
   {
-    name: "End of Lease Cleaning", emoji: "🚚", price: "From $249", img: imgEndOfLease,
+    name: "End of Lease Cleaning", emoji: "Truck", price: "From $249", img: imgEndOfLease,
     desc: "We promise to promptly address and rectify any cleaning issues your property manager identifies during the final inspection, ensuring your bond is secured.",
     bullets: ["Bond Back Guarantee", "Duration: 4–8 hours"],
     duration: "4–8 hours", ideal: "Renters & landlords",
     steps: [
-      { icon: "📋", title: "Checklist Review", desc: "We follow your real estate agent's exact end-of-lease checklist." },
-      { icon: "🍳", title: "Kitchen & Bathrooms", desc: "Deep scrub of oven, stovetop, sinks, tiles, and all fixtures." },
-      { icon: "🪟", title: "Windows & Walls", desc: "Interior windows, tracks, skirting boards, and wall marks cleaned." },
-      { icon: "✅", title: "Final Walkthrough", desc: "We check every room before leaving — bond back guaranteed." },
+      { icon: "ClipboardList", title: "Checklist Review", desc: "We follow your real estate agent's exact end-of-lease checklist." },
+      { icon: "UtensilsCrossed", title: "Kitchen & Bathrooms", desc: "Deep scrub of oven, stovetop, sinks, tiles, and all fixtures." },
+      { icon: "Monitor", title: "Windows & Walls", desc: "Interior windows, tracks, skirting boards, and wall marks cleaned." },
+      { icon: "CheckCircle", title: "Final Walkthrough", desc: "We check every room before leaving — bond back guaranteed." },
     ],
     includes: ["Full kitchen deep clean", "Bathroom & toilet scrub", "Interior windows", "Oven & rangehood", "Skirting boards & doors", "Bond back guarantee"],
   },
   {
-    name: "Gutter Cleaning", emoji: "🌿", price: "From $120", img: imgGutter,
+    name: "Gutter Cleaning", emoji: "Leaf", price: "From $120", img: imgGutter,
     desc: "Protect your property with precision. Our discreet, thorough gutter cleaning ensures seamless drainage and lasting curb appeal.",
     bullets: ["Precision gutter cleaning", "Duration: 2–3 hours"],
     duration: "2–3 hours", ideal: "Houses & commercial buildings",
     steps: [
-      { icon: "🏠", title: "Roof Access", desc: "Safely access your gutters using ladders and harness equipment." },
-      { icon: "🍂", title: "Debris Removal", desc: "Remove all leaves, twigs, dirt, and blockages by hand and blower." },
-      { icon: "💧", title: "Flush & Test", desc: "Gutters are flushed with water to confirm clear drainage flow." },
-      { icon: "🔍", title: "Damage Report", desc: "We flag any cracks, sagging, or rust for your attention." },
+      { icon: "Home", title: "Roof Access", desc: "Safely access your gutters using ladders and harness equipment." },
+      { icon: "Leaf", title: "Debris Removal", desc: "Remove all leaves, twigs, dirt, and blockages by hand and blower." },
+      { icon: "Droplets", title: "Flush & Test", desc: "Gutters are flushed with water to confirm clear drainage flow." },
+      { icon: "Search", title: "Damage Report", desc: "We flag any cracks, sagging, or rust for your attention." },
     ],
     includes: ["All gutters & downpipes", "Debris bagged & removed", "Water flow test", "Minor blockage clearing", "Damage report if found"],
   },
   {
-    name: "Window Cleaning", emoji: "🪟", price: "From $79", img: imgWindow,
+    name: "Window Cleaning", emoji: "Monitor", price: "From $79", img: imgWindow,
     desc: "Professional window cleaning for streak-free, crystal-clear results — inside and out.",
     bullets: ["Spotless, streak-free window cleaning", "Duration: Varies"],
     duration: "1–3 hours", ideal: "Homes & businesses",
     steps: [
-      { icon: "🧽", title: "Frame & Track Clean", desc: "Frames, sills, and tracks wiped down to remove built-up grime." },
-      { icon: "🪟", title: "Interior Glass", desc: "Inside surfaces cleaned with streak-free solution and microfibre cloths." },
-      { icon: "💦", title: "Exterior Glass", desc: "Outside glass cleaned with water-fed pole or squeegee system." },
-      { icon: "✨", title: "Streak-Free Finish", desc: "Final polish ensures crystal-clear, spot-free results every time." },
+      { icon: "Brush", title: "Frame & Track Clean", desc: "Frames, sills, and tracks wiped down to remove built-up grime." },
+      { icon: "Monitor", title: "Interior Glass", desc: "Inside surfaces cleaned with streak-free solution and microfibre cloths." },
+      { icon: "Droplets", title: "Exterior Glass", desc: "Outside glass cleaned with water-fed pole or squeegee system." },
+      { icon: "Sparkles", title: "Streak-Free Finish", desc: "Final polish ensures crystal-clear, spot-free results every time." },
     ],
     includes: ["Interior & exterior glass", "Window frames & sills", "Sliding door tracks", "Streak-free guarantee", "Fly screens cleaned on request"],
   },
   {
-    name: "Pram Cleaning", emoji: "👶", price: "From $49", img: imgPram,
+    name: "Pram Cleaning", emoji: "Baby", price: "From $49", img: imgPram,
     desc: "Safe, thorough sanitising of prams and strollers to keep your little one's ride fresh and hygienic.",
     bullets: ["The Pram Patch", "Duration: Varies"],
     duration: "1–2 hours", ideal: "Families with young children",
     steps: [
-      { icon: "🔧", title: "Disassembly", desc: "Fabric, harness, and removable parts are carefully taken apart." },
-      { icon: "🧼", title: "Hand Wash", desc: "All fabric components washed with baby-safe, non-toxic detergents." },
-      { icon: "🦠", title: "Sanitising", desc: "Frame, wheels, and buckles sanitised to remove bacteria and mould." },
-      { icon: "👶", title: "Reassembly", desc: "Pram reassembled, dried, and ready for your little one." },
+      { icon: "Wrench", title: "Disassembly", desc: "Fabric, harness, and removable parts are carefully taken apart." },
+      { icon: "ShowerHead", title: "Hand Wash", desc: "All fabric components washed with baby-safe, non-toxic detergents." },
+      { icon: "ShieldCheck", title: "Sanitising", desc: "Frame, wheels, and buckles sanitised to remove bacteria and mould." },
+      { icon: "Baby", title: "Reassembly", desc: "Pram reassembled, dried, and ready for your little one." },
     ],
     includes: ["Fabric hand wash", "Frame sanitising", "Wheel & buckle clean", "Baby-safe products only", "Mould treatment if needed"],
   },
   {
-    name: "Pest Control Service", emoji: "🐛", price: "From $150", img: imgPest,
+    name: "Pest Control Service", emoji: "Bug", price: "From $150", img: imgPest,
     desc: "Safe and effective pest treatment for homes and businesses, keeping unwanted visitors out for good.",
     bullets: ["Professional service", "Duration: Varies"],
     duration: "1–3 hours", ideal: "Residential and Commercial Property Treatment",
     steps: [
-      { icon: "🔎", title: "Pest Inspection", desc: "We identify the type and extent of infestation before treatment." },
-      { icon: "🚪", title: "Entry Point Check", desc: "Gaps, cracks, and access points are identified and noted." },
-      { icon: "🧪", title: "Treatment Applied", desc: "Targeted, pet-safe treatments applied inside and outside the property." },
-      { icon: "📅", title: "Follow-up Plan", desc: "We recommend a maintenance schedule to keep pests away long-term." },
+      { icon: "Search", title: "Pest Inspection", desc: "We identify the type and extent of infestation before treatment." },
+      { icon: "DoorOpen", title: "Entry Point Check", desc: "Gaps, cracks, and access points are identified and noted." },
+      { icon: "FlaskConical", title: "Treatment Applied", desc: "Targeted, pet-safe treatments applied inside and outside the property." },
+      { icon: "CalendarDays", title: "Follow-up Plan", desc: "We recommend a maintenance schedule to keep pests away long-term." },
     ],
     includes: ["Full property inspection", "Interior & exterior treatment", "Pet & child safe products", "Common pests covered", "Follow-up visit if needed"],
   },
   {
-    name: "Pressure Washing", emoji: "💧", price: "From $99", img: imgPressure,
+    name: "Pressure Washing", emoji: "Droplets", price: "From $99", img: imgPressure,
     desc: "Professional pressure washing for buildings, walkways, and common areas. Ideal for property managers, clinics, and commercial spaces.",
     bullets: ["Professional pressure washing", "Duration: 2–4 hours"],
     duration: "2–4 hours", ideal: "Driveways, decks & exteriors",
     steps: [
-      { icon: "🧹", title: "Surface Prep", desc: "Loose debris swept away and delicate areas protected before washing." },
-      { icon: "🧴", title: "Pre-soak", desc: "Degreaser or mould treatment applied to stubborn stains." },
-      { icon: "💦", title: "High-Pressure Wash", desc: "Professional-grade pressure washer blasts away grime, oil, and algae." },
-      { icon: "✅", title: "Rinse & Inspect", desc: "Surface rinsed clean and inspected for any missed areas." },
+      { icon: "Brush", title: "Surface Prep", desc: "Loose debris swept away and delicate areas protected before washing." },
+      { icon: "FlaskConical", title: "Pre-soak", desc: "Degreaser or mould treatment applied to stubborn stains." },
+      { icon: "Droplets", title: "High-Pressure Wash", desc: "Professional-grade pressure washer blasts away grime, oil, and algae." },
+      { icon: "CheckCircle", title: "Rinse & Inspect", desc: "Surface rinsed clean and inspected for any missed areas." },
     ],
     includes: ["Driveways & paths", "Decks & patios", "Fences & walls", "Garage floors", "Mould & algae treatment"],
   },
   {
-    name: "General House Clean", emoji: "✨", price: "From $89", img: imgGeneral,
+    name: "General House Clean", emoji: "Sparkles", price: "From $89", img: imgGeneral,
     desc: "Regular maintenance cleaning covering all rooms — dusting, vacuuming, mopping, and surface sanitising.",
     bullets: ["Crystal-clear windows", "Duration: 1–3 hours"],
     duration: "2–4 hours", ideal: "Weekly, fortnightly or monthly",
     steps: [
-      { icon: "🌀", title: "Dusting & Surfaces", desc: "All surfaces, shelves, and fixtures dusted from top to bottom." },
-      { icon: "🧹", title: "Vacuuming", desc: "Carpets, rugs, and hard floors vacuumed throughout the home." },
-      { icon: "🪣", title: "Mopping", desc: "Hard floors mopped with appropriate solution for floor type." },
-      { icon: "🚿", title: "Bathrooms & Kitchen", desc: "Sinks, benches, stovetop, toilets, and mirrors cleaned and sanitised." },
+      { icon: "Waves", title: "Dusting & Surfaces", desc: "All surfaces, shelves, and fixtures dusted from top to bottom." },
+      { icon: "Brush", title: "Vacuuming", desc: "Carpets, rugs, and hard floors vacuumed throughout the home." },
+      { icon: "Droplets", title: "Mopping", desc: "Hard floors mopped with appropriate solution for floor type." },
+      { icon: "ShowerHead", title: "Bathrooms & Kitchen", desc: "Sinks, benches, stovetop, toilets, and mirrors cleaned and sanitised." },
     ],
     includes: ["All rooms & living areas", "Kitchen & bathrooms", "Vacuuming & mopping", "Dusting all surfaces", "Bin emptying"],
   },
@@ -1193,193 +1147,11 @@ const TIME_SLOTS = [
 const now = new Date();
 const TAKEN_SLOTS = {}; // All slots available
 
-// ── Reviews data ────────────────────────────────────────────────────────────
-const REVIEWS_DATA = [
-  { text: '"Great value for money and very professional service. The team was efficient and thorough, and the follow-up support has been excellent. Would definitely recommend!"', name: "Ben Miller", loc: "Toowoomba, QLD", initials: "B", color: "#2d8a4e", service: "Cleaning Service", date: "2 days ago", source: "Google", isNew: true, ownerReply: "Hi Ben, thank you so much for your kind words! We're thrilled to hear you had a great experience with us. Your recommendation means the world to our team. We look forward to serving you again! 😊 — iLovah Cleaning Services" },
-  { text: '"Francis was able to help me out on short notice and he did such a thorough cleaning job for me. The best cleaner I\'ve come across in a long time and I will be recommending him to others."', name: "Renya S.", loc: "Amiens, QLD", initials: "RS", color: "#6b7280", service: "One Off Cleaning", date: "23 May 2024", source: "Hipages" },
-  { text: '"Francis was really good, punctual, reliable and effective. I would recommend Francis for a good house and carpets cleaning."', name: "Pratibha", loc: "Toowoomba, QLD", initials: "P", color: "#2563eb", service: "End of Lease Cleaning", date: "27 Jul 2024", source: "Oneflare" },
-  { text: '"Had a serious cockroach problem for months. Rest In Pest sorted it in one visit — haven\'t seen a single one since. Fast, professional, and affordable."', name: "David K.", loc: "Toowoomba, QLD", initials: "DK", color: RED_DK, service: "Pest Treatment", date: "14 Sep 2024", source: "Google" },
-  { text: '"Friendly and expert clean."', name: "Tiffany H.", loc: "South Toowoomba, QLD", initials: "TH", color: "#6b7280", service: "House Cleaning", date: "22 May 2024", source: "Hipages" },
-  { text: '"Prompt and professional Service. Would definitely recommend."', name: "Leanna T.", loc: "Wilsonton, QLD", initials: "LT", color: "#7c3aed", service: "Rental Bond Cleaning", date: "5 May 2024", source: "Hipages" },
-  { text: '"Francis and his crew did an amazing job. Didn\'t think the house could get that clean. Great communication and very punctual and a very good price."', name: "Daniel B.", loc: "Meringandan West, QLD", initials: "DB", color: "#ea580c", service: "House Cleaning", date: "16 Aug 2024", source: "Hipages" },
-  { text: '"Francis and the whole team are amazing! This is an extremely professional, efficient and pleasant team. Their prices are very fair, especially considering the quality and speed of their work. Hiring strangers to come into your home can be awkward, but this team are so pleasant and professional, we always feel safe and comfortable with them in the house. I highly recommend giving them a call, they\'ll have your home spotless in no time."', name: "Luke Cosgrove", loc: "Toowoomba, QLD", initials: "LC", color: "#1a73e8", service: "House Cleaning", date: "3 weeks ago", source: "Google", ownerReply: "Hi Luke, wow — thank you so much! We're so glad you feel comfortable and trust our team in your home. Comments like yours keep us motivated every single day. See you next time! 🙏 — iLovah Cleaning Services" },
-];
-
-const FAQ_CATS = ["All", "Booking & Pricing", "Cleaning", "Pest Control", "Service Areas", "Guarantees"];
-const FAQS = [
-  { cat: "Cleaning", q: "Do you guarantee bond back for end of lease cleaning?", a: "Yes! We offer a bond-back guarantee for all our end-of-lease cleaning services. If your landlord or property manager is not satisfied, we will return to re-clean at no additional cost — no questions asked." },
-  { cat: "Booking & Pricing", q: "How do I book a cleaning or pest control service?", a: "You can book by clicking 'Get Quote' on our website, calling us on 0478 711 829, or emailing ilovahclean@gmail.com. We typically respond within 2 hours with a tailored quote." },
-  { cat: "Booking & Pricing", q: "How far in advance should I book your services?", a: "We recommend booking at least 2–3 days in advance to secure your preferred time slot. For end-of-lease cleans, book as soon as you know your move-out date to ensure availability." },
-  { cat: "Pest Control", q: "Are your pest treatments safe for children and pets?", a: "Absolutely. Rest In Pest uses certified, pet-safe and child-safe products for all treatments. We'll advise you on any brief ventilation period needed after application, typically 30–60 minutes." },
-  { cat: "Cleaning", q: "Can I be present during the cleaning?", a: "Absolutely! You are welcome to stay home during the clean. Many clients also choose to leave while we work." },
-  { cat: "Booking & Pricing", q: "Do you provide free quotes?", a: "Yes, all quotes are 100% free and obligation-free. Simply reach out via phone, email, or the booking form and we'll provide a detailed quote based on your specific needs." },
-  { cat: "Guarantees", q: "Do you offer a satisfaction guarantee?", a: "We stand behind every clean with a 100% satisfaction guarantee. If you're not happy with any aspect of the service, contact us within 24 hours and we'll return to make it right at no extra charge." },
-  { cat: "Service Areas", q: "What areas do you service?", a: "We service Toowoomba and all surrounding suburbs within ~50km, including North Toowoomba, East Toowoomba, South Toowoomba, Harristown, Rangeville, Newtown, Wilsonton, Rockville, Glenvale, Kearneys Spring, Middle Ridge, Centenary Heights, Drayton, Darling Heights, Highfields, Gatton, Pittsworth, Oakey, and Dalby." },
-  { cat: "Pest Control", q: "How much does pest control cost in Toowoomba?", a: "Pest control services in Toowoomba typically range from $150 to $300, depending on the size of your property and the level of infestation. Contact us for a free, tailored quote." },
-  { cat: "Pest Control", q: "How often should pest control be done in Queensland?", a: "Most homes in Queensland should have pest control done every 6 to 12 months for effective, ongoing protection against common pests like cockroaches, ants, and spiders." },
-  { cat: "Cleaning", q: "What is included in bond cleaning?", a: "Bond cleaning includes a thorough deep clean of all areas — kitchens, bathrooms, floors, windows, and all living spaces — carried out to real estate standards to help you get your bond back." },
-  { cat: "Pest Control", q: "Is pest control safe for pets and children?", a: "Yes. Our treatments are safe when applied by our licensed technicians. Once the treated areas are dry — typically 30 to 60 minutes — it is safe for both pets and children to return." },
-  { cat: "Service Areas", q: "Do you service Highfields and surrounding areas?", a: "Yes! We regularly service Highfields, Oakey, Pittsworth, Gatton, Dalby, and all areas within approximately 50km of Toowoomba. Contact us to confirm availability for your specific suburb." },
-  { cat: "Service Areas", q: "Do you cover Harristown, Rangeville, and Newtown?", a: "Absolutely. We regularly service Harristown, Rangeville, Newtown, Wilsonton, Rockville, Glenvale, Kearneys Spring, Middle Ridge, Centenary Heights, Drayton, Darling Heights, and all Toowoomba suburbs. Book online or call 0478 711 829." },
-  { cat: "Booking & Pricing", q: "Can I book a same-day or next-day service in Toowoomba?", a: "Subject to availability, yes — we offer same-day and next-day bookings for bond cleans, pest control, and other services across Toowoomba and surrounds. Call 0478 711 829 directly for urgent bookings." },
-  { cat: "Booking & Pricing", q: "What payment methods do you accept?", a: "We accept cash, bank transfer (EFT), and credit card. Payment is due on completion of service unless prior arrangements have been made." },
-  { cat: "Cleaning", q: "How long does a bond clean take?", a: "Bond cleans typically take 4–8 hours depending on the size and condition of the property. A standard 3-bedroom home usually takes around 5–6 hours with our team." },
-  { cat: "Guarantees", q: "Are you insured and licensed?", a: "Yes. iLovah Cleaning Services is fully insured for public liability, and all pest control work is carried out by licensed, certified technicians in accordance with Queensland regulations." },
-  { cat: "Cleaning", q: "Do you bring your own cleaning supplies and equipment?", a: "Yes, we arrive fully equipped with all professional-grade cleaning products and equipment. You don't need to supply anything — just let us in and we'll handle the rest." },
-];
-
-// ── Reviews carousel ────────────────────────────────────────────────────────
-function ReviewsCarousel() {
-  const [current, setCurrent] = useState(0);
-  const timerRef = useRef(null);
-  const next = () => setCurrent(c => (c + 1) % REVIEWS_DATA.length);
-  const prev = () => setCurrent(c => (c - 1 + REVIEWS_DATA.length) % REVIEWS_DATA.length);
-  useEffect(() => { timerRef.current = setInterval(next, 5500); return () => clearInterval(timerRef.current); }, []);
-  const r = REVIEWS_DATA[current];
-  return (
-    <div style={{ position: "relative", zIndex: 1 }}>
-      <div className="il-rev-card" key={current}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-          <div className="il-rev-source">{r.source}</div>
-          {r.isNew && (
-            <span style={{
-              fontSize: ".62rem", fontWeight: 900, letterSpacing: ".08em", textTransform: "uppercase",
-              border: "1.5px solid #333", borderRadius: 4, padding: "2px 8px", color: "#333",
-            }}>NEW</span>
-          )}
-        </div>
-        <div className="il-rev-stars">★★★★★</div>
-        <p className="il-rev-text">{r.text}</p>
-        <div className="il-reviewer">
-          <div className="il-rev-avatar" style={{ background: r.color }}>{r.initials}</div>
-          <div>
-            <div className="il-rev-name">{r.name}</div>
-            <div className="il-rev-loc">{r.loc}</div>
-            <div className="il-rev-service">{r.service}</div>
-            <div className="il-rev-date">{r.date}</div>
-          </div>
-        </div>
-        {r.ownerReply && (
-          <div style={{
-            marginTop: 14, padding: "12px 14px",
-            background: "rgba(255,255,255,0.06)", borderRadius: 10,
-            borderLeft: `3px solid ${RED}`,
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-              <div style={{
-                width: 26, height: 26, borderRadius: "50%", background: RED,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: ".65rem", fontWeight: 900, color: "#fff", flexShrink: 0,
-              }}>iL</div>
-              <div>
-                <div style={{ fontSize: ".78rem", fontWeight: 800, color: "#fff", lineHeight: 1.1 }}>iLovah Cleaning Services</div>
-                <div style={{ fontSize: ".65rem", color: "rgba(255,255,255,.4)", fontWeight: 600 }}>Owner · 5 hours ago</div>
-              </div>
-            </div>
-            <p style={{ fontSize: ".82rem", color: "rgba(255,255,255,.65)", lineHeight: 1.6, margin: 0 }}>{r.ownerReply}</p>
-          </div>
-        )}
-      </div>
-      <div className="il-rev-dots">
-        {REVIEWS_DATA.map((r, i) => <button key={i} className={`il-rev-dot ${i === current ? "active" : ""}`} onClick={() => setCurrent(i)} aria-label={`Review by ${r.name}`} />)}
-      </div>
-      <div className="il-rev-nav">
-        <button className="il-rev-btn" onClick={prev} aria-label="Previous review">←</button>
-        <button className="il-rev-btn" onClick={next} aria-label="Next review">→</button>
-      </div>
-    </div>
-  );
-}
-
-// ── FAQ section ─────────────────────────────────────────────────────────────
-function FaqSection({ onContact }) {
-  const [open, setOpen] = useState(null);
-  const [showAll, setShowAll] = useState(false);
-  const [activeCat, setActiveCat] = useState("All");
-
-  const filtered = activeCat === "All" ? FAQS : FAQS.filter(f => f.cat === activeCat);
-  const visible = showAll ? filtered : filtered.slice(0, 6);
-
-  const handleCat = (cat) => { setActiveCat(cat); setOpen(null); setShowAll(false); };
-
-  return (
-    <section className="il-faq-section" id="faq" aria-label="Frequently Asked Questions">
-      <div className="il-wrap">
-        <div className="il-faq-inner">
-          <R style={{ textAlign: "center" }}>
-            <div className="sec-tag-blue" style={{ display: "inline-block", marginBottom: 12 }}>FAQ</div>
-            <h2 className="sec-h2" style={{ textAlign: "center" }}>Frequently Asked <span className="hl-red">Questions</span></h2>
-            <p className="sec-sub" style={{ maxWidth: 520, margin: "0 auto 8px" }}>
-              Browse by category or{" "}
-              <button onClick={onContact} style={{ color: RED, background: "none", border: "none", cursor: "pointer", fontWeight: 800, fontSize: "inherit", fontFamily: "inherit", textDecoration: "underline" }}>
-                contact us
-              </button>{" "}if you can't find your answer.
-            </p>
-          </R>
-
-          {/* Category filter pills */}
-          <div className="il-faq-cats" role="tablist" aria-label="FAQ categories">
-            {FAQ_CATS.map(cat => (
-              <button
-                key={cat}
-                className={`il-faq-cat ${activeCat === cat ? "active" : ""}`}
-                onClick={() => handleCat(cat)}
-                role="tab"
-                aria-selected={activeCat === cat}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Accordion items */}
-          <div className="il-faq-list" role="list">
-            {visible.map((f, i) => {
-              const idx = FAQS.indexOf(f);
-              const isOpen = open === idx;
-              return (
-                <div key={idx} className={`il-faq-item ${isOpen ? "open" : ""}`} role="listitem">
-                  <button
-                    className="il-faq-q"
-                    onClick={() => setOpen(isOpen ? null : idx)}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-answer-${idx}`}
-                    id={`faq-q-${idx}`}
-                  >
-                    <span>{f.q}</span>
-                    <span className="il-faq-icon" aria-hidden="true">+</span>
-                  </button>
-                  <div
-                    className="il-faq-a"
-                    id={`faq-answer-${idx}`}
-                    role="region"
-                    aria-labelledby={`faq-q-${idx}`}
-                  >
-                    <div className="il-faq-a-inner">{f.a}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {filtered.length > 6 && (
-            <div style={{ textAlign: "center" }}>
-              <button className="il-faq-toggle" onClick={() => setShowAll(s => !s)}>
-                {showAll ? "Show Less ↑" : `Show ${filtered.length - 6} More ↓`}
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // ── Service Areas Accordion ──────────────────────────────────────────────────
 const SERVICE_AREAS = [
   {
     region: "Toowoomba City",
-    emoji: "🏙️",
+    emoji: "Building2",
     desc: "Full service coverage across all city suburbs",
     suburbs: ["North Toowoomba", "East Toowoomba", "South Toowoomba", "Harristown", "Rangeville", "Newtown", "Wilsonton", "Rockville", "Glenvale"],
     services: ["Bond Cleaning", "Carpet Cleaning", "Pest Control", "Window Cleaning"],
@@ -1387,7 +1159,7 @@ const SERVICE_AREAS = [
   },
   {
     region: "Toowoomba Inner West",
-    emoji: "🏡",
+    emoji: "Home",
     desc: "Kearneys Spring, Middle Ridge & surrounds",
     suburbs: ["Kearneys Spring", "Middle Ridge", "Mount Lofty", "Centenary Heights", "Drayton", "Darling Heights"],
     services: ["Bond Cleaning", "Pest Control", "Gutter Cleaning", "General Clean"],
@@ -1395,7 +1167,7 @@ const SERVICE_AREAS = [
   },
   {
     region: "Highfields & North",
-    emoji: "🌿",
+    emoji: "Leaf",
     desc: "Highfields corridor and northern growth areas",
     suburbs: ["Highfields", "Meringandan", "Meringandan West", "Wyreema", "Cambooya"],
     services: ["Bond Cleaning", "Pest Control", "Pressure Washing"],
@@ -1403,27 +1175,11 @@ const SERVICE_AREAS = [
   },
   {
     region: "Gatton & Lockyer Valley",
-    emoji: "🌾",
+    emoji: "Wheat",
     desc: "Gatton, Laidley and surrounding valley towns",
     suburbs: ["Gatton", "Laidley", "Plainland", "Forest Hill", "Hatton Vale"],
     services: ["Pest Control", "Bond Cleaning", "General Clean"],
     postcode: "4343",
-  },
-  {
-    region: "Pittsworth & South West",
-    emoji: "🌄",
-    desc: "Pittsworth, Millmerran and south-west region",
-    suburbs: ["Pittsworth", "Millmerran", "Greenmount", "Brookstead"],
-    services: ["Pest Control", "Bond Cleaning", "Carpet Cleaning"],
-    postcode: "4356",
-  },
-  {
-    region: "Oakey & Darling Downs",
-    emoji: "🌻",
-    desc: "Oakey, Dalby and western Darling Downs",
-    suburbs: ["Oakey", "Dalby", "Jondaryan", "Bowenville"],
-    services: ["Pest Control", "Bond Cleaning", "Pressure Washing"],
-    postcode: "4401",
   },
 ];
 
@@ -1452,7 +1208,7 @@ function ServiceAreasSection({ onBook }) {
                     aria-controls={`area-body-${i}`}
                   >
                     <span style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                      <span style={{ fontSize: "1.1rem" }}>{area.emoji}</span>
+                      <span style={{ display: "inline-flex", alignItems: "center" }}><Ico name={area.emoji} size={18} /></span>
                       <span>
                         <span style={{ display: "block", fontWeight: 900, fontSize: ".9rem" }}>{area.region}</span>
                         <span style={{ display: "block", fontWeight: 600, fontSize: ".74rem", color: "#6b7280", fontFamily: "'Nunito',sans-serif", marginTop: 1 }}>{area.postcode}</span>
@@ -1505,7 +1261,7 @@ function GetInTouchForm({ onQuote }) {
   };
   if (sent) return (
     <div className="il-git-form-wrap" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: 360, gap: 16 }}>
-      <div style={{ fontSize: "3rem" }}>✅</div>
+      <div style={{ fontSize: "3rem" }}><CheckCircle size={48} strokeWidth={2} aria-hidden="true" /></div>
       <h3 style={{ fontFamily: "'Montserrat',sans-serif", fontWeight: 900, color: "#fff", fontSize: "1.5rem", letterSpacing: "-.03em" }}>Quote Request Sent!</h3>
       <p style={{ color: "rgba(255,255,255,.5)", fontSize: ".92rem", lineHeight: 1.65, maxWidth: 300 }}>Thanks {form.firstName}! We'll get back to you within 1 hour during business hours.</p>
       <button className="il-git-submit" style={{ maxWidth: 200, marginTop: 8 }} onClick={() => { setSent(false); setForm({ firstName: "", phone: "", email: "", service: "", address: "", details: "" }); }}>Send Another</button>
@@ -1555,7 +1311,7 @@ function GetInTouchForm({ onQuote }) {
       <button className={`il-git-submit${sent ? " sent" : ""}`} onClick={handleSubmit}>
         ✦ Get Instant Quote
       </button>
-      <div className="il-git-disclaimer">🔒 No spam. We respond within 1 hour during business hours.</div>
+      <div className="il-git-disclaimer"><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Lock size={14} strokeWidth={2} aria-hidden="true" /> No spam. We respond within 1 hour during business hours.</span></div>
     </div>
   );
 }
@@ -1740,13 +1496,13 @@ function PropertyStep({ street, setStreet, suburb, setSuburb, propState, setProp
               <input id="prop-country" type="text" defaultValue="Australia" readOnly />
             </div>
           </div>
-          <button className="il-loc-btn" onClick={handleLocate}>📍 Use my current location</button>
+          <button className="il-loc-btn" onClick={handleLocate}><MapPin size={14} strokeWidth={2} aria-hidden="true" /> Use my current location</button>
           {locStatus && <p style={{ fontSize: ".74rem", color: locStatus.startsWith("✓") ? "#16a34a" : RED, marginTop: 7, fontWeight: 700 }} role="status">{locStatus}</p>}
         </div>
         <div>
           <div className="il-form-group" style={{ marginBottom: 8 }}><label id="coverage-map-label">Coverage Map</label></div>
           <div className="il-map-placeholder" aria-labelledby="coverage-map-label">
-            <div className="il-map-label"><span aria-hidden="true" className="pin">📍</span> Toowoomba &amp; Surrounds</div>
+            <div className="il-map-label"><span aria-hidden="true" className="pin"><MapPin size={14} strokeWidth={2} aria-hidden="true" /></span> Toowoomba &amp; Surrounds</div>
             <div style={{ height: 200 }}>
               <iframe key={mapSrc} src={mapSrc} width="100%" height="100%" style={{ border: 0, display: "block" }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Coverage Map – Toowoomba and surrounding areas" />
             </div>
@@ -1787,7 +1543,7 @@ function ServiceDetailModal({ service, onClose, onBook }) {
             <div className="il-svc-modal-name">{service.name}</div>
             <div className="il-svc-modal-tagline">{service.desc}</div>
             <div className="il-svc-meta-pills">
-              <span className="il-svc-meta-pill">🏠 {service.ideal}</span>
+              <span className="il-svc-meta-pill"><Home size={14} strokeWidth={2} aria-hidden="true" /> {service.ideal}</span>
             </div>
           </div>
           <div className="il-svc-modal-img-wrap">
@@ -1819,7 +1575,7 @@ function ServiceDetailModal({ service, onClose, onBook }) {
             </div>
           </div>
           <div className="il-svc-modal-footer">
-            <div className="il-svc-modal-footer-note">🛡️ 100% satisfaction guarantee</div>
+            <div className="il-svc-modal-footer-note"><ShieldCheck size={14} strokeWidth={2} aria-hidden="true" /> 100% satisfaction guarantee</div>
             <button className="btn-red" style={{ padding: "11px 28px", fontSize: ".9rem", display: "inline-flex", alignItems: "center", gap: 8 }} onClick={() => { onClose(); onBook(service.name); }}>
               Book Now →
             </button>
@@ -1912,10 +1668,22 @@ function BookingModal({ isOpen, onClose, initialService = "" }) {
   const handleSubmit = async () => {
     setSending(true); setSendError("");
     const FUNCTION_URL = "https://us-central1-ilovahclean.cloudfunctions.net/sendBookingEmail";
+    const payload = {
+      type: "booking",
+      service: service || "General House Clean",
+      date: `${MONTHS[month]} ${selDay}, ${year}`,
+      time: selTime, urgency,
+      firstName, lastName, email, phone, pref,
+      street, suburb, propState, postcode, notes,
+      submittedAt: new Date().toLocaleString("en-AU"),
+    };
     try {
+      // Save to Firebase (also auto-creates/updates lead)
+      await saveBooking(payload);
+      // Send email notification
       const res = await fetch(FUNCTION_URL, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "booking", service: service || "General House Clean", date: `${MONTHS[month]} ${selDay}, ${year}`, time: selTime, urgency, firstName, lastName, email, phone, pref, street, suburb, propState, postcode, notes, submittedAt: new Date().toLocaleString("en-AU") }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Send failed");
@@ -1982,8 +1750,8 @@ function BookingModal({ isOpen, onClose, initialService = "" }) {
                 <div className="il-form-group">
                   <label id="contact-pref-label">Preferred contact method</label>
                   <div className="il-contact-pref" role="group" aria-labelledby="contact-pref-label">
-                    {[{ label: "Phone", ico: "📞" }, { label: "Email", ico: "✉️" }, { label: "SMS", ico: "💬" }].map(p => (
-                      <button key={p.label} className={`il-pref-btn ${pref === p.label ? "active" : ""}`} onClick={() => setPref(p.label)} aria-pressed={pref === p.label}><span className="il-pref-ico" aria-hidden="true">{p.ico}</span>{p.label}</button>
+                    {[{ label: "Phone", ico: "Phone" }, { label: "Email", ico: "Mail" }, { label: "SMS", ico: "MessageCircle" }].map(p => (
+                      <button key={p.label} className={`il-pref-btn ${pref === p.label ? "active" : ""}`} onClick={() => setPref(p.label)} aria-pressed={pref === p.label}><span className="il-pref-ico" aria-hidden="true"><Ico name={p.ico} size={16} /></span>{p.label}</button>
                     ))}
                   </div>
                 </div>
@@ -2033,7 +1801,7 @@ function BookingModal({ isOpen, onClose, initialService = "" }) {
                     <option>Urgent — ASAP</option>
                   </select>
                 </div>
-                <div className="il-info-box"><span className="il-info-ico">ℹ️</span><p>We'll confirm your arrival window within <strong>2 hours</strong> of booking.</p></div>
+                <div className="il-info-box"><span className="il-info-ico"><Info size={14} strokeWidth={2} aria-hidden="true" /></span><p>We'll confirm your arrival window within <strong>2 hours</strong> of booking.</p></div>
               </>
             )}
             {step === 5 && (
@@ -2041,7 +1809,7 @@ function BookingModal({ isOpen, onClose, initialService = "" }) {
                 <h3>Review & Confirm</h3>
                 <p className="il-modal-sub">Double-check before submitting</p>
                 <div className="il-review-card">
-                  <h4>🔧 Service Details</h4>
+                  <h4><Wrench size={14} strokeWidth={2} aria-hidden="true" /> Service Details</h4>
                   <div className="il-review-row"><span>Service</span><span>{service || "General House Clean"}</span></div>
                   <div className="il-review-row"><span>Date</span><span>{MONTHS[month]} {selDay}, {year}</span></div>
                   <div className="il-review-row"><span>Time</span><span>{selTime}</span></div>
@@ -2049,7 +1817,7 @@ function BookingModal({ isOpen, onClose, initialService = "" }) {
                   <div className="il-review-row"><span>Location</span><span>{suburb}, {propState}</span></div>
                 </div>
                 <div className="il-review-card">
-                  <h4>👤 Contact Details</h4>
+                  <h4><User size={14} strokeWidth={2} aria-hidden="true" /> Contact Details</h4>
                   <div className="il-review-row"><span>Name</span><span>{firstName} {lastName}</span></div>
                   <div className="il-review-row"><span>Email</span><span>{email}</span></div>
                   <div className="il-review-row"><span>Phone</span><span>{phone}</span></div>
@@ -2114,10 +1882,14 @@ function GetQuoteModal({ isOpen, onClose, initialService = "" }) {
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setSending(true); setSendError("");
+    const payload = { firstName, phone, email, service, address, notes, submittedAt: new Date().toLocaleString("en-AU"), type: "quote" };
     try {
+      // Save to Firebase (also auto-creates/updates lead)
+      await saveQuote(payload);
+      // Send email notification
       const res = await fetch(QUOTE_FUNCTION_URL, {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ firstName, phone, email, service, address, notes, submittedAt: new Date().toLocaleString("en-AU"), type: "quote" }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Send failed");
@@ -2138,7 +1910,7 @@ function GetQuoteModal({ isOpen, onClose, initialService = "" }) {
         <div className="il-gq-body">
           {submitted ? (
             <div style={{ textAlign: "center", padding: "32px 0" }}>
-              <div style={{ fontSize: "3rem", marginBottom: 16 }}>✅</div>
+              <div style={{ fontSize: "3rem", marginBottom: 16 }}><CheckCircle size={48} strokeWidth={2} aria-hidden="true" /></div>
               <div style={{ fontFamily: "'Montserrat',sans-serif", fontSize: "1.3rem", fontWeight: 900, color: DARK, marginBottom: 8 }}>Quote Request Sent!</div>
               <p style={{ color: MID, fontSize: ".9rem" }}>We'll be in touch within 1 hour during business hours.</p>
             </div>
@@ -2198,7 +1970,7 @@ function GetQuoteModal({ isOpen, onClose, initialService = "" }) {
               <button className={`il-gq-submit ${submitted ? "sent" : ""}`} onClick={handleSubmit} disabled={sending || submitted}>
                 {sending ? "Sending…" : "✦ Get Instant Quote"}
               </button>
-              <p className="il-gq-disclaimer">🔒 No spam. We respond within 1 hour during business hours.</p>
+              <p className="il-gq-disclaimer"><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Lock size={14} strokeWidth={2} aria-hidden="true" /> No spam. We respond within 1 hour during business hours.</span></p>
             </>
           )}
         </div>
@@ -2289,10 +2061,10 @@ export default function App() {
     document.documentElement.lang = "en-AU";
 
     // ── Core meta ──────────────────────────────────────────────────────────
-    // Description: 150–160 chars, includes primary keyword + CTA
-    setMeta("description", "iLovah Cleaning Services – Toowoomba's trusted bond cleaning, dry carpet cleaning, pest control & more. Family-owned, fully insured, bond-back guaranteed. Free quotes in 1 hr. Call 0478 711 829.");
-    // Keywords: long-tail + suburb-level targeting
-    setMeta("keywords", "bond cleaning Toowoomba, end of lease cleaning Toowoomba, carpet cleaning Toowoomba QLD, pest control Toowoomba, window cleaning Toowoomba, gutter cleaning Toowoomba, pressure washing Toowoomba, pram cleaning Toowoomba, house cleaning Toowoomba, cleaning services North Toowoomba, bond back guarantee QLD, iLovah cleaning, Rest In Pest Control, cockroach treatment Toowoomba, ant pest control Toowoomba 4350, bond cleaning Harristown, carpet cleaning Rangeville, pest control Highfields, cleaning services Newtown Toowoomba, bond cleaning Glenvale, house cleaning Kearneys Spring, pest control Middle Ridge, cleaning Darling Heights, bond cleaning Wilsonton, end of lease Centenary Heights, carpet cleaning South Toowoomba, pest control Drayton, gutter cleaning East Toowoomba, bond cleaning Rockville, cleaning services Pittsworth, pest control Oakey QLD, cleaning Gatton QLD, house cleaning Mount Lofty Toowoomba");
+    // Description: kept under 160 chars so the CTA isn't truncated in Google's SERP snippet
+    setMeta("description", "Toowoomba's trusted bond, carpet & pest control specialists. Family-owned, fully insured, bond-back guaranteed. Free quotes in 1 hr — call 0478 711 829.");
+    // Note: the "keywords" meta tag was removed — Google has ignored it since 2009 and it's
+    // pure unused bloat. Suburb/service targeting now lives in on-page content + JSON-LD areaServed instead.
     setMeta("robots", "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1");
     setMeta("googlebot", "index, follow, max-snippet:-1, max-image-preview:large");
     setMeta("author", "iLovah Cleaning Services");
@@ -2419,7 +2191,7 @@ export default function App() {
             "height": 60
           },
           "image": `${BASE_URL}/og-image.jpg`,
-          "telephone": "+610478711829",
+          "telephone": "+61478711829",
           "email": "ilovahclean@gmail.com",
           "priceRange": "$$",
           "currenciesAccepted": "AUD",
@@ -2457,10 +2229,8 @@ export default function App() {
             { "@type": "AdministrativeArea", "name": "Drayton" },
             { "@type": "AdministrativeArea", "name": "Darling Heights" },
             { "@type": "AdministrativeArea", "name": "Highfields" },
+            { "@type": "AdministrativeArea", "name": "Helidon" },
             { "@type": "AdministrativeArea", "name": "Gatton" },
-            { "@type": "AdministrativeArea", "name": "Pittsworth" },
-            { "@type": "AdministrativeArea", "name": "Oakey" },
-            { "@type": "AdministrativeArea", "name": "Dalby" },
             { "@type": "State", "name": "Queensland", "sameAs": "https://en.wikipedia.org/wiki/Queensland" }
           ],
           "serviceArea": {
@@ -2489,14 +2259,14 @@ export default function App() {
             "@type": "OfferCatalog",
             "name": "Cleaning & Pest Control Services",
             "itemListElement": [
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bond Cleaning / End of Lease Cleaning Toowoomba", "description": "Full bond-back guaranteed end-of-lease clean following real estate agent checklists.", "url": `${BASE_URL}/` } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dry Carpet Cleaning Toowoomba", "description": "Dry carpet cleaning to remove stains, allergens, and odours — fully dry in 1–2 hours.", "url": `${BASE_URL}/` } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Window Cleaning Toowoomba", "description": "Internal and external streak-free window cleaning for homes and businesses.", "url": `${BASE_URL}/` } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gutter Cleaning Toowoomba", "description": "Safe gutter clearing and inspection to protect your roof from water damage.", "url": `${BASE_URL}/` } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pressure Washing Toowoomba", "description": "High-pressure cleaning for driveways, decks, fences, and exterior surfaces.", "url": `${BASE_URL}/` } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bond Cleaning / End of Lease Cleaning Toowoomba", "description": "Full bond-back guaranteed end-of-lease clean following real estate agent checklists.", "url": `${BASE_URL}/end-of-lease-cleaning` } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dry Carpet Cleaning Toowoomba", "description": "Dry carpet cleaning to remove stains, allergens, and odours — fully dry in 1–2 hours.", "url": `${BASE_URL}/carpet-cleaning` } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Window Cleaning Toowoomba", "description": "Internal and external streak-free window cleaning for homes and businesses.", "url": `${BASE_URL}/window-cleaning` } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gutter Cleaning Toowoomba", "description": "Safe gutter clearing and inspection to protect your roof from water damage.", "url": `${BASE_URL}/gutter-cleaning` } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pressure Washing Toowoomba", "description": "High-pressure cleaning for driveways, decks, fences, and exterior surfaces.", "url": `${BASE_URL}/pressure-washing` } },
               { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pest Control Toowoomba", "description": "Licensed pest treatment for cockroaches, ants, spiders, rodents, and more.", "url": `${BASE_URL}/pest-control` } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "General House Cleaning Toowoomba", "description": "Regular residential maintenance cleans covering all rooms.", "url": `${BASE_URL}/` } },
-              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pram Cleaning Toowoomba", "description": "Deep sanitising of prams and strollers for a safe, hygienic result.", "url": `${BASE_URL}/` } }
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "General House Cleaning Toowoomba", "description": "Regular residential maintenance cleans covering all rooms.", "url": `${BASE_URL}/general-house-cleaning` } },
+              { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pram Cleaning Toowoomba", "description": "Deep sanitising of prams and strollers for a safe, hygienic result.", "url": `${BASE_URL}/pram-cleaning` } }
             ]
           },
           "sameAs": [
@@ -2506,7 +2276,7 @@ export default function App() {
           "contactPoint": [
             {
               "@type": "ContactPoint",
-              "telephone": "+610478711829",
+              "telephone": "+61478711829",
               "contactType": "customer service",
               "availableLanguage": "English",
               "areaServed": "AU",
@@ -2526,8 +2296,8 @@ export default function App() {
           "@id": `${BASE_URL}/#faq`,
           "mainEntity": [
             { "@type": "Question", "name": "Do you guarantee bond back after end-of-lease cleaning?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. iLovah Cleaning Services offers a bond-back guarantee on all end-of-lease cleans. If your property manager is not satisfied, we return free of charge to rectify." } },
-            { "@type": "Question", "name": "What areas do you service around Toowoomba?", "acceptedAnswer": { "@type": "Answer", "text": "We service Toowoomba and all surrounding suburbs within ~50km, including North Toowoomba, East Toowoomba, South Toowoomba, Harristown, Rangeville, Newtown, Wilsonton, Rockville, Glenvale, Kearneys Spring, Middle Ridge, Centenary Heights, Drayton, Darling Heights, Highfields, Gatton, Pittsworth, Oakey, and Dalby." } },
-            { "@type": "Question", "name": "Do you service Highfields and surrounding areas?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We regularly service Highfields, Oakey, Pittsworth, Gatton, Dalby, and all areas within approximately 50km of Toowoomba. Contact us on 0478 711 829 to confirm availability for your suburb." } },
+            { "@type": "Question", "name": "What areas do you service around Toowoomba?", "acceptedAnswer": { "@type": "Answer", "text": "We service Toowoomba and all surrounding suburbs within ~50km, including North Toowoomba, East Toowoomba, South Toowoomba, Harristown, Rangeville, Newtown, Wilsonton, Rockville, Glenvale, Kearneys Spring, Middle Ridge, Centenary Heights, Drayton, Darling Heights, Highfields, Helidon, and Gatton." } },
+            { "@type": "Question", "name": "Do you service Highfields and surrounding areas?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We regularly service Highfields, Helidon, Gatton, and all areas within approximately 50km of Toowoomba. Contact us on 0478 711 829 to confirm availability for your suburb." } },
             { "@type": "Question", "name": "Do you offer bond cleaning in Harristown, Rangeville and Newtown?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We service Harristown, Rangeville, Newtown, and all Toowoomba suburbs for bond cleaning, pest control, carpet cleaning and more. Call 0478 711 829 to book." } },
             { "@type": "Question", "name": "How quickly can I get a quote?", "acceptedAnswer": { "@type": "Answer", "text": "We respond to all free quote requests within 1 hour during business hours (Mon–Sat 7am–6pm)." } },
             { "@type": "Question", "name": "Are your pest control technicians licensed?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. All pest control treatments are carried out by licensed and certified technicians using safe, targeted solutions approved for residential and commercial use in Queensland." } },
@@ -2538,23 +2308,6 @@ export default function App() {
             { "@type": "Question", "name": "How often should pest control be done in Queensland?", "acceptedAnswer": { "@type": "Answer", "text": "Most homes in Queensland should have pest control done every 6 to 12 months for effective, ongoing protection against common pests like cockroaches, ants, and spiders." } },
             { "@type": "Question", "name": "What payment methods do you accept?", "acceptedAnswer": { "@type": "Answer", "text": "We accept cash, bank transfer (EFT), and credit card. Payment is due on completion of service unless prior arrangements have been made." } }
           ]
-        },
-        // ── Service schema for Pest Control page ──────────────────────────
-        {
-          "@type": "Service",
-          "@id": `${BASE_URL}/pest-control#service`,
-          "name": "Pest Control Toowoomba – Rest In Pest",
-          "serviceType": "Pest Control",
-          "provider": { "@id": `${BASE_URL}/#business` },
-          "areaServed": { "@type": "City", "name": "Toowoomba" },
-          "description": "Licensed pest control services in Toowoomba QLD. Treatment for cockroaches, ants, spiders, rodents, and pre-lease pest treatments. Safe for families and pets.",
-          "url": `${BASE_URL}/pest-control`,
-          "offers": {
-            "@type": "Offer",
-            "price": "150",
-            "priceCurrency": "AUD",
-            "priceSpecification": { "@type": "PriceSpecification", "minPrice": "150", "priceCurrency": "AUD" }
-          }
         }
       ]
     });
@@ -2568,21 +2321,21 @@ export default function App() {
   const openQuote = (svc = "") => { setQuoteService(svc); setQuoteOpen(true); };
 
   const services = [
-    { emoji: "🧹", title: "Dry Carpet Cleaning", desc: "Dry carpet cleaning to lift stains, allergens, and odours — ready to walk on in 1–2 hours.", featured: false, from: "From $89", img: imgCarpet, alt: "Professional dry carpet cleaning service in Toowoomba QLD" },
-    { emoji: "🚚", title: "End of Lease Cleaning", desc: "Get your full bond back with our end-of-lease clean. We follow real estate agent checklists exactly.", featured: true, from: "From $249", img: imgEndOfLease, alt: "End of lease bond cleaning Toowoomba – bond-back guaranteed" },
-    { emoji: "🌿", title: "Gutter Cleaning", desc: "Safe and thorough gutter clearing to protect your roof and home from water damage year-round.", featured: false, from: "From $120", img: imgGutter, alt: "Gutter cleaning service Toowoomba QLD" },
-    { emoji: "🪟", title: "Window Cleaning", desc: "Crystal-clear windows inside and out using streak-free solutions and professional equipment.", featured: false, from: "From $79", img: imgWindow, alt: "Window cleaning service Toowoomba – internal and external" },
-    { emoji: "👶", title: "Pram Cleaning", desc: "Deep sanitising and cleaning of prams and strollers to keep your little one safe and fresh.", featured: false, from: "From $49", img: imgPram, alt: "Pram and stroller deep cleaning service Toowoomba" },
-    { emoji: "🐛", title: "Pest Control Service", desc: "Safe and effective pest treatment for homes and businesses, keeping unwanted visitors out for good.", featured: false, from: "From $150", img: imgPest, alt: "Licensed pest control service Toowoomba QLD – cockroaches, ants, spiders, rodents" },
-    { emoji: "💧", title: "Pressure Washing", desc: "High-pressure cleaning for driveways, decks, fences, and exteriors — looking brand new again.", featured: false, from: "From $99", img: imgPressure, alt: "Pressure washing service Toowoomba – driveways, decks, fences" },
-    { emoji: "✨", title: "General House Clean", desc: "Regular maintenance cleaning covering all rooms — dusting, vacuuming, mopping, and surface sanitising.", featured: false, from: "From $89", img: imgGeneral, alt: "General house cleaning service Toowoomba QLD" },
+    { emoji: "Brush", title: "Dry Carpet Cleaning", slug: "/carpet-cleaning", desc: "Dry carpet cleaning to lift stains, allergens, and odours — ready to walk on in 1–2 hours.", featured: false, from: "From $89", img: imgCarpet, alt: "Professional dry carpet cleaning service in Toowoomba QLD" },
+    { emoji: "Truck", title: "End of Lease Cleaning", slug: "/end-of-lease-cleaning", desc: "Get your full bond back with our end-of-lease clean. We follow real estate agent checklists exactly.", featured: true, from: "From $249", img: imgEndOfLease, alt: "End of lease bond cleaning Toowoomba – bond-back guaranteed" },
+    { emoji: "Leaf", title: "Gutter Cleaning", slug: "/gutter-cleaning", desc: "Safe and thorough gutter clearing to protect your roof and home from water damage year-round.", featured: false, from: "From $120", img: imgGutter, alt: "Gutter cleaning service Toowoomba QLD" },
+    { emoji: "Monitor", title: "Window Cleaning", slug: "/window-cleaning", desc: "Crystal-clear windows inside and out using streak-free solutions and professional equipment.", featured: false, from: "From $79", img: imgWindow, alt: "Window cleaning service Toowoomba – internal and external" },
+    { emoji: "Baby", title: "Pram Cleaning", slug: "/pram-cleaning", desc: "Deep sanitising and cleaning of prams and strollers to keep your little one safe and fresh.", featured: false, from: "From $49", img: imgPram, alt: "Pram and stroller deep cleaning service Toowoomba" },
+    { emoji: "Bug", title: "Pest Control Service", slug: "/pest-control", desc: "Safe and effective pest treatment for homes and businesses, keeping unwanted visitors out for good.", featured: false, from: "From $150", img: imgPest, alt: "Licensed pest control service Toowoomba QLD – cockroaches, ants, spiders, rodents" },
+    { emoji: "Droplets", title: "Pressure Washing", slug: "/pressure-washing", desc: "High-pressure cleaning for driveways, decks, fences, and exteriors — looking brand new again.", featured: false, from: "From $99", img: imgPressure, alt: "Pressure washing service Toowoomba – driveways, decks, fences" },
+    { emoji: "Sparkles", title: "General House Clean", slug: "/general-house-cleaning", desc: "Regular maintenance cleaning covering all rooms — dusting, vacuuming, mopping, and surface sanitising.", featured: false, from: "From $89", img: imgGeneral, alt: "General house cleaning service Toowoomba QLD" },
   ];
 
   const howSteps = [
-    { ico: "📋", title: "Choose Your Service", desc: "Pick the cleaning or pest treatment type — from a quick tidy to a full deep clean." },
-    { ico: "📅", title: "Pick Date & Time", desc: "Available 7 days a week, including public holidays." },
-    { ico: "🧑‍🔧", title: "We Show Up & Handle It", desc: "Trained technicians arrive on time with all supplies included." },
-    { ico: "🌟", title: "Enjoy Your Space", desc: "Come home to spotless, pest-free results. Guaranteed or we come back free." },
+    { ico: "ClipboardList", title: "Choose Your Service", desc: "Pick the cleaning or pest treatment type — from a quick tidy to a full deep clean." },
+    { ico: "CalendarDays", title: "Pick Date & Time", desc: "Available 7 days a week, including public holidays." },
+    { ico: "Wrench", title: "We Show Up & Handle It", desc: "Trained technicians arrive on time with all supplies included." },
+    { ico: "Star", title: "Enjoy Your Space", desc: "Come home to spotless, pest-free results. Guaranteed or we come back free." },
   ];
 
   const clients = [
@@ -2643,10 +2396,10 @@ export default function App() {
         <ul className="il-nav-links-desktop" role="list">
           <li><a href="#services" onClick={e => { e.preventDefault(); go("services"); }} aria-label="Cleaning Services">Cleaning Service</a></li>
           <li><a href="/pest-control" onClick={e => { e.preventDefault(); navigate("/pest-control"); }} aria-label="Pest Control Service">Pest Control Service</a></li>
-          <li><a href="#about" onClick={e => { e.preventDefault(); go("about"); }} aria-label="About us">About</a></li>
-          <li><a href="#reviews" onClick={e => { e.preventDefault(); go("reviews"); }} aria-label="Customer reviews">Reviews</a></li>
+          <li><a href="/about" onClick={e => { e.preventDefault(); navigate("/about"); }} aria-label="About us">About</a></li>
+          <li><a href="/reviews" onClick={e => { e.preventDefault(); navigate("/reviews"); }} aria-label="Customer reviews">Reviews</a></li>
           <li><a href="/blog" onClick={e => { e.preventDefault(); navigate("/blog"); }} aria-label="Blog">Blog</a></li>
-          <li><a href="#faq" onClick={e => { e.preventDefault(); go("faq"); }} aria-label="Frequently asked questions">FAQ</a></li>
+          <li><a href="/faq" onClick={e => { e.preventDefault(); navigate("/faq"); }} aria-label="Frequently asked questions">FAQ</a></li>
           <li><a className="il-nav-quote" href="#quote" onClick={e => { e.preventDefault(); openQuote(); }} aria-label="Get Instant Qoute"><img src={imgInsect} alt="" aria-hidden="true" width={40} height={40} loading="lazy" style={{ width: 40, height: 40, objectFit: "contain", verticalAlign: "middle", marginRight: 4, filter: "brightness(0) invert(1)" }} /> Get Instant Quote</a></li>
         </ul>
         <button className={`il-burger ${menuOpen ? "open" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="mobile-nav-menu">
@@ -2660,10 +2413,10 @@ export default function App() {
         <button className="il-drawer-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">✕</button>
         <li><a href="#services" onClick={e => { e.preventDefault(); go("services"); }}>Cleaning Service</a></li>
         <li><a href="/pest-control" onClick={e => { e.preventDefault(); navigate("/pest-control"); }}>Pest Control Service</a></li>
-        <li><a href="#about" onClick={e => { e.preventDefault(); go("about"); }}>About</a></li>
-        <li><a href="#reviews" onClick={e => { e.preventDefault(); go("reviews"); }}>Reviews</a></li>
+        <li><a href="/about" onClick={e => { e.preventDefault(); navigate("/about"); setMenuOpen(false); }}>About</a></li>
+        <li><a href="/reviews" onClick={e => { e.preventDefault(); navigate("/reviews"); setMenuOpen(false); }}>Reviews</a></li>
         <li><a href="/blog" onClick={e => { e.preventDefault(); navigate("/blog"); setMenuOpen(false); }}>Blog</a></li>
-        <li><a href="#faq" onClick={e => { e.preventDefault(); go("faq"); }}>FAQ</a></li>
+        <li><a href="/faq" onClick={e => { e.preventDefault(); navigate("/faq"); setMenuOpen(false); }}>FAQ</a></li>
         <li><a className="il-nav-quote" href="#quote" onClick={e => { e.preventDefault(); openQuote(); setMenuOpen(false); }}><img src={imgInsect} alt="" aria-hidden="true" width={40} height={40} loading="lazy" style={{ width: 40, height: 40, objectFit: "contain", verticalAlign: "middle", marginRight: 4, filter: "brightness(0) invert(1)" }} /> Get Instant Quote</a></li>
       </ul>
 
@@ -2696,7 +2449,7 @@ export default function App() {
 
           {/* RIGHT — Rest In Pest */}
           <div className="il-hero-right">
-            <div className="bug-bg" aria-hidden="true">🐛</div>
+            <div className="bug-bg" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m8 2 1.88 1.88" /><path d="M14.12 3.88 16 2" /><path d="M9 7.13v-1a3.003 3.003 0 1 1 6 0v1" /><path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6" /><path d="M12 20v-9" /><path d="M6.53 9C4.6 8.8 3 7.1 3 5" /><path d="M6 13H2" /><path d="M3 21c0-2.1 1.7-3.9 3.8-4" /><path d="M20.97 5c0 2.1-1.6 3.8-3.5 4" /><path d="M22 13h-4" /><path d="M17.2 17c2.1.1 3.8 1.9 3.8 4" /></svg></div>
             <div className="hero-eyebrow ey-red">
               <span className="ey-dot dot-r" aria-hidden="true" />
               Certified Pest Control Service · Licensed Technicians
@@ -2723,20 +2476,20 @@ export default function App() {
 
         {/* ── TRUST BAR (index.html style) ── */}
         <div className="il-trust" aria-label="Trust highlights">
-          <div className="il-trust-item"><span className="ti" aria-hidden="true">🏠</span> Toowoomba &amp; Surrounds</div>
+          <div className="il-trust-item"><span className="ti" aria-hidden="true"><Home size={16} strokeWidth={2} aria-hidden="true" /></span> Toowoomba &amp; Surrounds</div>
           <div className="il-trust-div" aria-hidden="true" />
           <div className="il-trust-item"><span className="ti" aria-hidden="true">✦</span> Bond-Back Guarantee</div>
           <div className="il-trust-div" aria-hidden="true" />
-          <div className="il-trust-item"><span className="ti" aria-hidden="true">🛡️</span> Fully Insured &amp; Certified</div>
+          <div className="il-trust-item"><span className="ti" aria-hidden="true"><ShieldCheck size={16} strokeWidth={2} aria-hidden="true" /></span> Fully Insured &amp; Certified</div>
           <div className="il-trust-div" aria-hidden="true" />
-          <div className="il-trust-item"><span className="ti" aria-hidden="true">❤️</span> Family Owned &amp; Operated</div>
+          <div className="il-trust-item"><span className="ti" aria-hidden="true"><Heart size={16} strokeWidth={2} aria-hidden="true" /></span> Family Owned &amp; Operated</div>
         </div>
 
         {/* ── SERVICES ── */}
         <section className="il-services-section" id="services" aria-label="Cleaning and pest control services in Toowoomba">
           <div className="il-wrap">
             <R>
-              <div className="sec-tag-blue">🧹 What We Offer</div>
+              <div className="sec-tag-blue"><Sparkles size={14} strokeWidth={2} aria-hidden="true" /> What We Offer</div>
               <h2 className="sec-h2">Cleaning & Pest Control Services <span className="hl-red">Tailored</span> for Toowoomba</h2>
               <p className="sec-sub">From bond cleans to pest elimination — iLovah handles every corner of your property across Toowoomba and surrounds.</p>
             </R>
@@ -2744,12 +2497,15 @@ export default function App() {
               {services.map((s, i) => {
                 const svcData = SERVICES_DATA.find(d => d.name === s.title);
                 return (
-                  <R key={i} className={`il-svc-card ${s.featured ? "featured" : ""}`} style={{ transitionDelay: `${i * 0.07}s`, cursor: "pointer" }} onClick={() => svcData && setDetailService(svcData)}>
+                  <R key={i} className={`il-svc-card ${s.featured ? "featured" : ""}`} style={{ transitionDelay: `${i * 0.07}s`, cursor: "pointer" }} onClick={() => navigate(s.slug)}>
                     <SvcImg img={s.img} emoji={s.emoji} alt={s.alt} />
                     <div className="il-svc-body">
                       <div className="il-svc-title">{s.title}</div>
                       <div className="il-svc-desc">{s.desc}</div>
-                      <button className="il-svc-link" onClick={e => { e.stopPropagation(); openBooking(s.title); }} aria-label={`Book ${s.title}`}>Book Now →</button>
+                      <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+                        <a href={s.slug} onClick={e => { e.stopPropagation(); navigate(s.slug); }} aria-label={`Full details on ${s.title} in Toowoomba`} style={{ color: "#4AABDB", fontWeight: 800, fontSize: ".85rem", textDecoration: "none" }}>Learn more →</a>
+                        <button className="il-svc-link" onClick={e => { e.stopPropagation(); openBooking(s.title); }} aria-label={`Book ${s.title}`}>Book Now →</button>
+                      </div>
                     </div>
                   </R>
                 );
@@ -2773,7 +2529,7 @@ export default function App() {
               {/* ── Starter ── */}
               <R className="il-pkg-card starter" style={{ transitionDelay: "0s" }}>
                 <div className="il-pkg-badge badge-starter">Starter</div>
-                <span className="il-pkg-icon">🏠</span>
+                <span className="il-pkg-icon"><Home size={20} strokeWidth={2} aria-hidden="true" /></span>
                 <div className="il-pkg-name">Bond Clean Essentials</div>
                 <div className="il-pkg-tagline">Perfect exit clean for renters needing their bond back fast.</div>
                 <ul className="il-pkg-list">
@@ -2787,7 +2543,7 @@ export default function App() {
               {/* ── Most Popular ── */}
               <R className="il-pkg-card popular" style={{ transitionDelay: "0.08s" }}>
                 <div className="il-pkg-badge badge-popular">Most Popular ★</div>
-                <span className="il-pkg-icon">🏆</span>
+                <span className="il-pkg-icon"><Award size={20} strokeWidth={2} aria-hidden="true" /></span>
                 <div className="il-pkg-name">Full Property Reset</div>
                 <div className="il-pkg-tagline">Complete inside + outside transformation, pest-free and sparkling.</div>
                 <ul className="il-pkg-list">
@@ -2827,46 +2583,11 @@ export default function App() {
               {howSteps.map((s, i) => (
                 <R key={i} className="il-step" style={{ transitionDelay: `${i * 0.08}s` }}>
                   <div className="il-step-num">0{i + 1}</div>
-                  <div className="il-step-ico">{s.ico}</div>
+                  <div className="il-step-ico"><Ico name={s.ico} size={22} /></div>
                   <div className="il-step-title">{s.title}</div>
                   <div className="il-step-desc">{s.desc}</div>
                 </R>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── WHY / ABOUT ── */}
-        <section className="il-why" id="about">
-          <div className="il-wrap">
-            <div className="il-why-inner">
-              <R>
-                <div className="il-why-img">
-                  <img src={imgHappy} alt="Happy iLovah client after professional cleaning service in Toowoomba QLD" loading="lazy" style={{ width: "100%", height: "auto", display: "block", borderRadius: 20 }} />
-                  <div className="il-why-badge">
-                    <div className="il-why-badge-icon">🏆</div>
-                    <div><strong>100% Bond Back Guarantee</strong><span>Or we re-clean for free</span></div>
-                  </div>
-                </div>
-              </R>
-              <R>
-                <div className="sec-tag-blue">Why iLovah & Rest In Pest</div>
-                <h2 className="sec-h2">We go beyond clean — <span className="hl-red">we restore</span> comfort</h2>
-                <p style={{ color: MID, fontSize: ".96rem", lineHeight: 1.7, marginBottom: 28 }}>
-                  Founded in 2017, iLovah has been helping families and professionals in Toowoomba & surrounds reclaim their time and live in cleaner, healthier, pest-free spaces. Every cleaner and technician is background-checked, trained, and insured.
-                </p>
-                <div className="il-features">
-                  {[
-                    { ico: "🛡️", title: "Fully Insured & Certified", desc: "Every team member is police-cleared, fully insured, and pest-certified — your property is protected." },
-                    { ico: "🔁", title: "Satisfaction Guarantee", desc: "Not happy? We return and re-clean or re-treat at absolutely no extra charge." },
-                  ].map((f, i) => (
-                    <div key={i} className="il-feature">
-                      <div className="il-feat-ico">{f.ico}</div>
-                      <div><div className="il-feat-title">{f.title}</div><div className="il-feat-desc">{f.desc}</div></div>
-                    </div>
-                  ))}
-                </div>
-              </R>
             </div>
           </div>
         </section>
@@ -2887,7 +2608,7 @@ export default function App() {
         <section className="il-clients-section">
           <div className="il-wrap" style={{ textAlign: "center" }}>
             <R>
-              <div style={{ fontSize: "1.4rem", marginBottom: 12 }}>❤️</div>
+              <div style={{ fontSize: "1.4rem", marginBottom: 12 }}><Heart size={22} strokeWidth={2} aria-hidden="true" /></div>
               <div className="sec-tag-blue" style={{ display: "inline-block" }}>Our Clients</div>
               <h2 className="sec-h2" style={{ textAlign: "center", maxWidth: "100%" }}>Our <span className="hl-red">Happy</span> Clients</h2>
               <p className="sec-sub" style={{ maxWidth: 500, margin: "0 auto" }}>Trusted by homeowners, property investors, clinics, and businesses across Toowoomba, Queensland.</p>
@@ -2901,21 +2622,6 @@ export default function App() {
             </div>
           </div>
         </section>
-
-        {/* ── TESTIMONIALS ── */}
-        <section className="il-reviews-section" id="reviews" aria-label="Customer testimonials and reviews" aria-label="Customer reviews for iLovah Cleaning Services Toowoomba">
-          <div className="il-wrap" style={{ textAlign: "center", position: "relative", zIndex: 1 }}>
-            <R>
-              <div className="sec-tag-blue" style={{ color: GOLD, background: "rgba(255,184,0,0.1)", borderColor: "rgba(255,184,0,0.2)", display: "inline-block", marginBottom: 12 }}>Real Reviews</div>
-              <h2 className="sec-h2" style={{ textAlign: "center", color: WHITE, maxWidth: "100%" }}>Toowoomba <span className="hl-red">Loves</span> Our Cleaning & Pest Services</h2>
-              <p style={{ color: "rgba(255,255,255,.65)", fontSize: ".93rem", lineHeight: 1.7, maxWidth: 480, margin: "0 auto" }}>From sparkling bond cleans to pest-free homes — here's what our Toowoomba clients say.</p>
-            </R>
-            <ReviewsCarousel />
-          </div>
-        </section>
-
-        {/* ── FAQ ── */}
-        <FaqSection onContact={() => go("contact")} />
 
         {/* ── SERVICE AREAS ── */}
         <ServiceAreasSection onBook={() => openQuote()} />
@@ -2931,28 +2637,28 @@ export default function App() {
                 <p className="il-git-sub">Whether you need a bond clean, dry carpet clean, pest treatment, or all three — we'll get back within 1 hour with a clear, no-obligation quote across Toowoomba QLD.</p>
                 <div className="il-git-info">
                   <div className="il-git-info-item">
-                    <div className="il-git-info-ico il-git-ico-red">📞</div>
+                    <div className="il-git-info-ico il-git-ico-red"><Phone size={18} strokeWidth={2} aria-hidden="true" /></div>
                     <div className="il-git-info-body">
                       <div className="il-git-info-label">Call or Text</div>
                       <div className="il-git-info-val"><a href="tel:0478711829">0478 711 829</a></div>
                     </div>
                   </div>
                   <div className="il-git-info-item">
-                    <div className="il-git-info-ico il-git-ico-blue">✉️</div>
+                    <div className="il-git-info-ico il-git-ico-blue"><Mail size={18} strokeWidth={2} aria-hidden="true" /></div>
                     <div className="il-git-info-body">
                       <div className="il-git-info-label">Email</div>
                       <div className="il-git-info-val"><a href="mailto:ilovahclean@gmail.com">ilovahclean@gmail.com</a></div>
                     </div>
                   </div>
                   <div className="il-git-info-item">
-                    <div className="il-git-info-ico il-git-ico-gray">📍</div>
+                    <div className="il-git-info-ico il-git-ico-gray"><MapPin size={18} strokeWidth={2} aria-hidden="true" /></div>
                     <div className="il-git-info-body">
                       <div className="il-git-info-label">Location</div>
                       <div className="il-git-info-val">North Toowoomba, QLD &amp; surrounds</div>
                     </div>
                   </div>
                   <div className="il-git-info-item">
-                    <div className="il-git-info-ico il-git-ico-gray">🕐</div>
+                    <div className="il-git-info-ico il-git-ico-gray"><Clock size={18} strokeWidth={2} aria-hidden="true" /></div>
                     <div className="il-git-info-body">
                       <div className="il-git-info-label">Hours</div>
                       <div className="il-git-info-val">Monday – Saturday: 7am – 6pm</div>
@@ -2960,8 +2666,8 @@ export default function App() {
                   </div>
                 </div>
                 <div className="il-git-service-btns">
-                  <button className="il-git-svc-btn blue" onClick={() => openQuote("Bond Cleaning")}>✏️ Cleaning Services</button>
-                  <button className="il-git-svc-btn red" onClick={() => openQuote("Pest Control Service")}>🐛 Pest Control</button>
+                  <button className="il-git-svc-btn blue" onClick={() => openQuote("Bond Cleaning")}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Pencil size={14} strokeWidth={2} aria-hidden="true" /> Cleaning Services</span></button>
+                  <button className="il-git-svc-btn red" onClick={() => openQuote("Pest Control Service")}><span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}><Bug size={14} strokeWidth={2} aria-hidden="true" /> Pest Control</span></button>
                 </div>
               </R>
             </div>
@@ -3060,14 +2766,14 @@ export default function App() {
         >
           <span itemProp="name">iLovah Cleaning Services</span>
           <span itemProp="alternateName">Rest In Pest Control</span>
-          <span itemProp="telephone">+610478711829</span>
+          <span itemProp="telephone">+61478711829</span>
           <span itemProp="email">ilovahclean@gmail.com</span>
           <span itemProp="priceRange">$$</span>
           <span itemProp="currenciesAccepted">AUD</span>
           <span itemProp="paymentAccepted">Cash, Bank Transfer, Credit Card</span>
           <span itemProp="openingHours">Mo-Sa 07:00-18:00</span>
           <span itemProp="description">
-            iLovah Cleaning Services is Toowoomba&apos;s leading professional cleaning company offering bond cleaning, end of lease cleaning, carpet cleaning, window cleaning, gutter cleaning, pressure washing, general house cleaning, pram cleaning, and licensed pest control. Servicing Toowoomba, North Toowoomba, East Toowoomba, South Toowoomba, Harristown, Rangeville, Newtown, Wilsonton, Rockville, Glenvale, Kearneys Spring, Mount Lofty, Middle Ridge, Centenary Heights, Drayton, Darling Heights, Highfields, Gatton, Pittsworth, Oakey, Dalby, and all surrounding QLD suburbs within 50km. Family-owned, fully insured, and bond-back guaranteed.
+            iLovah Cleaning Services is Toowoomba&apos;s leading professional cleaning company offering bond cleaning, end of lease cleaning, carpet cleaning, window cleaning, gutter cleaning, pressure washing, general house cleaning, pram cleaning, and licensed pest control. Servicing Toowoomba, North Toowoomba, East Toowoomba, South Toowoomba, Harristown, Rangeville, Newtown, Wilsonton, Rockville, Glenvale, Kearneys Spring, Mount Lofty, Middle Ridge, Centenary Heights, Drayton, Darling Heights, Highfields, Helidon, Gatton, and all surrounding QLD suburbs within 50km. Family-owned, fully insured, and bond-back guaranteed.
           </span>
           <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
             <span itemProp="streetAddress">4 Kelfield Street</span>
@@ -3102,10 +2808,8 @@ export default function App() {
           <span itemProp="areaServed">Drayton QLD 4350</span>
           <span itemProp="areaServed">Darling Heights QLD 4350</span>
           <span itemProp="areaServed">Highfields QLD 4352</span>
+          <span itemProp="areaServed">Helidon QLD 4344</span>
           <span itemProp="areaServed">Gatton QLD 4343</span>
-          <span itemProp="areaServed">Pittsworth QLD 4356</span>
-          <span itemProp="areaServed">Oakey QLD 4401</span>
-          <span itemProp="areaServed">Dalby QLD 4405</span>
           <link itemProp="sameAs" href="https://www.facebook.com/ilovahcleaning" />
           <link itemProp="sameAs" href="https://www.instagram.com/ilovahcleaning" />
           <link itemProp="url" href="https://www.ilovahcleaningservices.com.au" />
@@ -3134,26 +2838,33 @@ export default function App() {
           <div className="il-footer-col">
             <h4>Cleaning Services</h4>
             <ul>
-              {["Bond Cleaning", "Dry Carpet Cleaning", "Window Cleaning", "Gutter Cleaning", "Pressure Washing"].map(s => (
-                <li key={s}><a href="#services" aria-label={`${s} in Toowoomba QLD`}>{s}</a></li>
+              {[
+                { label: "Bond Cleaning", href: "/end-of-lease-cleaning" },
+                { label: "Dry Carpet Cleaning", href: "/carpet-cleaning" },
+                { label: "Window Cleaning", href: "/window-cleaning" },
+                { label: "Gutter Cleaning", href: "/gutter-cleaning" },
+                { label: "Pressure Washing", href: "/pressure-washing" },
+              ].map(s => (
+                <li key={s.label}><a href={s.href} aria-label={`${s.label} in Toowoomba QLD`}>{s.label}</a></li>
               ))}
             </ul>
+            <a href="https://www.ilovahcleaningservices.com.au/admin" style={{ display: "inline-block", marginTop: 12, color: "rgba(255,255,255,.35)", textDecoration: "none", fontSize: ".78rem", fontWeight: 600 }} onMouseEnter={e => e.currentTarget.style.color = "rgba(255,255,255,.6)"} onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,.35)"}>Admin</a>
           </div>
           <div className="il-footer-col">
             <h4>Contact Us</h4>
             <ul>
-              <li><a href="tel:0478711829" aria-label="Call us: 0478 711 829"><span className="fc-icon" aria-hidden="true">📞</span> 0478 711 829</a></li>
-              <li><a href="mailto:ilovahclean@gmail.com" aria-label="Email us: ilovahclean@gmail.com"><span className="fc-icon" aria-hidden="true">✉</span> ilovahclean@gmail.com</a></li>
-              <li><a href="https://maps.google.com/?q=North+Toowoomba+QLD" target="_blank" rel="noopener noreferrer" aria-label="Our location: North Toowoomba QLD"><span className="fc-icon" aria-hidden="true">📍</span> North Toowoomba QLD</a></li>
-              <li><span style={{ display: "flex", alignItems: "center", gap: 7, color: "rgba(255,255,255,.55)", fontSize: ".86rem", fontWeight: 600 }}><span className="fc-icon" aria-hidden="true">🕐</span> Mon–Sat 7am–6pm</span></li>
-              <li><a href="#quote" onClick={e => { e.preventDefault(); openQuote(); }} aria-label="Get Instant Qoute"><span className="fc-icon" aria-hidden="true">💬</span> Get Instant Qoute</a></li>
+              <li><a href="tel:0478711829" aria-label="Call us: 0478 711 829"><Phone size={14} strokeWidth={2} aria-hidden="true" /> 0478 711 829</a></li>
+              <li><a href="mailto:ilovahclean@gmail.com" aria-label="Email us: ilovahclean@gmail.com"><Mail size={14} strokeWidth={2} aria-hidden="true" /> ilovahclean@gmail.com</a></li>
+              <li><a href="https://maps.google.com/?q=North+Toowoomba+QLD" target="_blank" rel="noopener noreferrer" aria-label="Our location: North Toowoomba QLD"><MapPin size={14} strokeWidth={2} aria-hidden="true" /> North Toowoomba QLD</a></li>
+              <li><span style={{ display: "flex", alignItems: "center", gap: 7, color: "rgba(255,255,255,.55)", fontSize: ".86rem", fontWeight: 600 }}><Clock size={14} strokeWidth={2} aria-hidden="true" /> Mon–Sat 7am–6pm</span></li>
+              <li><a href="#quote" onClick={e => { e.preventDefault(); openQuote(); }} aria-label="Get Instant Qoute"><MessageCircle size={14} strokeWidth={2} aria-hidden="true" /> Get Instant Qoute</a></li>
             </ul>
           </div>
         </div>
         <div className="il-footer-bottom">
           <div>© 2025 <span className="fa" style={{ color: "#ff6b6b" }}>iLovah Cleaning Services</span> &amp; <span className="fa" style={{ color: "#ff6b6b" }}>Rest In Pest Control</span>. All rights reserved. ABN provided. Serving Toowoomba &amp; QLD Surrounds.</div>
           <div className="il-footer-bottom-right">
-            <span>Made with <span className="hrt" aria-hidden="true">♥</span> in Toowoomba, QLD</span>
+            <span>Made with <span className="hrt" aria-hidden="true"><Heart size={12} strokeWidth={2} aria-hidden="true" /></span> in Toowoomba, QLD</span>
           </div>
         </div>
       </footer>
